@@ -21,7 +21,7 @@
   --fd:'Barlow Condensed',sans-serif;--fb:'Barlow',sans-serif;--fs:'Barlow Semi Condensed',sans-serif;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--white);font-family:var(--fb);font-size:15px;line-height:1.6;overflow-x:hidden;padding-top:26px}
+body{background:var(--bg);color:var(--white);font-family:var(--fb);font-size:15px;line-height:1.6;overflow-x:hidden;padding-top:26px;margin:0}
 
 /* ── COMM BAR ── */
 /* comm-bar is now hidden — functionality moved to topbar */
@@ -35,7 +35,16 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-size:15p
 .cb-btn.gold{color:var(--gold);border-color:var(--gold)}.cb-btn.gold:hover{background:var(--gold);color:var(--bg)}
 
 /* ── TOPBAR ── */
-#topbar{position:sticky;top:26px;z-index:200;height:56px;background:rgba(8,17,31,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1rem 0 1.5rem;gap:0}
+#topbar{position:sticky;top:26px;z-index:200;height:56px;background:rgba(8,17,31,0.97);margin-top:0;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1rem 0 1.5rem;gap:0}
+/* Sync status indicator */
+#sync-indicator{display:none;align-items:center;gap:5px;font-family:var(--fs);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:2px;margin-right:.4rem;transition:opacity .5s}
+#sync-indicator.saved{background:rgba(40,208,112,.1);border:1px solid rgba(40,208,112,.25);color:var(--green)}
+#sync-indicator.synced{background:rgba(40,208,112,.1);border:1px solid rgba(40,208,112,.25);color:var(--green)}
+#sync-indicator.loaded{background:rgba(77,158,232,.1);border:1px solid rgba(77,158,232,.25);color:#4D9EE8}
+#sync-indicator.error{background:rgba(224,48,64,.1);border:1px solid rgba(224,48,64,.25);color:var(--red)}
+#sync-indicator.offline{background:rgba(138,136,120,.1);border:1px solid rgba(138,136,120,.2);color:var(--dim)}
+#sync-indicator.on{display:flex}
+
 /* Comm indicator pill in topbar */
 #topbar-comm-pill{display:none;align-items:center;gap:6px;background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.3);border-radius:3px;padding:3px 10px;margin-right:.5rem;white-space:nowrap}
 #topbar-comm-pill.on{display:flex}
@@ -142,9 +151,9 @@ select.si:focus{border-color:var(--gold)}
   html,body{overflow-x:hidden;width:100%;max-width:100vw}
   *{max-width:100%;box-sizing:border-box}
   /* Hide topbar right-side pills on mobile — they're in the hamburger menu */
-  #topbar-comm-pill,#topbar-team-pill,#topbar-tools-btn,#nav-comm-btn-topbar{display:none!important}
-  /* Bell stays visible for commissioner on mobile */
-  #comm-notif-btn{display:flex!important}
+  #topbar-comm-pill,#topbar-team-pill,#topbar-tools-btn,#nav-comm-btn-topbar,#sync-indicator{display:none!important}
+  /* Bell only shows on mobile when commissioner is logged in (handled via JS) */
+  #comm-notif-btn{display:none!important}
 
   /* ── BETA BAR ── */
   #beta-bar .bb-inner{gap:6px}
@@ -779,28 +788,31 @@ footer strong{color:var(--gold);font-weight:600}
 }
 
 #mobile-bottom-nav {
-  display: none; /* shown via media query */
+  display: none;
   position: fixed;
   bottom: 0; left: 0; right: 0;
   z-index: 300;
+  width: 100vw;
   background: rgba(8,17,31,0.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-top: 1px solid rgba(240,192,64,0.18);
-  padding: 0 0 env(safe-area-inset-bottom, 0);
-  height: calc(58px + env(safe-area-inset-bottom, 0));
+  padding-bottom: env(safe-area-inset-bottom, 0);
 }
 #mobile-bottom-nav ul {
   display: flex;
+  flex-direction: row;
   list-style: none;
   height: 58px;
   margin: 0; padding: 0;
+  width: 100%;
 }
 #mobile-bottom-nav ul li {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
 }
 #mobile-bottom-nav ul li button {
-  width: 100%; height: 100%;
+  width: 100%; height: 58px;
   background: none; border: none;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
@@ -810,6 +822,7 @@ footer strong{color:var(--gold);font-weight:600}
   transition: color .2s;
   -webkit-tap-highlight-color: transparent;
   position: relative;
+  padding: 0;
 }
 #mobile-bottom-nav ul li button.mbn-active {
   color: var(--gold);
@@ -817,30 +830,27 @@ footer strong{color:var(--gold);font-weight:600}
 #mobile-bottom-nav ul li button.mbn-active::before {
   content: '';
   position: absolute;
-  top: 0; left: 20%; right: 20%;
+  top: 0; left: 15%; right: 15%;
   height: 2px;
   background: var(--gold);
   border-radius: 0 0 2px 2px;
 }
-.mbn-icon { font-size: 1.15rem; line-height: 1; }
+.mbn-icon { font-size: 1.2rem; line-height: 1; display: block; }
 .mbn-label {
   font-family: 'Barlow Semi Condensed', sans-serif;
-  font-size: .55rem;
+  font-size: .52rem;
   font-weight: 700;
-  letter-spacing: .1em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   line-height: 1;
+  display: block;
+  white-space: nowrap;
 }
-/* When bottom nav is showing, add padding to body so content isn't hidden */
 @media(max-width:768px) {
   body { padding-bottom: calc(58px + env(safe-area-inset-bottom, 0)); }
-  @media(max-width:768px) {
   #hero-quick-actions { display:block!important; }
-  /* Hide promo on mobile — replace with quick actions */
   #promo-wrap { display:none!important; }
-}
-
-#mobile-bottom-nav { display: block; }
+  #mobile-bottom-nav { display: flex; flex-direction: column; }
 }
 /* BETA PILL */
 .beta-pill{display:inline-flex;align-items:center;gap:5px;background:rgba(232,80,10,.12);border:1px solid rgba(232,80,10,.3);border-radius:20px;padding:3px 10px;font-family:'Barlow Semi Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#E8500A}
@@ -854,6 +864,31 @@ footer strong{color:var(--gold);font-weight:600}
 #beta-bar .bb-tag{font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,192,64,.55)}
 @keyframes bbpulse{0%,100%{opacity:1}50%{opacity:.3}}
 </style>
+
+<!-- Firebase SDK -->
+<script type="module" id="firebase-init">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDIh40-Mf0kzRksPZ6zknc5I1V_TqxZBGY",
+  authDomain: "strideside-c3f91.firebaseapp.com",
+  projectId: "strideside-c3f91",
+  storageBucket: "strideside-c3f91.firebasestorage.app",
+  messagingSenderId: "722531622277",
+  appId: "1:722531622277:web:8a29bed33b5b3c0ab0b8ec"
+};
+
+const fbApp = initializeApp(firebaseConfig);
+const db = getFirestore(fbApp);
+const LEAGUE_DOC = 'ddml/preseason';
+
+// Expose to global scope for the main script
+window._fb = { db, doc, setDoc, getDoc, onSnapshot, collection, LEAGUE_DOC };
+window._fbReady = true;
+
+console.log('✅ Firebase connected — StrideSide / DDML');
+</script>
 </head>
 <body>
 
@@ -933,6 +968,8 @@ footer strong{color:var(--gold);font-weight:600}
 
   <!-- Right side — auth/status -->
   <div style="margin-left:auto;display:flex;align-items:center;gap:.4rem;flex-shrink:0">
+    <!-- Sync indicator -->
+    <div id="sync-indicator"><span id="sync-dot" style="width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0"></span><span id="sync-label">Saved</span></div>
     <!-- Commissioner pill -->
     <div id="topbar-comm-pill">
       <span class="tcp-dot"></span>
@@ -1244,10 +1281,28 @@ footer strong{color:var(--gold);font-weight:600}
       </div>
     </div>
 
-    <!-- Member submit highlight box -->
-    <div class="hl-submit-box" id="hl-submit-box">
-      <h3>🎬 Submit a Highlight</h3>
-      <p>Drop a YouTube link or upload a clip straight from your phone or desktop. Commissioner approves before it goes live.</p>
+
+    <!-- Filter bar -->
+    <div class="hl-filter-bar" id="hl-filter-bar">
+      <button class="hl-filter-btn active" onclick="hlFilter('all',this)">⭐ Newest</button>
+    </div>
+
+    <!-- Grid -->
+    <div class="hl-grid" id="hl-grid"></div>
+    <div id="hl-empty" style="display:none;text-align:center;padding:3rem 1rem;color:var(--dim)">
+      <div style="font-size:3rem;margin-bottom:.75rem">🎬</div>
+      <div style="font-family:var(--fs);font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase">No highlights yet</div>
+      <div style="font-size:.78rem;margin-top:.35rem">Be the first — submit a clip below</div>
+    </div>
+
+    <!-- Submit box — below clips, collapsible -->
+    <div style="margin-top:2rem;border-top:1px solid var(--border2);padding-top:1.5rem">
+      <button onclick="toggleHlSubmit()" id="hl-submit-toggle" style="display:flex;align-items:center;gap:.6rem;background:none;border:none;cursor:pointer;padding:0;margin-bottom:1rem;width:100%">
+        <span style="font-family:var(--fd);font-size:1.1rem;font-weight:700;letter-spacing:.04em;color:#4D9EE8">🎬 Submit a Highlight</span>
+        <span id="hl-submit-arrow" style="color:var(--dim);font-size:.9rem;margin-left:auto;transition:transform .2s">▼</span>
+      </button>
+      <div id="hl-submit-box" class="hl-submit-box" style="margin-bottom:0">
+        <p>Drop a YouTube link or upload a clip from your phone or desktop. Goes live instantly.</p>
       <div class="hl-input-row">
         <div>
           <div style="font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.35rem">Your Team</div>
@@ -1303,20 +1358,8 @@ footer strong{color:var(--gold);font-weight:600}
       <div id="hl-sub-feedback" style="font-size:.74rem;min-height:1.1em;margin-top:.5rem;color:var(--green)"></div>
       <button class="hl-submit-btn" onclick="submitHighlight()">🎬 Submit Highlight for Review</button>
     </div>
-
-    <!-- Filter bar -->
-    <div class="hl-filter-bar" id="hl-filter-bar">
-      <button class="hl-filter-btn active" onclick="hlFilter('all',this)">⭐ Newest</button>
-    </div>
-
-    <!-- Grid -->
-    <div class="hl-grid" id="hl-grid"></div>
-    <div id="hl-empty" style="display:none;text-align:center;padding:3rem 1rem;color:var(--dim)">
-      <div style="font-size:3rem;margin-bottom:.75rem">🎬</div>
-      <div style="font-family:var(--fs);font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase">No highlights yet</div>
-      <div style="font-size:.78rem;margin-top:.35rem">Be the first to submit a clip above</div>
-    </div>
-  </div>
+      </div>
+    </div>  </div>
 </section>
 
 <!-- VIDEO MODAL -->
@@ -1699,18 +1742,8 @@ let ENTRY_FEE = 0;
 let PCT1 = 0, PCT2 = 0;
 let CURRENT_SEASON = 1; // ← change this each season
 
-let TEAMS = [
-  {"abbr":"NYM","name":"Stoned Crabs",   "owner":"JimmyJam",      "w":0,"l":0,"ovr":95,"accent":"#bb00ff"},
-  {"abbr":"BOS","name":"St. Pete",        "owner":"KyBal27",       "w":0,"l":0,"ovr":95,"accent":"#e03040"},
-  {"abbr":"LAD","name":"Blue Heaven",     "owner":"Davidsa",       "w":0,"l":0,"ovr":95,"accent":"#005a9c"},
-  {"abbr":"ATL","name":"Liger Nation",    "owner":"Ligersden",     "w":0,"l":0,"ovr":95,"accent":"#ce1141"},
-  {"abbr":"HOU","name":"Shot Callers",    "owner":"MrShotCaller",  "w":0,"l":0,"ovr":95,"accent":"#f4911e"},
-  {"abbr":"NYY","name":"Pinstripe Gang",  "owner":"Shart Master",  "w":0,"l":0,"ovr":95,"accent":"#c4ced4"},
-  {"abbr":"SEA","name":"Kraken Energy",   "owner":"thatshidscrazy","w":0,"l":0,"ovr":95,"accent":"#005c5c"},
-  {"abbr":"CHC","name":"Cubbie Mafia",    "owner":"Xavier",        "w":0,"l":0,"ovr":95,"accent":"#0e3386"}
-];
-
-let STAT_LEADERS = [{"category":"BATTING AVERAGE","col":"AVG","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"HOME RUNS","col":"HR","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"RBI","col":"RBI","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"RUNS","col":"R","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"STOLEN BASES","col":"SB","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"HITS","col":"H","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"ERA (PITCHING)","col":"ERA","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"STRIKEOUTS (P)","col":"K","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"WINS","col":"W","players":[{"rank":1,"name":"No data yet","val":"—"}]}];
+let TEAMS = [{"abbr": "NYM", "name": "Stoned Crabs", "owner": "JimmyJam", "w": 0, "l": 0, "ovr": 95, "accent": "#bb00ff"}, {"abbr": "BOS", "name": "St. Pete", "owner": "KyBal27", "w": 0, "l": 0, "ovr": 95, "accent": "#e03040"}, {"abbr": "LAD", "name": "Blue Heaven", "owner": "Davidsa", "w": 0, "l": 0, "ovr": 95, "accent": "#005a9c"}, {"abbr": "ATL", "name": "Liger Nation", "owner": "Ligersden", "w": 0, "l": 0, "ovr": 95, "accent": "#ce1141"}, {"abbr": "HOU", "name": "Shot Callers", "owner": "MrShotCaller", "w": 0, "l": 0, "ovr": 95, "accent": "#f4911e"}, {"abbr": "NYY", "name": "Pinstripe Gang", "owner": "Shart Master", "w": 0, "l": 0, "ovr": 95, "accent": "#c4ced4"}, {"abbr": "SEA", "name": "Kraken Energy", "owner": "thatshidscrazy", "w": 0, "l": 0, "ovr": 95, "accent": "#005c5c"}, {"abbr": "CHC", "name": "Cubbie Mafia", "owner": "Xavier", "w": 0, "l": 0, "ovr": 95, "accent": "#0e3386"}];
+let STAT_LEADERS = [{"category": "BATTING AVERAGE", "col": "AVG", "players": [{"rank": 1, "name": "No data yet", "val": "\u2014"}]}, {"category": "HOME RUNS", "col": "HR", "players": [{"rank": 1, "name": "No data yet", "val": "\u2014"}]}, {"category": "RBI", "col": "RBI", "players": [{"rank": 1, "name": "No data yet", "val": "\u2014"}]}, {"category": "RUNS", "col": "R", "players": [{"rank": 1, "name": "No data yet", "val": "\u2014"}]}, {"category": "STOLEN BASES", "col": "SB", "players": [{"rank": 1, "name": "No data yet", "val": "\u2014"}]}, {"category": "HITS", "col": "H", "players": [{"rank": 1, "name": "No data yet", "val": "\u2014"}]}, {"category": "ERA (PITCHING)", "col": "ERA", "players": [{"rank": 1, "name": "No data yet", "val": "\u2014"}]}, {"category": "STRIKEOUTS (P)", "col": "K", "players": [{"rank": 1, "name": "No data yet", "val": "\u2014"}]}, {"category": "WINS", "col": "W", "players": [{"rank": 1, "name": "No data yet", "val": "\u2014"}]}];
 
 /* ══════════════════════════════════════════
    PLAYER STATS TRACKER
@@ -1728,13 +1761,13 @@ let IMPORT_LOG = [];
 let SUBMISSIONS = [];
 let GAME_LOG    = [];
 
-let HIGHLIGHTS = [];
+let HIGHLIGHTS = [{"type": "Top Play", "title": "Highlight 5", "game": "PreSeason", "team": "NYM", "ytId": "u8FQsOTylGQ", "ytUrl": "https://www.youtube.com/watch?v=u8FQsOTylGQ", "isNew": true, "pending": false, "submittedBy": "JimmyJam", "submittedAt": 1780543787352, "date": "Jun 3", "file": "", "_fileName": ""}, {"type": "Top Play", "title": "Highlight 4", "game": "PreSeason", "team": "NYM", "ytId": "LpSkg9zE5tE", "ytUrl": "https://www.youtube.com/watch?v=LpSkg9zE5tE", "isNew": true, "pending": false, "submittedBy": "JimmyJam", "submittedAt": 1780543769126, "date": "Jun 3", "file": "", "_fileName": ""}, {"type": "Top Play", "title": "Highlight 3", "game": "PreSeason", "team": "NYM", "ytId": "6s67_T39Q2o", "ytUrl": "https://www.youtube.com/watch?v=6s67_T39Q2o", "isNew": true, "pending": false, "submittedBy": "JimmyJam", "submittedAt": 1780543700200, "date": "Jun 3", "file": "", "_fileName": ""}, {"type": "Top Play", "title": "Highlight 2", "game": "PreSeason", "team": "NYM", "ytId": "Mok8uYwwDvg", "ytUrl": "https://www.youtube.com/watch?v=Mok8uYwwDvg", "isNew": true, "pending": false, "submittedBy": "JimmyJam", "submittedAt": 1780543684708, "date": "Jun 3", "file": "", "_fileName": ""}, {"type": "Top Play", "title": "Highlight 1", "game": "PreSeason", "team": "NYM", "ytId": "O1eR13fK1DE", "ytUrl": "https://www.youtube.com/watch?v=O1eR13fK1DE", "isNew": true, "pending": false, "submittedBy": "JimmyJam", "submittedAt": 1780543645006, "date": "Jun 3", "file": "", "_fileName": ""}];
 
-let NEWS = [{"tag":"Beta Launch","headline":"DDML Beta Season is live — welcome to the Diamond Dynasty Money League!","preview":"8 managers locked in for the free PreSeason. Win it and your Season 1 entry is free. Real prize, no buy-in required. Stress-test the platform, sharpen your game, and earn your spot. Season 1 drops in a few weeks.","date":"Jun 3"},{"tag":"Teams","headline":"All 8 teams assigned — temp names active, customize yours with the commissioner","preview":"All 8 squads are active: NYM, BOS, LAD, ATL, HOU, NYY, SEA, CHC. Hit up the commissioner to customize your team name. Play as many games as you want — no limit during beta.","date":"Jun 3"},{"tag":"Format","headline":"Beta format: unlimited games, top 4 to playoffs by winning percentage","preview":"No game limit during beta — play any opponent as many times as you want. Submit every result. Top 4 by winning percentage advance to playoffs. No money on the line, just beta glory.","date":"Jun 3"},{"tag":"Platform","headline":"Site is live on Netlify — report any bugs in Discord","preview":"If something looks broken, doesn't load, or behaves weird on mobile — drop it in Discord immediately. That's what beta is for.","date":"Jun 3"}];
+let NEWS = [{"tag": "Beta Launch", "headline": "DDML Beta Season is live \u2014 welcome to the Diamond Dynasty Money League!", "preview": "8 managers locked in for the free PreSeason. Win it and your Season 1 entry is free. Real prize, no buy-in required. Stress-test the platform, sharpen your game, and earn your spot. Season 1 drops in a few weeks.", "date": "Jun 3"}, {"tag": "Teams", "headline": "All 8 teams assigned \u2014 temp names active, customize yours with the commissioner", "preview": "All 8 squads are active: NYM, BOS, LAD, ATL, HOU, NYY, SEA, CHC. Hit up the commissioner to customize your team name. Play as many games as you want \u2014 no limit during beta.", "date": "Jun 3"}, {"tag": "Format", "headline": "Beta format: unlimited games, top 4 to playoffs by winning percentage", "preview": "No game limit during beta \u2014 play any opponent as many times as you want. Submit every result. Top 4 by winning percentage advance to playoffs. No money on the line, just beta glory.", "date": "Jun 3"}, {"tag": "Platform", "headline": "Site is live on Netlify \u2014 report any bugs in Discord", "preview": "If something looks broken, doesn't load, or behaves weird on mobile \u2014 drop it in Discord immediately. That's what beta is for.", "date": "Jun 3"}];
 
-let BONUS_AWARDS = [{"emoji":"🏆","name":"League MVP","desc":"Best overall regular-season performance — batting avg, HR, RBI combined.","share":1},{"emoji":"⚾","name":"First No-Hitter","desc":"First complete-game no-hitter during the regular season.","share":1},{"emoji":"🚶","name":"Walk-Off King","desc":"Most walk-off wins during the regular season.","share":1},{"emoji":"🌟","name":"Pitcher of the Year","desc":"Lowest ERA with at least 10 complete games pitched.","share":1}];
+let BONUS_AWARDS = [{"emoji": "\ud83c\udfc6", "name": "League MVP", "desc": "Best overall regular-season performance \u2014 batting avg, HR, RBI combined.", "share": 1}, {"emoji": "\u26be", "name": "First No-Hitter", "desc": "First complete-game no-hitter during the regular season.", "share": 1}, {"emoji": "\ud83d\udeb6", "name": "Walk-Off King", "desc": "Most walk-off wins during the regular season.", "share": 1}, {"emoji": "\ud83c\udf1f", "name": "Pitcher of the Year", "desc": "Lowest ERA with at least 10 complete games pitched.", "share": 1}];
 
-let RULES_DATA = [{"id":"r-entry","title":"1. Beta Season — Free Entry","body":"PreSeason is free to enter. The winner earns a free Season 1 buy-in — a $20 entry, covered. Best way to earn your spot.","items":["No buy-in — PreSeason is 100% free to enter","8 PreSeason spots filled — recruiting to 20 for Season 1","Goal: test all flows, find bugs, and finalize rules before Season 1","PreSeason prize: Champion earns a FREE Season 1 entry ($20 value)"],"highlight":"PreSeason Champion wins a free Season 1 entry. Play hard — that's a $20 buy-in on the line."},{"id":"r-format","title":"2. League Format","body":"8-team Beta Season. No divisions. Play as many games against any opponent as you want — standings update live from approved submissions.","items":["8 managers in PreSeason — growing to 20 for Season 1","Play any opponent any number of times","Top 4 by winning percentage advance to playoffs","Tiebreakers: head-to-head record → run differential → coin flip"],"highlight":"PreSeason: unlimited play. Stress-test every feature before Season 1 drops."},{"id":"r-roster","title":"3. Diamond Dynasty Rules","body":"Each manager builds their own DD squad verified by the commissioner before game 1.","items":["Maximum team OVR: 95 — hard cap, no exceptions","Screenshot of final lineup, rotation, bullpen required","No roster changes after your first game","All card types legal: Diamond, Gold, Live Series, Flashback, Finest, etc."],"highlight":"OVR cap strictly enforced. Exceeding 95 OVR = game forfeit."},{"id":"r-schedule","title":"4. Schedule (Beta)","body":"Beta Season: no game limit. Play any opponent as many times as you want. Submit every result — this is a stress test.","items":["No weekly windows during beta — play whenever both managers agree","Submit results via the Submit Stats page after every game","9 innings per game — no mercy rule","Commissioner can replay/reject any submission","Goal: submit as many games as possible to test the platform"]},{"id":"r-settings","title":"5. Game Settings","body":null,"items":["Mode: Diamond Dynasty custom league online","Innings: 9 (no shortened games)","Difficulty: Hall of Fame recommended","Stadium: each team's home park","Pitch clock: OFF","Injuries: OFF for league games","Instant replay: unlimited"],"highlight":"Confirm settings via screenshot before first pitch."},{"id":"r-playoffs","title":"6. Playoffs","body":"Top 8 by record advance. Seeded 1–8.","items":["Quarterfinals: Best of 3","Semifinals: Best of 3","World Series: Best of 5","No re-seeding after each round","72-hour windows per round"],"highlight":"Champion: 65% of pot. Runner-up: 25%."},{"id":"r-conduct","title":"7. Conduct","body":"Compete with integrity. Season 1 money will be on the line — build good habits now.","items":["No rage-quitting — report disconnects within 30 min","No stat-padding after game is decided","Trash talk fine — harassment = immediate removal, no refund","All disputes go to commissioner — ruling is final"],"highlight":"2nd offense: game forfeit. 3rd offense: removal from league."},{"id":"r-payouts","title":"8. Season 1 Payouts (Preview)","body":"PreSeason has no prize pool. The payout structure below is the Season 1 plan — locking in before Opening Day.","items":["World Series Champion: 65% of pot","Runner-Up: 25% of pot","Season Awards: 10% split","Entry fee and exact amounts confirmed before Season 1 launch","Payments via Venmo/Cash App within 72 hours of final game"],"highlight":"PreSeason = free. Season 1 = real money. These numbers are the plan — vote in Discord before it locks."}];
+let RULES_DATA = [{"id": "r-entry", "title": "1. Beta Season \u2014 Free Entry", "body": "PreSeason is free to enter. The winner earns a free Season 1 buy-in \u2014 a $20 entry, covered. Best way to earn your spot.", "items": ["No buy-in \u2014 PreSeason is 100% free to enter", "8 PreSeason spots filled \u2014 recruiting to 20 for Season 1", "Goal: test all flows, find bugs, and finalize rules before Season 1", "PreSeason prize: Champion earns a FREE Season 1 entry ($20 value)"], "highlight": "PreSeason Champion wins a free Season 1 entry. Play hard \u2014 that's a $20 buy-in on the line."}, {"id": "r-format", "title": "2. League Format", "body": "8-team Beta Season. No divisions. Play as many games against any opponent as you want \u2014 standings update live from approved submissions.", "items": ["8 managers in PreSeason \u2014 growing to 20 for Season 1", "Play any opponent any number of times", "Top 4 by winning percentage advance to playoffs", "Tiebreakers: head-to-head record \u2192 run differential \u2192 coin flip"], "highlight": "PreSeason: unlimited play. Stress-test every feature before Season 1 drops."}, {"id": "r-roster", "title": "3. Diamond Dynasty Rules", "body": "Each manager builds their own DD squad verified by the commissioner before game 1.", "items": ["Maximum team OVR: 95 \u2014 hard cap, no exceptions", "Screenshot of final lineup, rotation, bullpen required", "No roster changes after your first game", "All card types legal: Diamond, Gold, Live Series, Flashback, Finest, etc."], "highlight": "OVR cap strictly enforced. Exceeding 95 OVR = game forfeit."}, {"id": "r-schedule", "title": "4. Schedule (Beta)", "body": "Beta Season: no game limit. Play any opponent as many times as you want. Submit every result \u2014 this is a stress test.", "items": ["No weekly windows during beta \u2014 play whenever both managers agree", "Submit results via the Submit Stats page after every game", "9 innings per game \u2014 no mercy rule", "Commissioner can replay/reject any submission", "Goal: submit as many games as possible to test the platform"]}, {"id": "r-settings", "title": "5. Game Settings", "body": null, "items": ["Mode: Diamond Dynasty custom league online", "Innings: 9 (no shortened games)", "Difficulty: Hall of Fame recommended", "Stadium: each team's home park", "Pitch clock: OFF", "Injuries: OFF for league games", "Instant replay: unlimited"], "highlight": "Confirm settings via screenshot before first pitch."}, {"id": "r-playoffs", "title": "6. Playoffs", "body": "Top 8 by record advance. Seeded 1\u20138.", "items": ["Quarterfinals: Best of 3", "Semifinals: Best of 3", "World Series: Best of 5", "No re-seeding after each round", "72-hour windows per round"], "highlight": "Champion: 65% of pot. Runner-up: 25%."}, {"id": "r-conduct", "title": "7. Conduct", "body": "Compete with integrity. Season 1 money will be on the line \u2014 build good habits now.", "items": ["No rage-quitting \u2014 report disconnects within 30 min", "No stat-padding after game is decided", "Trash talk fine \u2014 harassment = immediate removal, no refund", "All disputes go to commissioner \u2014 ruling is final"], "highlight": "2nd offense: game forfeit. 3rd offense: removal from league."}, {"id": "r-payouts", "title": "8. Season 1 Payouts (Preview)", "body": "PreSeason has no prize pool. The payout structure below is the Season 1 plan \u2014 locking in before Opening Day.", "items": ["World Series Champion: 65% of pot", "Runner-Up: 25% of pot", "Season Awards: 10% split", "Entry fee and exact amounts confirmed before Season 1 launch", "Payments via Venmo/Cash App within 72 hours of final game"], "highlight": "PreSeason = free. Season 1 = real money. These numbers are the plan \u2014 vote in Discord before it locks."}];
 
 const PLAY_TYPES = ['Top Plays','Walk-Off Homer','No-Hitter','Grand Slam','Diving Catch','Comeback Win','Strikeout','Home Run','Stolen Base','Pitching Duel','Other'];
 const videoBlobMap = {};
@@ -1742,7 +1775,7 @@ const videoBlobMap = {};
 /* ══════════════════════════════════════════
    LANDING PAGE DATA
 ══════════════════════════════════════════ */
-let HERO = {"badge":"MLB The Show 26 · Diamond Dynasty · PreSeason","h1a":"DIAMOND","h1b":"DYNASTY","h1c":"MONEY LEAGUE","subtitle":"Free PreSeason — 8 of 20 spots filled. No entry fee. Win it and Season 1 is on the house. Play hard, earn your spot, and get ready for when real money hits the table.","cards":[{"label":"Members (12 Open)","val":"8/20"},{"label":"Max Overall","val":"95"},{"label":"Playoff Teams","val":"4"},{"label":"Season","val":"PreSeason"},{"label":"🏆 Prize","val":"Free S1 Entry"}],"commName":"Jimmy Jam","commContact":"ddmlshow26@gmail.com"};
+let HERO = {"badge": "MLB The Show 26 \u00b7 Diamond Dynasty \u00b7 PreSeason", "h1a": "DIAMOND", "h1b": "DYNASTY", "h1c": "MONEY LEAGUE", "subtitle": "Free PreSeason \u2014 8 of 20 spots filled. No entry fee. Win it and Season 1 is on the house. Play hard, earn your spot, and get ready for when real money hits the table.", "cards": [{"label": "Members (12 Open)", "val": "8/20"}, {"label": "Max Overall", "val": "95"}, {"label": "Playoff Teams", "val": "4"}, {"label": "Season", "val": "PreSeason"}, {"label": "\ud83c\udfc6 Prize", "val": "Free S1 Entry"}], "commName": "Jimmy Jam", "commContact": "ddmlshow26@gmail.com"};
 
 /* Custom pages added by commissioner */
 let CUSTOM_PAGES = [];
@@ -2245,6 +2278,15 @@ function renderStats() {
 
 /* ── HIGHLIGHTS FILTER STATE ── */
 var hlActiveFilter = 'all';
+
+function toggleHlSubmit() {
+  var box = document.getElementById('hl-submit-box');
+  var arrow = document.getElementById('hl-submit-arrow');
+  if(!box) return;
+  var hidden = box.style.display === 'none';
+  box.style.display = hidden ? '' : 'none';
+  if(arrow) arrow.style.transform = hidden ? 'rotate(180deg)' : '';
+}
 
 function hlFilter(filter, btn) {
   hlActiveFilter = filter;
@@ -2787,9 +2829,9 @@ function activateRole(role) {
   // Show tools button
   const toolsBtn = document.getElementById('topbar-tools-btn');
   if(toolsBtn) toolsBtn.classList.add('on');
-  // Show notif bell
+  // Show notif bell — desktop only (mobile uses hamburger menu)
   const notifBtn = document.getElementById('comm-notif-btn');
-  if(notifBtn) notifBtn.style.display = 'flex';
+  if(notifBtn) notifBtn.style.display = window.innerWidth > 768 ? 'flex' : 'none';
   // Hide the login button
   const loginBtn = document.getElementById('nav-comm-btn-topbar');
   if(loginBtn) loginBtn.style.display = 'none';
@@ -3073,54 +3115,222 @@ function addRuleRow() {
 ══════════════════════════════════════════ */
 const STORAGE_KEY = 'ddleague_v3';
 
+/* ══════════════════════════════════════════
+   SEED DATA — baked in at deploy time.
+   When you redeploy a new HTML:
+   - Structural data (teams, rules, hero, news) updates from seed
+   - Live data (submissions, game log, stats, highlights) is KEPT from localStorage
+   No more manual export/import needed.
+   To update seed: just redeploy the HTML — it auto-merges.
+══════════════════════════════════════════ */
+const SEED = {"version":"2026-06-04-001","TEAMS":[{"abbr":"NYM","name":"Stoned Crabs","owner":"JimmyJam","w":0,"l":0,"ovr":95,"accent":"#bb00ff"},{"abbr":"BOS","name":"St. Pete","owner":"KyBal27","w":0,"l":0,"ovr":95,"accent":"#e03040"},{"abbr":"LAD","name":"Blue Heaven","owner":"Davidsa","w":0,"l":0,"ovr":95,"accent":"#005a9c"},{"abbr":"ATL","name":"Liger Nation","owner":"Ligersden","w":0,"l":0,"ovr":95,"accent":"#ce1141"},{"abbr":"HOU","name":"Shot Callers","owner":"MrShotCaller","w":0,"l":0,"ovr":95,"accent":"#f4911e"},{"abbr":"NYY","name":"Pinstripe Gang","owner":"Shart Master","w":0,"l":0,"ovr":95,"accent":"#c4ced4"},{"abbr":"SEA","name":"Kraken Energy","owner":"thatshidscrazy","w":0,"l":0,"ovr":95,"accent":"#005c5c"},{"abbr":"CHC","name":"Cubbie Mafia","owner":"Xavier","w":0,"l":0,"ovr":95,"accent":"#0e3386"}],"HERO":{"badge":"MLB The Show 26 \u00b7 Diamond Dynasty \u00b7 PreSeason","h1a":"DIAMOND","h1b":"DYNASTY","h1c":"MONEY LEAGUE","subtitle":"Free PreSeason \u2014 8 of 20 spots filled. No entry fee. Win it and Season 1 is on the house. Play hard, earn your spot, and get ready for when real money hits the table.","cards":[{"label":"Members (12 Open)","val":"8/20"},{"label":"Max Overall","val":"95"},{"label":"Playoff Teams","val":"4"},{"label":"Season","val":"PreSeason"},{"label":"\ud83c\udfc6 Prize","val":"Free S1 Entry"}],"commName":"Jimmy Jam","commContact":"ddmlshow26@gmail.com"},"NEWS":[{"tag":"Beta Launch","headline":"DDML Beta Season is live \u2014 welcome to the Diamond Dynasty Money League!","preview":"8 managers locked in for the free PreSeason. Win it and your Season 1 entry is free. Real prize, no buy-in required. Stress-test the platform, sharpen your game, and earn your spot. Season 1 drops in a few weeks.","date":"Jun 3"},{"tag":"Teams","headline":"All 8 teams assigned \u2014 temp names active, customize yours with the commissioner","preview":"All 8 squads are active: NYM, BOS, LAD, ATL, HOU, NYY, SEA, CHC. Hit up the commissioner to customize your team name. Play as many games as you want \u2014 no limit during beta.","date":"Jun 3"},{"tag":"Format","headline":"Beta format: unlimited games, top 4 to playoffs by winning percentage","preview":"No game limit during beta \u2014 play any opponent as many times as you want. Submit every result. Top 4 by winning percentage advance to playoffs. No money on the line, just beta glory.","date":"Jun 3"},{"tag":"Platform","headline":"Site is live on Netlify \u2014 report any bugs in Discord","preview":"If something looks broken, doesn't load, or behaves weird on mobile \u2014 drop it in Discord immediately. That's what beta is for.","date":"Jun 3"}],"RULES_DATA":[{"id":"r-entry","title":"1. Beta Season \u2014 Free Entry","body":"PreSeason is free to enter. The winner earns a free Season 1 buy-in \u2014 a $20 entry, covered. Best way to earn your spot.","items":["No buy-in \u2014 PreSeason is 100% free to enter","8 PreSeason spots filled \u2014 recruiting to 20 for Season 1","Goal: test all flows, find bugs, and finalize rules before Season 1","PreSeason prize: Champion earns a FREE Season 1 entry ($20 value)"],"highlight":"PreSeason Champion wins a free Season 1 entry. Play hard \u2014 that's a $20 buy-in on the line."},{"id":"r-format","title":"2. League Format","body":"8-team Beta Season. No divisions. Play as many games against any opponent as you want \u2014 standings update live from approved submissions.","items":["8 managers in PreSeason \u2014 growing to 20 for Season 1","Play any opponent any number of times","Top 4 by winning percentage advance to playoffs","Tiebreakers: head-to-head record \u2192 run differential \u2192 coin flip"],"highlight":"PreSeason: unlimited play. Stress-test every feature before Season 1 drops."},{"id":"r-roster","title":"3. Diamond Dynasty Rules","body":"Each manager builds their own DD squad verified by the commissioner before game 1.","items":["Maximum team OVR: 95 \u2014 hard cap, no exceptions","Screenshot of final lineup, rotation, bullpen required","No roster changes after your first game","All card types legal: Diamond, Gold, Live Series, Flashback, Finest, etc."],"highlight":"OVR cap strictly enforced. Exceeding 95 OVR = game forfeit."},{"id":"r-schedule","title":"4. Schedule (Beta)","body":"Beta Season: no game limit. Play any opponent as many times as you want. Submit every result \u2014 this is a stress test.","items":["No weekly windows during beta \u2014 play whenever both managers agree","Submit results via the Submit Stats page after every game","9 innings per game \u2014 no mercy rule","Commissioner can replay/reject any submission","Goal: submit as many games as possible to test the platform"]},{"id":"r-settings","title":"5. Game Settings","body":null,"items":["Mode: Diamond Dynasty custom league online","Innings: 9 (no shortened games)","Difficulty: Hall of Fame recommended","Stadium: each team's home park","Pitch clock: OFF","Injuries: OFF for league games","Instant replay: unlimited"],"highlight":"Confirm settings via screenshot before first pitch."},{"id":"r-playoffs","title":"6. Playoffs","body":"Top 8 by record advance. Seeded 1\u20138.","items":["Quarterfinals: Best of 3","Semifinals: Best of 3","World Series: Best of 5","No re-seeding after each round","72-hour windows per round"],"highlight":"Champion: 65% of pot. Runner-up: 25%."},{"id":"r-conduct","title":"7. Conduct","body":"Compete with integrity. Season 1 money will be on the line \u2014 build good habits now.","items":["No rage-quitting \u2014 report disconnects within 30 min","No stat-padding after game is decided","Trash talk fine \u2014 harassment = immediate removal, no refund","All disputes go to commissioner \u2014 ruling is final"],"highlight":"2nd offense: game forfeit. 3rd offense: removal from league."},{"id":"r-payouts","title":"8. Season 1 Payouts (Preview)","body":"PreSeason has no prize pool. The payout structure below is the Season 1 plan \u2014 locking in before Opening Day.","items":["World Series Champion: 65% of pot","Runner-Up: 25% of pot","Season Awards: 10% split","Entry fee and exact amounts confirmed before Season 1 launch","Payments via Venmo/Cash App within 72 hours of final game"],"highlight":"PreSeason = free. Season 1 = real money. These numbers are the plan \u2014 vote in Discord before it locks."}],"BONUS_AWARDS":[{"emoji":"\ud83c\udfc6","name":"League MVP","desc":"Best overall regular-season performance \u2014 batting avg, HR, RBI combined.","share":1},{"emoji":"\u26be","name":"First No-Hitter","desc":"First complete-game no-hitter during the regular season.","share":1},{"emoji":"\ud83d\udeb6","name":"Walk-Off King","desc":"Most walk-off wins during the regular season.","share":1},{"emoji":"\ud83c\udf1f","name":"Pitcher of the Year","desc":"Lowest ERA with at least 10 complete games pitched.","share":1}],"HIGHLIGHTS":[{"type":"Top Play","title":"Highlight 5","game":"PreSeason","team":"NYM","ytId":"u8FQsOTylGQ","ytUrl":"https://www.youtube.com/watch?v=u8FQsOTylGQ","isNew":true,"pending":false,"submittedBy":"JimmyJam","submittedAt":1780543787352,"date":"Jun 3","file":"","_fileName":""},{"type":"Top Play","title":"Highlight 4","game":"PreSeason","team":"NYM","ytId":"LpSkg9zE5tE","ytUrl":"https://www.youtube.com/watch?v=LpSkg9zE5tE","isNew":true,"pending":false,"submittedBy":"JimmyJam","submittedAt":1780543769126,"date":"Jun 3","file":"","_fileName":""},{"type":"Top Play","title":"Highlight 3","game":"PreSeason","team":"NYM","ytId":"6s67_T39Q2o","ytUrl":"https://www.youtube.com/watch?v=6s67_T39Q2o","isNew":true,"pending":false,"submittedBy":"JimmyJam","submittedAt":1780543700200,"date":"Jun 3","file":"","_fileName":""},{"type":"Top Play","title":"Highlight 2","game":"PreSeason","team":"NYM","ytId":"Mok8uYwwDvg","ytUrl":"https://www.youtube.com/watch?v=Mok8uYwwDvg","isNew":true,"pending":false,"submittedBy":"JimmyJam","submittedAt":1780543684708,"date":"Jun 3","file":"","_fileName":""},{"type":"Top Play","title":"Highlight 1","game":"PreSeason","team":"NYM","ytId":"O1eR13fK1DE","ytUrl":"https://www.youtube.com/watch?v=O1eR13fK1DE","isNew":true,"pending":false,"submittedBy":"JimmyJam","submittedAt":1780543645006,"date":"Jun 3","file":"","_fileName":""}],"ENTRY_FEE":0,"PCT1":0,"PCT2":0,"CURRENT_SEASON":1};
+
+function buildDataSnapshot() {
+  return {
+    HERO, TEAMS, STAT_LEADERS, PLAYER_LOG, PITCHER_LOG, IMPORT_LOG,
+    HIGHLIGHTS: HIGHLIGHTS.map(function(h) {
+      // Strip blob URLs — can't store in Firestore (too large / not serializable)
+      var clean = Object.assign({}, h);
+      if(clean.fileUrl && clean.fileUrl.startsWith('blob:')) clean.fileUrl = '';
+      if(clean.fileUrl && clean.fileUrl.startsWith('data:')) clean.fileUrl = ''; // strip base64 too
+      clean.file = ''; clean._fileName = clean._fileName || '';
+      return clean;
+    }),
+    NEWS, BONUS_AWARDS, RULES_DATA, CUSTOM_PAGES,
+    ENTRY_FEE, PCT1, PCT2, CURRENT_SEASON,
+    SUBMISSIONS: SUBMISSIONS.map(function(s) {
+      var clean = Object.assign({}, s);
+      // Strip photo blobs — too large for Firestore
+      if(clean.photos) {
+        clean.photos = { home: [], away: [] };
+      }
+      clean.image = '';
+      return clean;
+    }),
+    GAME_LOG
+  };
+}
+
 function persistAll() {
-  try {
-    const data = {
-      HERO, TEAMS, STAT_LEADERS, PLAYER_LOG, PITCHER_LOG, IMPORT_LOG,
-      HIGHLIGHTS: HIGHLIGHTS.map(h => ({
-        ...h,
-        // keep blob URLs as-is so uploaded videos still work in the same session
-        file: h.file || '',
-        _fileName: h._fileName || ''
-      })),
-      NEWS, BONUS_AWARDS, RULES_DATA, CUSTOM_PAGES,
-      ENTRY_FEE, PCT1, PCT2, CURRENT_SEASON,
-      SUBMISSIONS: SUBMISSIONS.map(s => ({...s, image: s.image || ''})),
-      GAME_LOG
-    };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  } catch(e) {
-    console.warn('Storage save failed:', e);
-  }
+  var data = buildDataSnapshot();
+  // Always save to localStorage as offline cache
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+  // Save to Firebase if available (async, non-blocking)
+  firebaseSave(data);
+}
+
+var _fbSaveTimer = null;
+function firebaseSave(data) {
+  // Debounce — batch rapid saves into one write (500ms)
+  if(_fbSaveTimer) clearTimeout(_fbSaveTimer);
+  _fbSaveTimer = setTimeout(function() {
+    if(!window._fbReady || !window._fb) return;
+    var _f = window._fb;
+    data._savedAt = Date.now();
+    window._lastFbWrite = Date.now();
+    window._lastLocalSave = data._savedAt;
+    _f.setDoc(_f.doc(_f.db, _f.LEAGUE_DOC), data)
+      .then(function() { showSyncIndicator('saved'); })
+      .catch(function(e) {
+        console.warn('Firebase save failed:', e);
+        showSyncIndicator('error');
+      });
+  }, 500);
+}
+
+function applyData(d) {
+  // Apply a data snapshot (from Firebase or localStorage) to all variables
+  if(d.HERO)          HERO          = d.HERO;
+  if(d.TEAMS)         TEAMS         = d.TEAMS;
+  if(d.STAT_LEADERS)  STAT_LEADERS  = d.STAT_LEADERS;
+  if(d.PLAYER_LOG)    PLAYER_LOG    = d.PLAYER_LOG;
+  if(d.PITCHER_LOG)   PITCHER_LOG   = d.PITCHER_LOG;
+  if(d.IMPORT_LOG)    IMPORT_LOG    = d.IMPORT_LOG;
+  if(d.HIGHLIGHTS)    HIGHLIGHTS    = d.HIGHLIGHTS;
+  if(d.NEWS)          NEWS          = d.NEWS;
+  if(d.BONUS_AWARDS)  BONUS_AWARDS  = d.BONUS_AWARDS;
+  if(d.RULES_DATA)    RULES_DATA    = d.RULES_DATA;
+  if(d.CUSTOM_PAGES)  CUSTOM_PAGES  = d.CUSTOM_PAGES;
+  if(d.SUBMISSIONS)   SUBMISSIONS   = d.SUBMISSIONS;
+  if(d.GAME_LOG)      GAME_LOG      = d.GAME_LOG;
+  if(d.ENTRY_FEE !== undefined)      ENTRY_FEE      = d.ENTRY_FEE;
+  if(d.PCT1 !== undefined)           PCT1           = d.PCT1;
+  if(d.PCT2 !== undefined)           PCT2           = d.PCT2;
+  if(d.CURRENT_SEASON !== undefined) CURRENT_SEASON = d.CURRENT_SEASON;
 }
 
 function loadPersisted() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if(!raw) return false;
-    const d = JSON.parse(raw);
-    if(d.HERO)          HERO          = d.HERO;
-    if(d.TEAMS)         TEAMS         = d.TEAMS;
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var savedSeedVer = localStorage.getItem('ddleague_seed_ver');
+    var isNewSeed = savedSeedVer !== SEED.version;
+
+    if(!raw) {
+      applySeed();
+      // Try Firebase load async
+      firebaseLoad();
+      return false;
+    }
+
+    var d = JSON.parse(raw);
+
+    // Always load live data from localStorage first (instant)
     if(d.STAT_LEADERS)  STAT_LEADERS  = d.STAT_LEADERS;
     if(d.PLAYER_LOG)    PLAYER_LOG    = d.PLAYER_LOG;
     if(d.PITCHER_LOG)   PITCHER_LOG   = d.PITCHER_LOG;
     if(d.IMPORT_LOG)    IMPORT_LOG    = d.IMPORT_LOG;
-    if(d.HIGHLIGHTS)    HIGHLIGHTS    = d.HIGHLIGHTS;
-    if(d.NEWS)          NEWS          = d.NEWS;
-    if(d.BONUS_AWARDS)  BONUS_AWARDS  = d.BONUS_AWARDS;
-    if(d.RULES_DATA)    RULES_DATA    = d.RULES_DATA;
     if(d.CUSTOM_PAGES)  CUSTOM_PAGES  = d.CUSTOM_PAGES;
     if(d.SUBMISSIONS)   SUBMISSIONS   = d.SUBMISSIONS;
     if(d.GAME_LOG)      GAME_LOG      = d.GAME_LOG;
-    if(d.ENTRY_FEE !== undefined)      ENTRY_FEE      = d.ENTRY_FEE;
-    if(d.PCT1 !== undefined)           PCT1           = d.PCT1;
-    if(d.PCT2 !== undefined)           PCT2           = d.PCT2;
-    if(d.CURRENT_SEASON !== undefined) CURRENT_SEASON = d.CURRENT_SEASON;
+
+    if(isNewSeed) {
+      applySeed();
+      var existingYtIds = new Set(HIGHLIGHTS.map(function(h){return h.ytId;}).filter(Boolean));
+      var newSeedClips = (SEED.HIGHLIGHTS||[]).filter(function(h){return !existingYtIds.has(h.ytId);});
+      HIGHLIGHTS = HIGHLIGHTS.concat(newSeedClips);
+      var existingHeadlines = new Set(NEWS.map(function(n){return n.headline;}));
+      var newSeedNews = (SEED.NEWS||[]).filter(function(n){return !existingHeadlines.has(n.headline);});
+      if(newSeedNews.length) NEWS = newSeedNews.concat(NEWS);
+      localStorage.setItem('ddleague_seed_ver', SEED.version);
+    } else {
+      if(d.HERO)          HERO          = d.HERO;
+      if(d.TEAMS)         TEAMS         = d.TEAMS;
+      if(d.HIGHLIGHTS)    HIGHLIGHTS    = d.HIGHLIGHTS;
+      if(d.NEWS)          NEWS          = d.NEWS;
+      if(d.BONUS_AWARDS)  BONUS_AWARDS  = d.BONUS_AWARDS;
+      if(d.RULES_DATA)    RULES_DATA    = d.RULES_DATA;
+      if(d.ENTRY_FEE !== undefined) ENTRY_FEE = d.ENTRY_FEE;
+      if(d.PCT1 !== undefined)      PCT1      = d.PCT1;
+      if(d.PCT2 !== undefined)      PCT2      = d.PCT2;
+      if(d.CURRENT_SEASON !== undefined) CURRENT_SEASON = d.CURRENT_SEASON;
+    }
+
+    // Then sync from Firebase in background (will update if newer data exists)
+    firebaseLoad();
     return true;
   } catch(e) {
     console.warn('Storage load failed:', e);
+    applySeed();
+    firebaseLoad();
     return false;
   }
+}
+
+/* ── FIREBASE LOAD + REAL-TIME LISTENER ── */
+var _fbListenerAttached = false;
+
+function firebaseLoad() {
+  // Wait for Firebase module to initialize (it's async import)
+  var attempts = 0;
+  function tryLoad() {
+    if(!window._fbReady || !window._fb) {
+      if(++attempts < 20) setTimeout(tryLoad, 250);
+      return;
+    }
+    var _f = window._fb;
+    // One-time load first
+    _f.getDoc(_f.doc(_f.db, _f.LEAGUE_DOC)).then(function(snap) {
+      if(snap.exists()) {
+        var fbData = snap.data();
+        var fbNewer = !fbData._savedAt || !window._lastLocalSave ||
+          fbData._savedAt > window._lastLocalSave;
+        if(fbNewer) {
+          applyData(fbData);
+          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(fbData)); } catch(e) {}
+          renderAll();
+          rebuildLeaders();
+          renderFullStatsTable();
+          updateQueueBadge && updateQueueBadge();
+          showSyncIndicator('loaded');
+        }
+      }
+      // Attach real-time listener (only once)
+      attachFirebaseListener();
+    }).catch(function(e) {
+      console.warn('Firebase load failed:', e);
+      showSyncIndicator('offline');
+    });
+  }
+  tryLoad();
+}
+
+function attachFirebaseListener() {
+  if(_fbListenerAttached || !window._fb) return;
+  _fbListenerAttached = true;
+  var _f = window._fb;
+  // Listen for real-time updates from other devices
+  _f.onSnapshot(_f.doc(_f.db, _f.LEAGUE_DOC), function(snap) {
+    if(!snap.exists()) return;
+    var fbData = snap.data();
+    // Only apply if this wasn't our own write (check timestamp)
+    var isOwnWrite = window._lastFbWrite && (Date.now() - window._lastFbWrite < 2000);
+    if(!isOwnWrite) {
+      applyData(fbData);
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(fbData)); } catch(e) {}
+      renderAll();
+      rebuildLeaders && rebuildLeaders();
+      renderFullStatsTable && renderFullStatsTable();
+      updateQueueBadge && updateQueueBadge();
+      showSyncIndicator('synced');
+      console.log('🔄 DDML: Data synced from another device');
+    }
+  }, function(e) {
+    console.warn('Firebase listener error:', e);
+  });
+}
+function applySeed() {
+  // Apply seed structural data as defaults
+  if(SEED.TEAMS)        TEAMS        = JSON.parse(JSON.stringify(SEED.TEAMS));
+  if(SEED.HERO)         HERO         = JSON.parse(JSON.stringify(SEED.HERO));
+  if(SEED.NEWS)         NEWS         = JSON.parse(JSON.stringify(SEED.NEWS));
+  if(SEED.RULES_DATA)   RULES_DATA   = JSON.parse(JSON.stringify(SEED.RULES_DATA));
+  if(SEED.BONUS_AWARDS) BONUS_AWARDS = JSON.parse(JSON.stringify(SEED.BONUS_AWARDS));
+  if(SEED.HIGHLIGHTS)   HIGHLIGHTS   = JSON.parse(JSON.stringify(SEED.HIGHLIGHTS));
+  if(SEED.ENTRY_FEE !== undefined) ENTRY_FEE = SEED.ENTRY_FEE;
+  if(SEED.PCT1 !== undefined)      PCT1      = SEED.PCT1;
+  if(SEED.PCT2 !== undefined)      PCT2      = SEED.PCT2;
+  if(SEED.CURRENT_SEASON !== undefined) CURRENT_SEASON = SEED.CURRENT_SEASON;
+  localStorage.setItem('ddleague_seed_ver', SEED.version);
 }
 
 /* ── SAVE SECTION ── */
@@ -4865,6 +5075,22 @@ var COMM_NOTIFICATIONS = [];
 var toastCurrentAction = null;
 var toastTimer = null;
 
+/* ── SYNC STATUS INDICATOR ── */
+var _syncHideTimer = null;
+function showSyncIndicator(state) {
+  var el = document.getElementById('sync-indicator');
+  var lbl = document.getElementById('sync-label');
+  if(!el || !lbl) return;
+  var labels = {saved:'☁ Saved', synced:'⚡ Live', loaded:'☁ Loaded', error:'⚠ Offline', offline:'○ Offline'};
+  lbl.textContent = labels[state] || state;
+  el.className = 'on ' + state;
+  if(_syncHideTimer) clearTimeout(_syncHideTimer);
+  // Auto-hide after 3 seconds (except error/offline)
+  if(state !== 'error' && state !== 'offline') {
+    _syncHideTimer = setTimeout(function(){ el.classList.remove('on'); }, 3000);
+  }
+}
+
 function toggleToolsMenu() {
   var menu = document.getElementById('topbar-tools-menu');
   if(!menu) return;
@@ -5202,7 +5428,7 @@ function removeHighlight(idx) {
     </li>
     <li>
       <button id="mbn-submit" onclick="mobileBottomNav('submit')">
-        <span class="mbn-icon" style="background:var(--gold);color:#06101e;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-top:-10px;box-shadow:0 2px 12px rgba(240,192,64,.5)">📤</span>
+        <span class="mbn-icon" style="background:var(--gold);color:#06101e;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;margin-top:-8px;box-shadow:0 2px 12px rgba(240,192,64,.5);flex-shrink:0">📤</span>
         <span class="mbn-label" style="color:var(--gold)">Submit</span>
       </button>
     </li>
@@ -5299,7 +5525,7 @@ function removeHighlight(idx) {
     </li>
     <li>
       <button id="mbn-submit" onclick="mobileBottomNav('submit')">
-        <span class="mbn-icon" style="background:var(--gold);color:#06101e;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-top:-10px;box-shadow:0 2px 12px rgba(240,192,64,.5)">📤</span>
+        <span class="mbn-icon" style="background:var(--gold);color:#06101e;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;margin-top:-8px;box-shadow:0 2px 12px rgba(240,192,64,.5);flex-shrink:0">📤</span>
         <span class="mbn-label" style="color:var(--gold)">Submit</span>
       </button>
     </li>
