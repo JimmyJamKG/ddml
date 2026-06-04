@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
 <title>Diamond Dynasty Money League — MLB The Show 26</title>
-<meta name="description" content="Diamond Dynasty Money League — MLB The Show 26 league management platform. Real rosters, real standings, real money on the line.">
+<meta name="description" content="Diamond Dynasty Money League — MLB The Show 26. Free PreSeason live now. Real standings, real stats. Season 1 coming soon.">
 <meta property="og:title" content="DDML — Diamond Dynasty Money League">
-<meta property="og:description" content="MLB The Show 26 competitive league management. A StrideSide Original.">
+<meta property="og:description" content="PreSeason now live — 8 of 20 spots filled. Free entry. Win a Season 1 buy-in. A StrideSide Original.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600&display=swap" rel="stylesheet"/>
@@ -108,7 +108,7 @@ select.si:focus{border-color:var(--gold)}
 #hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* Mobile nav drawer */
-#mobile-nav{display:none;position:fixed;top:82px;left:0;right:0;bottom:0;z-index:195;background:rgba(8,17,31,.98);flex-direction:column;padding:1rem 1.5rem;gap:0;overflow-y:auto}
+#mobile-nav{display:none;position:fixed;top:var(--nav-top,82px);left:0;right:0;bottom:0;z-index:195;background:rgba(8,17,31,.98);flex-direction:column;padding:1rem 1.5rem;gap:0;overflow-y:auto}
 #mobile-nav.open{display:flex}
 #mobile-nav a{font-family:var(--fs);font-size:1rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--dim2);text-decoration:none;padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between}
 #mobile-nav a.active,#mobile-nav a:active{color:var(--gold)}
@@ -126,9 +126,7 @@ select.si:focus{border-color:var(--gold)}
   #beta-bar .bb-tag{font-size:8px;letter-spacing:.08em}
 
   /* ── SS FOOTER STRIP ── */
-  #ss-strip{flex-direction:column;gap:8px;padding:12px 1rem;text-align:center}
-  .ss-strip-center{font-size:10px;letter-spacing:.08em}
-  .ss-back-btn{font-size:11px;padding:7px 14px}
+  #ss-strip{padding:8px 1rem}
 
   /* ── PAGE WRAP ── */
   .page-wrap{padding:1.5rem 1rem;width:100%}
@@ -217,6 +215,74 @@ select.si:focus{border-color:var(--gold)}
   /* Game log */
   .gl-row{flex-wrap:wrap;gap:.35rem}
   .gl-date{margin-left:0}
+
+  /* ── HERO MOBILE ── */
+  #hero-inner{padding:2.5rem 1rem 2rem!important}
+  #hero-section h1{font-size:clamp(2.5rem,14vw,4.5rem)!important}
+  .hero-cards{gap:.5rem}
+  .hero-card{min-width:calc(50% - .5rem);padding:.65rem .75rem}
+  .hc-val{font-size:1.6rem}
+
+  /* ── RECRUITING BUTTONS ── */
+  #hero-inner>div[style*="flex-wrap"]{gap:.5rem!important}
+  #hero-inner button{font-size:.78rem!important;padding:.65rem 1rem!important}
+
+  /* ── PROMO ── */
+  #promo-wrap{margin-top:1.5rem!important}
+  #promo-frame{min-height:300px}
+  #promo-dots{gap:4px;flex-wrap:wrap}
+
+  /* ── TEAM REQUEST MODAL ── */
+  #team-request-modal>div{border-radius:12px 12px 0 0;position:fixed;bottom:0;left:0;right:0;max-width:100%!important;max-height:85vh;margin:0}
+  #team-request-modal{align-items:flex-end!important}
+
+  /* ── SUBMIT FORM ── */
+  .eogr-card{padding:1rem}
+  .eogr-step{padding:.75rem}
+  #submit-login-prompt{flex-direction:column;align-items:flex-start}
+  #submit-login-prompt button{width:100%}
+
+  /* ── STANDINGS TABLE ── */
+  #standings-table th:nth-child(3),
+  #standings-table td:nth-child(3),
+  #standings-table th:nth-child(8),
+  #standings-table td:nth-child(8){display:none} /* hide Owner + GB col on tiny screens */
+  .std-tbl th,.std-tbl td{padding:.4rem .4rem;font-size:.72rem}
+
+  /* ── NEWS ── */
+  .news-item{padding:1rem;min-height:64px;-webkit-tap-highlight-color:rgba(240,192,64,.1)}
+  .news-hl{font-size:.88rem}
+  .news-pre{font-size:.76rem}
+
+  /* ── HIGHLIGHTS ── */
+  .hl-grid{grid-template-columns:repeat(2,1fr);gap:.6rem}
+  .hl-thumb{height:130px}
+  .hl-title{font-size:.8rem}
+  .hl-meta{font-size:.68rem}
+
+  /* ── SECTION HEADERS ── */
+  .sec-title{font-size:1.6rem}
+
+  /* ── HIDE REWARDS COMPLEXITY ON MOBILE — show summary only ── */
+  .reward-desc{display:none}
+
+  /* ── LARGER TOUCH TARGETS FOR ALL BUTTONS ── */
+  .nav-link, button, .cb-btn { min-height: 44px; }
+
+  /* ── FOOTER ── */
+  footer{padding:1.5rem 1rem}
+
+  /* ── TEAM CARDS ── */
+  .teams-grid{grid-template-columns:repeat(2,1fr)!important}
+
+  /* ── BOTTOM NAV STRIP ── */
+  #mobile-bottom-nav{display:flex!important}
+}
+
+@media(max-width:400px){
+  .hero-card{min-width:calc(50% - .3rem)}
+  .hc-val{font-size:1.4rem}
+  #team-request-modal>div{border-radius:0}
 }
 
 @media(max-width:400px){
@@ -254,6 +320,7 @@ select.si:focus{border-color:var(--gold)}
 .tc-w{color:var(--green);font-weight:600}.tc-l{color:var(--red);font-weight:600}
 
 /* ── STANDINGS ── */
+.playoff-border td{border-bottom:2px solid rgba(240,192,64,.4)!important}
 .std-tbl{width:100%;border-collapse:collapse;font-size:.86rem}
 .std-tbl thead tr{border-bottom:2px solid var(--gold2)}
 .std-tbl th{font-family:var(--fs);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);padding:.5rem .75rem;text-align:left}
@@ -280,27 +347,62 @@ select.si:focus{border-color:var(--gold)}
 .sp-val{font-family:var(--fd);font-size:1rem;font-weight:700;color:var(--gold);text-align:right}
 
 /* ── HIGHLIGHTS ── */
-.hl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.1rem}
-.hl-card{background:var(--bg2);border:1px solid var(--border2);border-radius:4px;overflow:hidden;transition:border-color .2s,transform .15s;cursor:pointer}
-.hl-card:hover{border-color:rgba(240,192,64,.4);transform:translateY(-2px)}
-.hl-thumb{height:170px;background:var(--bg3);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.hl-thumb video{width:100%;height:100%;object-fit:cover;opacity:.85;transition:transform .3s,opacity .2s}
-.hl-card:hover .hl-thumb video{transform:scale(1.04);opacity:1}
-.hl-thumb-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.2}
-.hl-play{position:absolute;width:52px;height:52px;background:rgba(240,192,64,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2;transition:transform .15s,background .15s;box-shadow:0 2px 16px rgba(0,0,0,.5)}
-.hl-card:hover .hl-play{transform:scale(1.1);background:var(--gold)}
-.hl-arrow{width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:17px solid var(--bg);margin-left:4px}
-.hl-body{padding:.9rem 1rem}
-.hl-type{font-family:var(--fs);font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.25rem}
-.hl-title{font-weight:600;font-size:.9rem;color:var(--white);line-height:1.4;margin-bottom:.35rem}
-.hl-meta{font-size:.74rem;color:var(--dim)}
-.hl-new{position:absolute;top:8px;left:8px;background:var(--red);color:#fff;font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border-radius:2px;z-index:3}
+.hl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.1rem}
+.hl-card{background:var(--bg2);border:1px solid var(--border2);border-radius:6px;overflow:hidden;transition:border-color .2s,transform .15s,box-shadow .2s;cursor:pointer;position:relative}
+.hl-card:hover{border-color:rgba(240,192,64,.5);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.hl-card.hl-new-card::after{content:'NEW';position:absolute;top:10px;right:10px;background:var(--red);color:#fff;font-family:var(--fs);font-size:.56rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border-radius:2px;z-index:4}
+.hl-thumb{height:175px;background:var(--bg3);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hl-thumb img,.hl-thumb video{width:100%;height:100%;object-fit:cover;opacity:.88;transition:transform .3s,opacity .2s}
+.hl-card:hover .hl-thumb img,.hl-card:hover .hl-thumb video{transform:scale(1.04);opacity:1}
+.hl-thumb-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.15}
+.hl-play{position:absolute;width:54px;height:54px;background:rgba(240,192,64,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2;transition:transform .15s,background .15s;box-shadow:0 2px 20px rgba(0,0,0,.6)}
+.hl-card:hover .hl-play{transform:scale(1.12);background:var(--gold)}
+.hl-arrow{width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:17px solid #06101e;margin-left:4px}
+.hl-team-badge{position:absolute;bottom:8px;left:8px;font-family:var(--fs);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:2px;z-index:3;backdrop-filter:blur(4px)}
+.hl-body{padding:.85rem 1rem}
+.hl-type-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.2rem}
+.hl-type{font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.hl-date{font-size:.64rem;color:var(--dim)}
+.hl-title{font-family:var(--fs);font-weight:700;font-size:.92rem;color:var(--white);line-height:1.35;margin-bottom:.3rem}
+.hl-meta{font-size:.73rem;color:var(--dim2)}
+/* filter bar */
+.hl-filter-bar{display:flex;align-items:center;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+.hl-filter-bar::-webkit-scrollbar{display:none}
+.hl-filter-btn{background:var(--bg3);border:1px solid var(--border2);color:var(--dim2);font-family:var(--fs);font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:20px;cursor:pointer;transition:background .15s,border-color .15s,color .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.hl-filter-btn:hover,.hl-filter-btn.active{background:rgba(240,192,64,.12);border-color:rgba(240,192,64,.5);color:var(--gold)}
+/* submit highlight box */
+.hl-submit-box{background:var(--bg2);border:1px solid rgba(77,158,232,.25);border-radius:6px;padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.hl-submit-box h3{font-family:var(--fd);font-size:1.1rem;font-weight:700;letter-spacing:.04em;color:#4D9EE8;margin-bottom:.25rem}
+.hl-submit-box p{font-size:.78rem;color:var(--dim2);margin-bottom:1rem;line-height:1.5}
+.hl-input-row{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:.65rem}
+.hl-input{width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--white);font-family:var(--fb);font-size:.85rem;padding:.55rem .8rem;border-radius:4px;outline:none;transition:border-color .2s}
+.hl-input:focus{border-color:#4D9EE8}
+.hl-input select{cursor:pointer}
+.hl-upload-area{border:2px dashed rgba(77,158,232,.35);border-radius:5px;padding:1.25rem;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;position:relative}
+.hl-upload-area:hover,.hl-upload-area.drag-over{border-color:#4D9EE8;background:rgba(77,158,232,.07)}
+.hl-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.hl-upload-area.has-file{border-color:var(--green);border-style:solid}
+.hl-or{display:flex;align-items:center;gap:.75rem;margin:.75rem 0;color:var(--dim);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.hl-or::before,.hl-or::after{content:'';flex:1;height:1px;background:var(--border2)}
+.hl-submit-btn{width:100%;background:linear-gradient(135deg,#003DA5,#1a5abf);border:none;color:#fff;font-family:var(--fs);font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.8rem;border-radius:4px;cursor:pointer;transition:opacity .2s;margin-top:.75rem}
+.hl-submit-btn:hover{opacity:.88}
+.hl-submit-btn:disabled{opacity:.4;cursor:not-allowed}
+/* pending badge */
+.hl-pending{opacity:.55;pointer-events:none}
+.hl-pending-badge{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;background:rgba(8,17,31,.7);backdrop-filter:blur(2px)}
+.hl-pending-badge span{font-family:var(--fs);font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);background:rgba(8,17,31,.9);border:1px solid rgba(240,192,64,.4);padding:4px 12px;border-radius:2px}
 .hl-file-label{display:flex;align-items:center;gap:5px;background:var(--bg2);border:1px solid var(--border2);color:var(--dim2);font-family:var(--fs);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:3px;cursor:pointer;transition:border-color .2s,color .2s;white-space:nowrap}
 .hl-file-label:hover{border-color:var(--gold);color:var(--gold)}
 .hl-file-label.has-file{border-color:var(--green);color:var(--green)}
 .hl-file-input{display:none}
 .new-tog{display:flex;align-items:center;gap:4px;font-family:var(--fs);font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim2);cursor:pointer;white-space:nowrap}
 .new-tog input{accent-color:var(--red);width:14px;height:14px;cursor:pointer}
+@media(max-width:768px){
+  .hl-input-row{grid-template-columns:1fr}
+  .hl-submit-box{padding:.9rem 1rem}
+  .hl-filter-bar{gap:.4rem}
+  .hl-filter-btn{font-size:.6rem;padding:5px 11px}
+}
 
 /* ── VIDEO MODAL ── */
 .vid-modal-bg{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.88);align-items:center;justify-content:center;padding:1rem}
@@ -479,9 +581,241 @@ footer strong{color:var(--gold);font-weight:600}
 .ocr-status-line{font-family:var(--fs);font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:.4rem;min-height:1.1em;transition:color .3s}
 .ocr-status-line.ok{color:var(--green)}.ocr-status-line.err{color:var(--red)}.ocr-status-line.working{color:var(--gold)}
 
+
+/* ══════════════════════════════════════════
+   COMMISSIONER NOTIFICATION SYSTEM
+══════════════════════════════════════════ */
+#comm-notif-btn {
+  position: relative;
+  background: none;
+  border: 1px solid rgba(240,192,64,.3);
+  color: var(--gold);
+  font-size: .9rem;
+  width: 32px; height: 32px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+  flex-shrink: 0;
+}
+#comm-notif-btn:hover { background: rgba(240,192,64,.1); }
+#comm-notif-count {
+  position: absolute;
+  top: -5px; right: -5px;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--fs);
+  font-size: .52rem;
+  font-weight: 700;
+  min-width: 16px; height: 16px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 3px;
+  display: none;
+}
+#comm-notif-panel {
+  display: none;
+  position: fixed;
+  top: 84px; right: 12px;
+  width: min(360px, calc(100vw - 24px));
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--gold);
+  border-radius: 6px;
+  z-index: 1500;
+  box-shadow: 0 8px 40px rgba(0,0,0,.6);
+  max-height: 70vh;
+  overflow-y: auto;
+}
+#comm-notif-panel.open { display: block; }
+.notif-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .7rem 1rem;
+  border-bottom: 1px solid var(--border2);
+}
+.notif-header-title {
+  font-family: var(--fs);
+  font-size: .68rem; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--gold);
+}
+.notif-clear {
+  background: none; border: none;
+  color: var(--dim); font-size: .65rem;
+  font-family: var(--fs); font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  cursor: pointer; transition: color .15s;
+}
+.notif-clear:hover { color: var(--white); }
+.notif-item {
+  display: flex; align-items: flex-start; gap: .65rem;
+  padding: .75rem 1rem;
+  border-bottom: 1px solid var(--border2);
+  transition: background .15s;
+}
+.notif-item:last-child { border-bottom: none; }
+.notif-item:hover { background: rgba(255,255,255,.03); }
+.notif-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.notif-body { flex: 1; min-width: 0; }
+.notif-msg {
+  font-size: .78rem; color: var(--white);
+  line-height: 1.4;
+  word-break: break-word;
+}
+.notif-time {
+  font-size: .65rem; color: var(--dim);
+  margin-top: .2rem;
+}
+.notif-actions {
+  display: flex; gap: .4rem;
+  margin-top: .45rem;
+}
+.notif-action-btn {
+  background: none;
+  border: 1px solid rgba(240,192,64,.35);
+  color: var(--gold);
+  font-family: var(--fs);
+  font-size: .58rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 2px;
+  cursor: pointer; transition: background .15s;
+  white-space: nowrap;
+}
+.notif-action-btn:hover { background: rgba(240,192,64,.12); }
+.notif-remove-btn {
+  background: none;
+  border: 1px solid rgba(224,48,64,.3);
+  color: rgba(224,48,64,.7);
+  font-family: var(--fs);
+  font-size: .58rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 2px;
+  cursor: pointer; transition: background .15s;
+  white-space: nowrap;
+}
+.notif-remove-btn:hover { background: rgba(224,48,64,.12); }
+/* Toast */
+#comm-toast {
+  position: fixed;
+  bottom: 90px; right: 16px;
+  z-index: 1600;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 5px;
+  padding: .75rem 1rem;
+  max-width: 300px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.5);
+  transform: translateX(320px);
+  transition: transform .35s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+}
+#comm-toast.show {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+.toast-title {
+  font-family: var(--fs);
+  font-size: .62rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: .2rem;
+}
+.toast-msg { font-size: .76rem; color: var(--dim2); line-height: 1.4; }
+.toast-action {
+  display: inline-block;
+  margin-top: .45rem;
+  background: none;
+  border: 1px solid rgba(240,192,64,.4);
+  color: var(--gold);
+  font-family: var(--fs);
+  font-size: .6rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 2px;
+  cursor: pointer;
+}
 /* STRIDESIDE ORIGINAL BADGE */
 .ss-original{display:inline-flex;align-items:center;gap:6px;font-family:'Barlow Semi Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,80,10,.8);border-left:1px solid rgba(232,80,10,.3);padding-left:.75rem;margin-left:.75rem;white-space:nowrap}
 .ss-orig-dot{width:4px;height:4px;border-radius:50%;background:#E8500A;flex-shrink:0}
+
+/* ══════════════════════════════════════════
+   MOBILE BOTTOM NAV BAR
+   Shows on mobile only — hides on desktop
+   Inspired by CMG / app-style navigation
+══════════════════════════════════════════ */
+@media(max-width:768px) {
+  #hero-quick-actions { display:block!important; }
+  /* Hide promo on mobile — replace with quick actions */
+  #promo-wrap { display:none!important; }
+}
+
+#mobile-bottom-nav {
+  display: none; /* shown via media query */
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 300;
+  background: rgba(8,17,31,0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(240,192,64,0.18);
+  padding: 0 0 env(safe-area-inset-bottom, 0);
+  height: calc(58px + env(safe-area-inset-bottom, 0));
+}
+#mobile-bottom-nav ul {
+  display: flex;
+  list-style: none;
+  height: 58px;
+  margin: 0; padding: 0;
+}
+#mobile-bottom-nav ul li {
+  flex: 1;
+}
+#mobile-bottom-nav ul li button {
+  width: 100%; height: 100%;
+  background: none; border: none;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 3px;
+  cursor: pointer;
+  color: var(--dim2);
+  transition: color .2s;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+#mobile-bottom-nav ul li button.mbn-active {
+  color: var(--gold);
+}
+#mobile-bottom-nav ul li button.mbn-active::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 20%; right: 20%;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 0 0 2px 2px;
+}
+.mbn-icon { font-size: 1.15rem; line-height: 1; }
+.mbn-label {
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-size: .55rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+/* When bottom nav is showing, add padding to body so content isn't hidden */
+@media(max-width:768px) {
+  body { padding-bottom: calc(58px + env(safe-area-inset-bottom, 0)); }
+  @media(max-width:768px) {
+  #hero-quick-actions { display:block!important; }
+  /* Hide promo on mobile — replace with quick actions */
+  #promo-wrap { display:none!important; }
+}
+
+#mobile-bottom-nav { display: block; }
+}
 /* BETA PILL */
 .beta-pill{display:inline-flex;align-items:center;gap:5px;background:rgba(232,80,10,.12);border:1px solid rgba(232,80,10,.3);border-radius:20px;padding:3px 10px;font-family:'Barlow Semi Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#E8500A}
 .beta-blink{width:5px;height:5px;border-radius:50%;background:#E8500A;animation:blink 1.4s infinite}
@@ -504,11 +838,18 @@ footer strong{color:var(--gold);font-weight:600}
     <div class="login-sub">Sign in to access edit controls</div>
     <!-- Role tabs -->
     <div style="display:flex;gap:0;border:1px solid rgba(255,255,255,.1);border-radius:3px;overflow:hidden;margin-bottom:1.1rem">
-      <button id="login-tab-comm" class="login-tab login-tab-active" onclick="switchLoginTab('comm')">👑 Commissioner</button>
-      <button id="login-tab-co" class="login-tab" onclick="switchLoginTab('co')">⚡ Co-Commissioner</button>
+      <button id="login-tab-team" class="login-tab login-tab-active" onclick="switchLoginTab('team')">⚾ My Team</button>
+      <button id="login-tab-comm" class="login-tab" onclick="switchLoginTab('comm')">👑 Commissioner</button>
+      <button id="login-tab-co" class="login-tab" onclick="switchLoginTab('co')">⚡ Co-Comm</button>
+    </div>
+    <!-- Team pw -->
+    <div id="login-pw-wrap-team">
+      <div style="font-size:.76rem;color:var(--dim);margin-bottom:.65rem;line-height:1.5">Enter your team password to submit game results and track your squad.</div>
+      <input type="password" id="team-pw" placeholder="Team password" onkeydown="if(event.key==='Enter')teamLogin()"/>
+      <button class="login-submit" style="background:linear-gradient(135deg,#003DA5,#1a5abf)" onclick="teamLogin()">Sign In as My Team</button>
     </div>
     <!-- Commissioner pw -->
-    <div id="login-pw-wrap-comm">
+    <div id="login-pw-wrap-comm" style="display:none">
       <input type="password" id="comm-pw" placeholder="Commissioner password" onkeydown="if(event.key==='Enter')commLogin()"/>
       <button class="login-submit" onclick="commLogin()">Sign In as Commissioner</button>
     </div>
@@ -516,7 +857,7 @@ footer strong{color:var(--gold);font-weight:600}
     <div id="login-pw-wrap-co" style="display:none">
       <input type="password" id="co-pw" placeholder="Co-commissioner password" onkeydown="if(event.key==='Enter')coCommLogin()"/>
       <button class="login-submit" style="background:#3a6abf" onclick="coCommLogin()">Sign In as Co-Commissioner</button>
-      <div style="font-size:.72rem;color:var(--dim);margin-top:.5rem;line-height:1.5">Co-commissioners can edit stats, highlights, news, and approve game submissions. Rules, rewards, teams, and the landing page are commissioner-only.</div>
+      <div style="font-size:.72rem;color:var(--dim);margin-top:.5rem;line-height:1.5">Co-commissioners can edit stats, highlights, news, and approve game submissions.</div>
     </div>
     <div class="login-err" id="login-err"></div>
     <span class="login-cancel" onclick="closeLogin()">Cancel</span>
@@ -528,12 +869,26 @@ footer strong{color:var(--gold);font-weight:600}
   🔒 Commissioner Access Only
 </div>
 
+<!-- TEAM BAR -->
+<div id="team-bar" style="display:none;background:rgba(0,61,165,0.18);border-bottom:1px solid rgba(77,158,232,0.25);padding:0.4rem 1.5rem;align-items:center;gap:0.65rem;font-family:'Barlow Semi Condensed',sans-serif;font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(77,158,232,0.9);position:sticky;top:82px;z-index:189">
+  <span id="team-bar-dot" style="width:7px;height:7px;border-radius:50%;background:#4D9EE8;flex-shrink:0"></span>
+  <span style="margin-right:auto">⚾ <span id="team-bar-label">My Team</span></span>
+  <button onclick="showSection('submit')" style="background:none;border:1px solid rgba(77,158,232,0.4);color:rgba(77,158,232,0.9);font-family:'Barlow Semi Condensed',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:2px;cursor:pointer;transition:background .15s" onmouseover="this.style.background='rgba(77,158,232,0.15)'" onmouseout="this.style.background='none'">📤 Submit Game</button>
+  <button onclick="openTeamRequestModal(true)" style="background:none;border:1px solid rgba(240,192,64,0.3);color:rgba(240,192,64,0.7);font-family:'Barlow Semi Condensed',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:2px;cursor:pointer;transition:background .15s" onmouseover="this.style.background='rgba(240,192,64,0.1)'" onmouseout="this.style.background='none'">🔄 Change Team</button>
+  <button onclick="teamLogout()" style="background:none;border:1px solid rgba(77,158,232,0.3);color:rgba(77,158,232,0.6);font-family:'Barlow Semi Condensed',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:2px;cursor:pointer;transition:background .15s" onmouseover="this.style.background='rgba(77,158,232,0.1)'" onmouseout="this.style.background='none'">Sign Out</button>
+</div>
+
 <!-- COMM BAR -->
 <div id="comm-bar">
   <span class="cb-dot"></span>
   <span class="cb-label" id="comm-bar-role">Commissioner Mode</span>
   <span id="comm-bar-role-badge" style="font-family:'Barlow Semi Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:2px 9px;border-radius:2px;border:1px solid;margin-left:.25rem">👑 COMMISSIONER</span>
+  <button id="comm-notif-btn" onclick="toggleNotifPanel()" title="Notifications">
+    🔔
+    <span id="comm-notif-count">0</span>
+  </button>
   <button class="cb-btn gold" onclick="exportData()">⬇ Export Data</button>
+  <button class="cb-btn" style="color:var(--dim2);border-color:var(--dim)" onclick="showTeamPasswordManager()" title="View/copy team passwords">🔑 Passwords</button>
   <button class="cb-btn" style="color:var(--dim2);border-color:var(--dim)" onclick="resetAllData()" title="Wipe all saved data and reset to defaults">↺ Reset</button>
   <button class="cb-btn red" onclick="commLogout()">Log Out</button>
 </div>
@@ -543,9 +898,9 @@ footer strong{color:var(--gold);font-weight:600}
 <div id="beta-bar">
   <div class="bb-inner">
     <div class="bb-dot"></div>
-    <div class="bb-text">Now in Beta</div>
+    <div class="bb-text">PreSeason · Free Entry</div>
     <div class="bb-divider">·</div>
-    <div class="bb-tag">A StrideSide Original · Season 1 · 2026</div>
+    <div class="bb-tag">A StrideSide Original · Season 1 Coming Soon · 2026</div>
     <div class="bb-dot"></div>
   </div>
 </div>
@@ -578,7 +933,8 @@ footer strong{color:var(--gold);font-weight:600}
   <a href="#" onclick="mobileNav('rules')">Rules</a>
   <a href="#" onclick="mobileNav('submit')" style="color:var(--gold)">📤 Submit Stats</a>
   <a href="#" id="mobile-nav-queue" onclick="mobileNav('queue')" style="display:none">📋 Approval Queue</a>
-  <button id="mobile-nav-comm-btn" onclick="closeMobileNav();openLogin(null)">🔐 Commissioner Login</button>
+  <button id="mobile-nav-team-btn" onclick="closeMobileNav();openLogin('team-pw')" style="margin-top:1rem;width:100%;padding:.9rem;background:rgba(0,61,165,.2);border:2px solid #4D9EE8;color:#4D9EE8;font-family:'Barlow Semi Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;border-radius:4px;cursor:pointer">⚾ My Team Login</button>
+<button id="mobile-nav-comm-btn" onclick="closeMobileNav();openLogin(null)">🔐 Commissioner Login</button>
 </div>
 
 <!-- FIXED COMMISSIONER BUTTON — always visible bottom right corner on every page -->
@@ -645,15 +1001,49 @@ footer strong{color:var(--gold);font-weight:600}
       <span style="font-family:'Barlow Semi Condensed',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(88,101,242,.7)">
         discord.gg/jfFKbcGv · League chat · Announcements · Trash talk
       </span>
+      <!-- Recruiting CTA row -->
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.65rem;margin-top:.35rem">
+        <button onclick="openTeamRequestModal(false)" style="display:inline-flex;align-items:center;gap:8px;background:rgba(77,158,232,.12);border:2px solid rgba(77,158,232,.5);color:#4D9EE8;font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1.4rem;border-radius:4px;cursor:pointer;transition:background .2s,border-color .2s" onmouseover="this.style.background='rgba(77,158,232,.22)';this.style.borderColor='#4D9EE8'" onmouseout="this.style.background='rgba(77,158,232,.12)';this.style.borderColor='rgba(77,158,232,.5)'">⚾ Request a Team</button>
+        <button onclick="openTeamRequestModal(true)" style="display:inline-flex;align-items:center;gap:8px;background:rgba(240,192,64,.07);border:1px solid rgba(240,192,64,.3);color:rgba(240,192,64,.75);font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1.2rem;border-radius:4px;cursor:pointer;transition:background .2s" onmouseover="this.style.background='rgba(240,192,64,.14)'" onmouseout="this.style.background='rgba(240,192,64,.07)'">🔄 Change My Team</button>
+      </div>
+      <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:.64rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(77,158,232,.5)">12 spots open for Season 1 · Join free now</div>
     </div>
     <div class="hero-cards" id="hero-cards-display" style="margin-top:1.5rem"></div>
+
+    <!-- ── MOBILE QUICK ACTIONS (hidden on desktop) ── -->
+    <div id="hero-quick-actions" style="display:none;width:100%;max-width:600px;margin:1.5rem auto 0;padding:0 .5rem">
+      <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:.6rem;text-align:center">Quick Actions</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem">
+        <button onclick="mobileBottomNav('standings')" style="background:var(--bg2);border:1px solid var(--border);border-top:2px solid var(--gold);border-radius:5px;padding:1rem .75rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;cursor:pointer;transition:background .2s;-webkit-tap-highlight-color:rgba(240,192,64,.1)" onmousedown="this.style.background='var(--bg3)'" onmouseup="this.style.background='var(--bg2)'" ontouchstart="this.style.background='var(--bg3)'" ontouchend="this.style.background='var(--bg2)'">
+          <span style="font-size:1.5rem">📊</span>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;color:var(--white)">Standings</span>
+          <span style="font-size:.65rem;color:var(--dim)">See who's on top</span>
+        </button>
+        <button onclick="mobileBottomNav('submit')" style="background:var(--bg2);border:1px solid rgba(240,192,64,.4);border-top:2px solid var(--gold);border-radius:5px;padding:1rem .75rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;cursor:pointer;transition:background .2s;-webkit-tap-highlight-color:rgba(240,192,64,.2)" onmousedown="this.style.background='var(--bg3)'" onmouseup="this.style.background='var(--bg2)'" ontouchstart="this.style.background='var(--bg3)'" ontouchend="this.style.background='var(--bg2)'">
+          <span style="font-size:1.5rem">📤</span>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)">Submit Game</span>
+          <span style="font-size:.65rem;color:var(--dim)">Report your result</span>
+        </button>
+        <button onclick="mobileBottomNav('stats')" style="background:var(--bg2);border:1px solid var(--border);border-top:2px solid rgba(77,158,232,.6);border-radius:5px;padding:1rem .75rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;cursor:pointer;transition:background .2s;-webkit-tap-highlight-color:rgba(77,158,232,.1)" onmousedown="this.style.background='var(--bg3)'" onmouseup="this.style.background='var(--bg2)'" ontouchstart="this.style.background='var(--bg3)'" ontouchend="this.style.background='var(--bg2)'">
+          <span style="font-size:1.5rem">⚾</span>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;color:var(--white)">Stats</span>
+          <span style="font-size:.65rem;color:var(--dim)">Season leaders</span>
+        </button>
+        <button onclick="mobileBottomNav('highlights')" style="background:var(--bg2);border:1px solid rgba(255,255,255,.08);border-top:2px solid rgba(224,48,64,.6);border-radius:5px;padding:1rem .75rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;cursor:pointer;transition:background .2s;-webkit-tap-highlight-color:rgba(224,48,64,.1)" onmousedown="this.style.background='var(--bg3)'" onmouseup="this.style.background='var(--bg2)'" ontouchstart="this.style.background='var(--bg3)'" ontouchend="this.style.background='var(--bg2)'">
+          <span style="font-size:1.5rem">🎬</span>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;color:var(--white)">Clips</span>
+          <span style="font-size:.65rem;color:var(--dim)">Top plays</span>
+        </button>
+      </div>
+    </div>
+    <!-- ── END MOBILE QUICK ACTIONS ── -->
 
     <!-- ── EMBEDDED PROMO ── -->
     <div id="promo-wrap" style="width:100%;max-width:900px;margin:3rem auto 0;position:relative">
       <!-- Label -->
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;padding:0 .25rem">
         <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)">
-          ▶ Season 1 Promo
+          ▶ PreSeason Promo
         </div>
         <div style="display:flex;align-items:center;gap:.6rem">
           <button id="promo-pause" onclick="togglePromo()" style="background:none;border:1px solid rgba(240,192,64,.3);color:var(--gold);font-family:'Barlow Semi Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:2px;cursor:pointer;transition:background .15s">⏸ Pause</button>
@@ -664,9 +1054,10 @@ footer strong{color:var(--gold);font-weight:600}
       <!-- Promo frame — uses srcdoc so it's fully self-contained, no file needed -->
       <div style="border:1px solid rgba(240,192,64,.2);border-radius:6px;overflow:hidden;background:#06101e;position:relative">
         <iframe id="promo-frame"
-          style="width:100%;height:520px;border:none;display:block"
+          style="width:100%;height:min(520px,60vw);min-height:340px;border:none;display:block"
           scrolling="no"
-          title="Diamond Dynasty Money League Season 1 Promo">
+          aria-hidden="true"
+          sandbox="allow-scripts allow-same-origin">
         </iframe>
         <!-- Progress bar overlay -->
         <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.08)">
@@ -691,7 +1082,8 @@ footer strong{color:var(--gold);font-weight:600}
   <div class="page-wrap">
     <div class="sec-hdr">
       <span class="sec-title">TEAMS</span>
-      <span class="sec-sub" id="teams-sec-sub">Season 1 · Max OVR 95</span>
+      <span class="sec-sub" id="teams-sec-sub">PreSeason · Max OVR 95</span>
+      <button onclick="openTeamRequestModal(false)" style="display:inline-flex;align-items:center;gap:5px;background:rgba(77,158,232,.1);border:1px solid rgba(77,158,232,.4);color:#4D9EE8;font-family:'Barlow Semi Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 11px;border-radius:2px;cursor:pointer;transition:background .15s" onmouseover="this.style.background='rgba(77,158,232,.2)'" onmouseout="this.style.background='rgba(77,158,232,.1)'">⚾ Request Team</button>
       <button class="comm-toggle" id="teams-toggle" onclick="openLogin('teams-ed')">⚙ Edit Teams</button>
     </div>
     <div class="ed-panel" id="teams-ed">
@@ -713,14 +1105,14 @@ footer strong{color:var(--gold);font-weight:600}
   <div class="page-wrap">
     <div class="sec-hdr">
       <span class="sec-title">STANDINGS</span>
-      <span class="sec-sub">19-Game Round Robin</span>
+      <span class="sec-sub">Unlimited Games · Beta Season</span><span style="display:inline-flex;align-items:center;gap:5px;background:rgba(40,208,112,.08);border:1px solid rgba(40,208,112,.25);color:var(--green);font-family:var(--fs);font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:2px 9px;border-radius:2px"><span style="width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 1.4s infinite;flex-shrink:0"></span>Live</span>
       <button class="comm-toggle" id="standings-toggle" onclick="openLogin('standings-note')">⚙ Edit</button>
     </div>
     <div class="ed-panel" id="standings-note">
       <div class="ed-hdr">⚙ Standings update automatically from Teams data — edit wins/losses in the Teams editor</div>
     </div>
     <div style="overflow-x:auto"><table class="std-tbl" id="standings-table"></table></div>
-    <p class="playoff-note"><span></span>Top 8 teams advance to playoffs</p>
+    <p class="playoff-note"><span></span>Top 4 by winning pct advance to playoffs · Beta Season</p>
   </div>
 </section>
 
@@ -779,11 +1171,13 @@ footer strong{color:var(--gold);font-weight:600}
   <div class="page-wrap">
     <div class="sec-hdr">
       <span class="sec-title">HIGHLIGHTS</span>
-      <span class="sec-sub" id="hl-count">Top Plays · Season 1</span>
-      <button class="comm-toggle" id="highlights-toggle" onclick="openLogin('hl-ed')">⚙ Edit Highlights</button>
+      <span class="sec-sub" id="hl-count">Top Plays · PreSeason</span>
+      <button class="comm-toggle" id="highlights-toggle" onclick="openLogin('hl-ed')">⚙ Manage</button>
     </div>
+
+    <!-- Commissioner editor panel -->
     <div class="ed-panel" id="hl-ed">
-      <div class="ed-hdr">⚙ Edit Highlights</div>
+      <div class="ed-hdr">⚙ Manage Highlights — Commissioner</div>
       <div class="ed-body">
         <div id="hl-ed-list"></div>
         <div class="ed-footer">
@@ -792,7 +1186,79 @@ footer strong{color:var(--gold);font-weight:600}
         </div>
       </div>
     </div>
+
+    <!-- Member submit highlight box -->
+    <div class="hl-submit-box" id="hl-submit-box">
+      <h3>🎬 Submit a Highlight</h3>
+      <p>Drop a YouTube link or upload a clip straight from your phone or desktop. Commissioner approves before it goes live.</p>
+      <div class="hl-input-row">
+        <div>
+          <div style="font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.35rem">Your Team</div>
+          <select id="hl-sub-team" class="hl-input" style="width:100%">
+            <option value="">— Select your team —</option>
+          </select>
+        </div>
+        <div>
+          <div style="font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.35rem">Clip Type</div>
+          <select id="hl-sub-type" class="hl-input" style="width:100%">
+            <option value="Top Play">Top Play</option>
+            <option value="Home Run">Home Run</option>
+            <option value="Walk-Off">Walk-Off</option>
+            <option value="No-Hitter">No-Hitter</option>
+            <option value="Grand Slam">Grand Slam</option>
+            <option value="Diving Catch">Diving Catch</option>
+            <option value="Strikeout">Strikeout</option>
+            <option value="Comeback Win">Comeback Win</option>
+            <option value="Pitching Duel">Pitching Duel</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="hl-input-row">
+        <div>
+          <div style="font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.35rem">Clip Title</div>
+          <input type="text" id="hl-sub-title" class="hl-input" placeholder="e.g. Walk-off grand slam vs NYY"/>
+        </div>
+        <div>
+          <div style="font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.35rem">Matchup</div>
+          <input type="text" id="hl-sub-game" class="hl-input" placeholder="e.g. NYM vs NYY · Week 2"/>
+        </div>
+      </div>
+
+      <!-- YouTube URL input -->
+      <div style="margin-bottom:.5rem">
+        <div style="font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.35rem">YouTube Link</div>
+        <input type="url" id="hl-sub-yt" class="hl-input" style="width:100%" placeholder="https://youtu.be/... or youtube.com/watch?v=..."/>
+      </div>
+
+      <div class="hl-or">or upload a video</div>
+
+      <!-- File upload -->
+      <div class="hl-upload-area" id="hl-upload-area">
+        <input type="file" id="hl-sub-file" accept="video/*,video/mp4,video/mov,video/quicktime" onchange="hlFileChosen(this)"/>
+        <div id="hl-upload-label">
+          <div style="font-size:1.8rem;margin-bottom:.4rem">📱</div>
+          <div style="font-family:var(--fs);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim2)">Tap to upload from phone or desktop</div>
+          <div style="font-size:.68rem;color:var(--dim);margin-top:.25rem">MP4, MOV · Any size</div>
+        </div>
+      </div>
+
+      <div id="hl-sub-feedback" style="font-size:.74rem;min-height:1.1em;margin-top:.5rem;color:var(--green)"></div>
+      <button class="hl-submit-btn" onclick="submitHighlight()">🎬 Submit Highlight for Review</button>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="hl-filter-bar" id="hl-filter-bar">
+      <button class="hl-filter-btn active" onclick="hlFilter('all',this)">⭐ Newest</button>
+    </div>
+
+    <!-- Grid -->
     <div class="hl-grid" id="hl-grid"></div>
+    <div id="hl-empty" style="display:none;text-align:center;padding:3rem 1rem;color:var(--dim)">
+      <div style="font-size:3rem;margin-bottom:.75rem">🎬</div>
+      <div style="font-family:var(--fs);font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase">No highlights yet</div>
+      <div style="font-size:.78rem;margin-top:.35rem">Be the first to submit a clip above</div>
+    </div>
   </div>
 </section>
 
@@ -840,7 +1306,7 @@ footer strong{color:var(--gold);font-weight:600}
   <div class="page-wrap">
     <div class="sec-hdr">
       <span class="sec-title">REWARDS & PAYOUTS</span>
-      <span class="sec-sub">$20 Entry · Season 1</span>
+      <span class="sec-sub">PreSeason · Free Entry · No Prize Pool</span>
       <button class="comm-toggle" id="rewards-toggle" onclick="openLogin('rewards-ed')">⚙ Edit Rewards</button>
     </div>
     <div class="ed-panel" id="rewards-ed">
@@ -852,7 +1318,7 @@ footer strong{color:var(--gold);font-weight:600}
             <span class="ed-lbl">Entry Fee $</span>
             <input type="number" id="ed-entry-fee" style="width:80px" value="20" min="1"/>
             <span class="ed-lbl">Teams</span>
-            <input type="number" id="ed-team-count" style="width:80px" value="20" min="2" max="40"/>
+            <input type="number" id="ed-team-count" style="width:80px" value="8" min="2" max="40"/>
             <span class="ed-lbl">1st Place %</span>
             <input type="number" id="ed-pct1" style="width:70px" value="65" min="1" max="99"/>
             <span class="ed-lbl">2nd Place %</span>
@@ -869,23 +1335,23 @@ footer strong{color:var(--gold);font-weight:600}
     </div>
     <div class="rewards-hero">
       <div class="pot-label">Total Prize Pool</div>
-      <div class="pot-total" id="pot-display">$400</div>
-      <div class="pot-formula" id="pot-formula">20 teams × $20 entry fee</div>
+      <div class="pot-total" id="pot-display" style="font-size:1.6rem;color:var(--gold);line-height:1.2">Free<br/><span style="font-size:1.1rem;color:var(--green);font-weight:700">Season 1 Entry</span></div>
+      <div class="pot-formula" id="pot-formula">PreSeason Champion wins a free Season 1 entry ($20 value)</div>
     </div>
     <div class="rewards-grid">
-      <div class="reward-card main">
-        <div class="reward-place">1st Place</div>
-        <div class="reward-pct" id="ws-pct">65%</div>
-        <div class="reward-title">World Series Champion</div>
-        <div class="reward-desc">Win the championship. Take the biggest cut of the pot.</div>
-        <div class="reward-amount" id="ws-amt">$260</div>
+      <div class="reward-card main" style="border-top-color:var(--gold)">
+        <div class="reward-place">🏆 PreSeason Champion</div>
+        <div class="reward-pct" style="color:var(--gold);font-size:1.3rem">FREE</div>
+        <div class="reward-title">Season 1 Entry</div>
+        <div class="reward-desc">Win the PreSeason and your Season 1 buy-in is covered. $20 value — on the house.</div>
+        <div class="reward-amount" style="color:var(--gold)">$20 Value</div>
       </div>
-      <div class="reward-card main">
-        <div class="reward-place">2nd Place</div>
-        <div class="reward-pct" id="ru-pct">25%</div>
-        <div class="reward-title">World Series Runner-Up</div>
-        <div class="reward-desc">Make it to the final — still walk away with a solid return.</div>
-        <div class="reward-amount" id="ru-amt">$100</div>
+      <div class="reward-card main" style="border-top-color:var(--dim2);opacity:.7">
+        <div class="reward-place">🥈 Runner-Up</div>
+        <div class="reward-pct" style="color:var(--dim2);font-size:1rem">—</div>
+        <div class="reward-title">Bragging Rights</div>
+        <div class="reward-desc">Made the final in the free trial run. Respect — and you know you can compete.</div>
+        <div class="reward-amount" style="color:var(--dim2);font-size:1rem">Street Cred</div>
       </div>
     </div>
     <div class="bonus-section">
@@ -893,7 +1359,7 @@ footer strong{color:var(--gold);font-weight:600}
       <div class="bonus-grid" id="bonus-grid"></div>
     </div>
     <div class="payout-note">
-  <strong style="color:var(--gold)">Payout Rules:</strong> All payments collected via Venmo / Cash App (F&F) before Opening Day. Prize pool locked once the season begins. Season award winners paid within 48 hours of confirmed achievement. World Series payouts within 72 hours of the final game. Commissioner's word is final.
+  <strong style="color:var(--gold)">PreSeason Prize:</strong> The PreSeason Champion earns a free Season 1 entry — a $20 buy-in, covered. No cash changes hands during PreSeason. Season 1 is the real deal — paid entry, locked pot, full payout structure. Commissioner's word is final.
 </div>
 
 <div style="background:rgba(240,192,64,.07);border:1px solid rgba(240,192,64,.25);border-radius:6px;padding:1.25rem 1.5rem;margin-top:1rem">
@@ -902,7 +1368,7 @@ footer strong{color:var(--gold);font-weight:600}
     Every season's reward breakdown — including the split between championship payouts and season awards — is <strong style="color:var(--white)">voted on and agreed upon by the full league before the season begins.</strong> No commissioner unilaterally decides the money.
   </p>
   <p style="font-size:.86rem;color:var(--dim2);line-height:1.75;margin-bottom:.75rem">
-    Season 1 is being assembled now. The final payout structure will be voted on by all confirmed managers before Opening Day. The current percentages shown are the starting proposal.
+    Season 1 is coming soon — being assembled now. The final payout structure will be voted on by all confirmed managers before Opening Day. The current percentages shown are the starting proposal.
   </p>
   <div style="background:rgba(40,208,112,.08);border-left:3px solid var(--green);padding:.75rem 1rem;border-radius:0 4px 4px 0;margin-bottom:.75rem">
     <div style="font-family:var(--fs);font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:.3rem">Why We Prioritize Season Awards</div>
@@ -924,7 +1390,7 @@ footer strong{color:var(--gold);font-weight:600}
   <div class="page-wrap">
     <div class="sec-hdr">
       <span class="sec-title">LEAGUE RULES</span>
-      <span class="sec-sub">Season 1 Rulebook</span>
+      <span class="sec-sub">PreSeason Rulebook</span>
       <button class="comm-toggle" id="rules-toggle" onclick="openLogin('rules-ed')">⚙ Edit Rules</button>
     </div>
     <div class="ed-panel" id="rules-ed">
@@ -951,6 +1417,16 @@ footer strong{color:var(--gold);font-weight:600}
       <span class="sec-title">END OF GAME REPORT</span>
       <span class="sec-sub">Score · Photos · Commissioner Approves Stats</span>
     </div>
+
+    <!-- Team login prompt — shown when NOT logged in as a team -->
+    <div id="submit-login-prompt" style="background:rgba(0,61,165,.12);border:1px solid rgba(77,158,232,.25);border-radius:6px;padding:1rem 1.25rem;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.06em;color:#4D9EE8;margin-bottom:.2rem">⚾ Log in as your team for a faster experience</div>
+        <div style="font-size:.76rem;color:var(--dim);line-height:1.5">Your team and gamertag will be pre-filled. You can still submit without logging in.</div>
+      </div>
+      <button onclick="openLogin('team-pw')" style="background:rgba(0,61,165,.3);border:1px solid rgba(77,158,232,.5);color:#4D9EE8;font-family:'Barlow Semi Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:8px 18px;border-radius:3px;cursor:pointer;white-space:nowrap;transition:background .15s" onmouseover="this.style.background='rgba(0,61,165,.5)'" onmouseout="this.style.background='rgba(0,61,165,.3)'">⚾ Team Login</button>
+    </div>
+
     <div class="eogr-card">
       <h2>📋 End of Game Report</h2>
       <p class="sub">Submit your final score and attach box score screenshots. The commissioner will review your photos and enter the stats manually before approving. Standings update automatically once approved.</p>
@@ -961,7 +1437,7 @@ footer strong{color:var(--gold);font-weight:600}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
           <div class="form-group" style="margin-bottom:0">
             <label class="form-label">Your Name / Gamertag</label>
-            <input class="form-input" type="text" id="sub-submitter" placeholder="Your gamertag"/>
+            <input class="form-input" type="text" id="sub-submitter" placeholder="Your gamertag (e.g. JimmyJam)"/>
           </div>
           <div class="form-group" style="margin-bottom:0">
             <label class="form-label">Select Matchup</label>
@@ -984,11 +1460,11 @@ footer strong{color:var(--gold);font-weight:600}
         <div class="score-row">
           <div>
             <label class="form-label" id="sub-home-score-label">Home Score</label>
-            <input class="form-input" type="number" id="sub-score-home" min="0" placeholder="0"/>
+            <input class="form-input" type="number" id="sub-score-home" type="number" min="0" max="99" inputmode="numeric" pattern="[0-9]*" placeholder="0"/>
           </div>
           <div>
             <label class="form-label" id="sub-away-score-label">Away Score</label>
-            <input class="form-input" type="number" id="sub-score-away" min="0" placeholder="0"/>
+            <input class="form-input" type="number" id="sub-score-away" type="number" min="0" max="99" inputmode="numeric" pattern="[0-9]*" placeholder="0"/>
           </div>
         </div>
       </div>
@@ -1088,7 +1564,7 @@ footer strong{color:var(--gold);font-weight:600}
         <textarea class="form-input" id="sub-notes" rows="2" placeholder="Anything the commissioner should know..." style="resize:vertical"></textarea>
       </div>
 
-      <button class="submit-btn" id="sub-btn" onclick="submitEOGR()">📤 Submit for Commissioner Review</button>
+      <button class="submit-btn" id="sub-btn" onclick="submitEOGR()">📤 Submit Game Result</button>
 
       <div class="submit-success" id="sub-success">
         <div class="submit-success-icon">✅</div>
@@ -1127,7 +1603,7 @@ footer strong{color:var(--gold);font-weight:600}
 </div>
 
 <footer>
-  <p><strong>Diamond Dynasty Money League</strong> · MLB The Show 26 · Season 1</p>
+  <p><strong>Diamond Dynasty Money League</strong> · MLB The Show 26 · Beta Season</p>
   <p style="margin-top:.35rem">Commissioner: <strong id="footer-comm">YOUR_NAME_HERE</strong> · Contact: <strong id="footer-contact">YOUR_CONTACT_HERE</strong></p>
 </footer>
 
@@ -1138,34 +1614,43 @@ footer strong{color:var(--gold);font-weight:600}
 const COMM_PASSWORD = 'ddleague2026';
 const CO_COMM_PASSWORD = 'cocomm2026'; // ← change this for your co-commissioner
 
+/* ── TEAM PASSWORDS ──
+   Each member gets their own password. Commissioner sets these.
+   Members log in with their team password to:
+   - Auto-fill their team in the submit form
+   - See a "Logged in as [Team]" indicator
+   - Access their team-specific view
+   Change these before sharing with members! */
+const TEAM_PASSWORDS = {
+  'NYM': { pass: 'crabgang26',   owner: 'JimmyJam'      },
+  'BOS': { pass: 'stpete26',     owner: 'KyBal27'       },
+  'LAD': { pass: 'bluehvn26',    owner: 'Davidsa'       },
+  'ATL': { pass: 'ligerntn26',   owner: 'Ligersden'     },
+  'HOU': { pass: 'shotcall26',   owner: 'MrShotCaller'  },
+  'NYY': { pass: 'pinstripe26',  owner: 'Shart Master'  },
+  'SEA': { pass: 'kraken26',     owner: 'thatshidscrazy'},
+  'CHC': { pass: 'cubbie26',     owner: 'Xavier'        }
+};
+
+/* Current team session */
+let currentTeamAbbr = null; // set on team login
+
 /* ══════════════════════════════════════════
    DATA
 ══════════════════════════════════════════ */
-let ENTRY_FEE = 25;
-let PCT1 = 55, PCT2 = 25;
+let ENTRY_FEE = 0;
+let PCT1 = 0, PCT2 = 0;
 let CURRENT_SEASON = 1; // ← change this each season
 
 let TEAMS = [
-  {"abbr":"NYM","name":"Stoned Crabs",   "owner":"Jimmy Jam",  "w":0,"l":0,"ovr":94,"accent":"#bb00ff"},
-  {"abbr":"BOS","name":"St. Pete",        "owner":"KyBaldani",  "w":0,"l":0,"ovr":90,"accent":"#e03040"},
-  {"abbr":"ATL","name":"Braves Country",  "owner":"Manager 3",  "w":0,"l":0,"ovr":90,"accent":"#13274f"},
-  {"abbr":"CHC","name":"Wrigley Dogs",    "owner":"Manager 4",  "w":0,"l":0,"ovr":90,"accent":"#0e3386"},
-  {"abbr":"LAD","name":"Dodger Blue",     "owner":"Manager 5",  "w":0,"l":0,"ovr":90,"accent":"#005a9c"},
-  {"abbr":"HOU","name":"Space Cowboys",   "owner":"Manager 6",  "w":0,"l":0,"ovr":90,"accent":"#f4911e"},
-  {"abbr":"PHI","name":"Broad St Bullies","owner":"Manager 7",  "w":0,"l":0,"ovr":90,"accent":"#e81828"},
-  {"abbr":"SD", "name":"Friars Forever",  "owner":"Manager 8",  "w":0,"l":0,"ovr":90,"accent":"#2f241d"},
-  {"abbr":"SF", "name":"Bay Bombers",     "owner":"Manager 9",  "w":0,"l":0,"ovr":90,"accent":"#fd5a1e"},
-  {"abbr":"TEX","name":"Lone Star Kings", "owner":"Manager 10", "w":0,"l":0,"ovr":90,"accent":"#003278"},
-  {"abbr":"NYY","name":"Pinstripe Mob",   "owner":"Manager 11", "w":0,"l":0,"ovr":90,"accent":"#c4ced4"},
-  {"abbr":"TOR","name":"North Star 9",    "owner":"Manager 12", "w":0,"l":0,"ovr":90,"accent":"#134a8e"},
-  {"abbr":"MIN","name":"Twin Killers",    "owner":"Manager 13", "w":0,"l":0,"ovr":90,"accent":"#002b5c"},
-  {"abbr":"CLE","name":"Lake Erie Monsters","owner":"Manager 14","w":0,"l":0,"ovr":90,"accent":"#e31937"},
-  {"abbr":"SEA","name":"Kraken Squad",    "owner":"Manager 15", "w":0,"l":0,"ovr":90,"accent":"#005c5c"},
-  {"abbr":"MIA","name":"Miami Nights",    "owner":"Manager 16", "w":0,"l":0,"ovr":90,"accent":"#00a3e0"},
-  {"abbr":"COL","name":"Mile High Mob",   "owner":"Manager 17", "w":0,"l":0,"ovr":90,"accent":"#33006f"},
-  {"abbr":"DET","name":"Motor City Grit", "owner":"Manager 18", "w":0,"l":0,"ovr":90,"accent":"#fa4616"},
-  {"abbr":"BAL","name":"Camden Yards",    "owner":"Manager 19", "w":0,"l":0,"ovr":90,"accent":"#df4601"},
-  {"abbr":"STL","name":"Redbird Nation",  "owner":"Manager 20", "w":0,"l":0,"ovr":90,"accent":"#c41e3a"}
+  {"abbr":"NYM","name":"Stoned Crabs",   "owner":"JimmyJam",      "w":0,"l":0,"ovr":95,"accent":"#bb00ff"},
+  {"abbr":"BOS","name":"St. Pete",        "owner":"KyBal27",       "w":0,"l":0,"ovr":95,"accent":"#e03040"},
+  {"abbr":"LAD","name":"Blue Heaven",     "owner":"Davidsa",       "w":0,"l":0,"ovr":95,"accent":"#005a9c"},
+  {"abbr":"ATL","name":"Liger Nation",    "owner":"Ligersden",     "w":0,"l":0,"ovr":95,"accent":"#ce1141"},
+  {"abbr":"HOU","name":"Shot Callers",    "owner":"MrShotCaller",  "w":0,"l":0,"ovr":95,"accent":"#f4911e"},
+  {"abbr":"NYY","name":"Pinstripe Gang",  "owner":"Shart Master",  "w":0,"l":0,"ovr":95,"accent":"#c4ced4"},
+  {"abbr":"SEA","name":"Kraken Energy",   "owner":"thatshidscrazy","w":0,"l":0,"ovr":95,"accent":"#005c5c"},
+  {"abbr":"CHC","name":"Cubbie Mafia",    "owner":"Xavier",        "w":0,"l":0,"ovr":95,"accent":"#0e3386"}
 ];
 
 let STAT_LEADERS = [{"category":"BATTING AVERAGE","col":"AVG","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"HOME RUNS","col":"HR","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"RBI","col":"RBI","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"RUNS","col":"R","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"STOLEN BASES","col":"SB","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"HITS","col":"H","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"ERA (PITCHING)","col":"ERA","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"STRIKEOUTS (P)","col":"K","players":[{"rank":1,"name":"No data yet","val":"—"}]},{"category":"WINS","col":"W","players":[{"rank":1,"name":"No data yet","val":"—"}]}];
@@ -1186,13 +1671,13 @@ let IMPORT_LOG = [];
 let SUBMISSIONS = [];
 let GAME_LOG    = [];
 
-let HIGHLIGHTS = [{"type":"Top Plays","title":"Stoned Crabs 1","game":"TEAM vs TEAM · Week X","ytId":"u8FQsOTylGQ","ytUrl":"https://youtu.be/u8FQsOTylGQ","isNew":true},{"type":"Top Plays","title":"Stoned Crabs 2","game":"TEAM vs TEAM · Week X","ytId":"LpSkg9zE5tE","ytUrl":"https://youtu.be/LpSkg9zE5tE","isNew":true},{"type":"Top Plays","title":"Stoned Crabs 3","game":"TEAM vs TEAM · Week X","ytId":"6s67_T39Q2o","ytUrl":"https://youtu.be/6s67_T39Q2o","isNew":true},{"type":"Top Plays","title":"Stoned Crabs 4","game":"TEAM vs TEAM · Week X","ytId":"Mok8uYwwDvg","ytUrl":"https://youtu.be/Mok8uYwwDvg","isNew":true},{"type":"Top Plays","title":"Stoned Crabs 5","game":"TEAM vs TEAM · Week X","ytId":"O1eR13fK1DE","ytUrl":"https://youtu.be/O1eR13fK1DE","isNew":true},{"type":"Top Plays","title":"Stoned Crabs 6","game":"TEAM vs TEAM · Week X","ytId":"u8FQsOTylGQ","ytUrl":"https://youtu.be/u8FQsOTylGQ","isNew":true}];
+let HIGHLIGHTS = [];
 
-let NEWS = [{"tag":"Game Result","headline":"Stoned Crabs 3 – 7 OPEN3 (S1 · Week 1)","preview":"OPEN3 picks up the win. Submitted by Stoned Crabs.","date":"May 26"},{"tag":"League Office","headline":"Season 1 has begun — welcome to the Diamond Dynasty Money League!","preview":"20 teams locked in. Prize pool confirmed at $400. Good luck to all 20 managers.","date":"May 24"},{"tag":"Rosters","headline":"All rosters verified — OVR cap compliance confirmed","preview":"Commissioner has reviewed all 20 team submissions. Every squad is at or under the 95 OVR cap.","date":"May 22"},{"tag":"Prize Pool","headline":"All entry fees collected — $400 pot locked","preview":"All 20 managers have paid in. The $400 prize pool is officially locked for Season 1.","date":"May 20"}];
+let NEWS = [{"tag":"Beta Launch","headline":"DDML Beta Season is live — welcome to the Diamond Dynasty Money League!","preview":"8 managers locked in for the free PreSeason. Win it and your Season 1 entry is free. Real prize, no buy-in required. Stress-test the platform, sharpen your game, and earn your spot. Season 1 drops in a few weeks.","date":"Jun 3"},{"tag":"Teams","headline":"All 8 teams assigned — temp names active, customize yours with the commissioner","preview":"All 8 squads are active: NYM, BOS, LAD, ATL, HOU, NYY, SEA, CHC. Hit up the commissioner to customize your team name. Play as many games as you want — no limit during beta.","date":"Jun 3"},{"tag":"Format","headline":"Beta format: unlimited games, top 4 to playoffs by winning percentage","preview":"No game limit during beta — play any opponent as many times as you want. Submit every result. Top 4 by winning percentage advance to playoffs. No money on the line, just beta glory.","date":"Jun 3"},{"tag":"Platform","headline":"Site is live on Netlify — report any bugs in Discord","preview":"If something looks broken, doesn't load, or behaves weird on mobile — drop it in Discord immediately. That's what beta is for.","date":"Jun 3"}];
 
 let BONUS_AWARDS = [{"emoji":"🏆","name":"League MVP","desc":"Best overall regular-season performance — batting avg, HR, RBI combined.","share":1},{"emoji":"⚾","name":"First No-Hitter","desc":"First complete-game no-hitter during the regular season.","share":1},{"emoji":"🚶","name":"Walk-Off King","desc":"Most walk-off wins during the regular season.","share":1},{"emoji":"🌟","name":"Pitcher of the Year","desc":"Lowest ERA with at least 10 complete games pitched.","share":1}];
 
-let RULES_DATA = [{"id":"r-entry","title":"1. Entry & Buy-in","body":"Entry fee is $20 per team, paid before Opening Day. All 20 spots must be filled before the season begins.","items":["Buy-in: $20 per team (20 teams = $400 total pool)","Accepted: Venmo, Cash App, PayPal Friends & Family only","Deadline: 48 hours before scheduled Opening Day","Late payment: spot released after deadline — no exceptions"],"highlight":null},{"id":"r-format","title":"2. League Format","body":"20-team single-pool Diamond Dynasty custom league. No divisions. Everyone plays everyone once.","items":["20 teams, no conferences or divisions","Round robin regular season: 19 games per team","Top 8 teams advance to playoffs","Tiebreakers: head-to-head → run differential → coin flip"],"highlight":"Single-elimination bracket playoff. No re-seeding."},{"id":"r-roster","title":"3. Diamond Dynasty Rules","body":"Each manager builds their own DD squad verified by the commissioner before game 1.","items":["Maximum team OVR: 95 — hard cap, no exceptions","Screenshot of final lineup, rotation, bullpen required","No roster changes after your first game","All card types legal: Diamond, Gold, Live Series, Flashback, Finest, etc."],"highlight":"OVR cap strictly enforced. Exceeding 95 OVR = game forfeit."},{"id":"r-schedule","title":"4. Schedule","body":"Regular season: 19 games. One against each opponent. Weekly windows assigned by commissioner.","items":["Weekly window: Monday 12:00 AM — Sunday 11:59 PM","Both managers coordinate within the window","Missed window = double forfeit (both take a loss)","Reschedules need commissioner approval + 24hr notice","9 innings per game — no mercy rule in regular season"]},{"id":"r-settings","title":"5. Game Settings","body":null,"items":["Mode: Diamond Dynasty custom league online","Innings: 9 (no shortened games)","Difficulty: Hall of Fame recommended","Stadium: each team's home park","Pitch clock: OFF","Injuries: OFF for league games","Instant replay: unlimited"],"highlight":"Confirm settings via screenshot before first pitch."},{"id":"r-playoffs","title":"6. Playoffs","body":"Top 8 by record advance. Seeded 1–8.","items":["Quarterfinals: Best of 3","Semifinals: Best of 3","World Series: Best of 5","No re-seeding after each round","72-hour windows per round"],"highlight":"Champion: 65% of pot. Runner-up: 25%."},{"id":"r-conduct","title":"7. Conduct","body":"Compete with integrity. Money is on the line — respect all participants.","items":["No rage-quitting — report disconnects within 30 min","No stat-padding after game is decided","Trash talk fine — harassment = immediate removal, no refund","All disputes go to commissioner — ruling is final"],"highlight":"2nd offense: game forfeit. 3rd offense: removal from league."},{"id":"r-payouts","title":"8. Payouts","body":"Payouts distributed from locked prize pool.","items":["World Series Champion: 65% ($260 at 20 teams)","Runner-Up: 25% ($100 at 20 teams)","Season Awards: 10% split ($40 at 20 teams)","Payments via Venmo/Cash App within 72 hours of final game","Award payouts within 48 hours of confirmation"],"highlight":"All amounts based on the locked prize pool."}];
+let RULES_DATA = [{"id":"r-entry","title":"1. Beta Season — Free Entry","body":"PreSeason is free to enter. The winner earns a free Season 1 buy-in — a $20 entry, covered. Best way to earn your spot.","items":["No buy-in — PreSeason is 100% free to enter","8 PreSeason spots filled — recruiting to 20 for Season 1","Goal: test all flows, find bugs, and finalize rules before Season 1","PreSeason prize: Champion earns a FREE Season 1 entry ($20 value)"],"highlight":"PreSeason Champion wins a free Season 1 entry. Play hard — that's a $20 buy-in on the line."},{"id":"r-format","title":"2. League Format","body":"8-team Beta Season. No divisions. Play as many games against any opponent as you want — standings update live from approved submissions.","items":["8 managers in PreSeason — growing to 20 for Season 1","Play any opponent any number of times","Top 4 by winning percentage advance to playoffs","Tiebreakers: head-to-head record → run differential → coin flip"],"highlight":"PreSeason: unlimited play. Stress-test every feature before Season 1 drops."},{"id":"r-roster","title":"3. Diamond Dynasty Rules","body":"Each manager builds their own DD squad verified by the commissioner before game 1.","items":["Maximum team OVR: 95 — hard cap, no exceptions","Screenshot of final lineup, rotation, bullpen required","No roster changes after your first game","All card types legal: Diamond, Gold, Live Series, Flashback, Finest, etc."],"highlight":"OVR cap strictly enforced. Exceeding 95 OVR = game forfeit."},{"id":"r-schedule","title":"4. Schedule (Beta)","body":"Beta Season: no game limit. Play any opponent as many times as you want. Submit every result — this is a stress test.","items":["No weekly windows during beta — play whenever both managers agree","Submit results via the Submit Stats page after every game","9 innings per game — no mercy rule","Commissioner can replay/reject any submission","Goal: submit as many games as possible to test the platform"]},{"id":"r-settings","title":"5. Game Settings","body":null,"items":["Mode: Diamond Dynasty custom league online","Innings: 9 (no shortened games)","Difficulty: Hall of Fame recommended","Stadium: each team's home park","Pitch clock: OFF","Injuries: OFF for league games","Instant replay: unlimited"],"highlight":"Confirm settings via screenshot before first pitch."},{"id":"r-playoffs","title":"6. Playoffs","body":"Top 8 by record advance. Seeded 1–8.","items":["Quarterfinals: Best of 3","Semifinals: Best of 3","World Series: Best of 5","No re-seeding after each round","72-hour windows per round"],"highlight":"Champion: 65% of pot. Runner-up: 25%."},{"id":"r-conduct","title":"7. Conduct","body":"Compete with integrity. Season 1 money will be on the line — build good habits now.","items":["No rage-quitting — report disconnects within 30 min","No stat-padding after game is decided","Trash talk fine — harassment = immediate removal, no refund","All disputes go to commissioner — ruling is final"],"highlight":"2nd offense: game forfeit. 3rd offense: removal from league."},{"id":"r-payouts","title":"8. Season 1 Payouts (Preview)","body":"PreSeason has no prize pool. The payout structure below is the Season 1 plan — locking in before Opening Day.","items":["World Series Champion: 65% of pot","Runner-Up: 25% of pot","Season Awards: 10% split","Entry fee and exact amounts confirmed before Season 1 launch","Payments via Venmo/Cash App within 72 hours of final game"],"highlight":"PreSeason = free. Season 1 = real money. These numbers are the plan — vote in Discord before it locks."}];
 
 const PLAY_TYPES = ['Top Plays','Walk-Off Homer','No-Hitter','Grand Slam','Diving Catch','Comeback Win','Strikeout','Home Run','Stolen Base','Pitching Duel','Other'];
 const videoBlobMap = {};
@@ -1200,7 +1685,7 @@ const videoBlobMap = {};
 /* ══════════════════════════════════════════
    LANDING PAGE DATA
 ══════════════════════════════════════════ */
-let HERO = {"badge":"MLB The Show 26 · Diamond Dynasty · Custom Money League","h1a":"DIAMOND","h1b":"DYNASTY","h1c":"MONEY LEAGUE","subtitle":"Build your squad. Cap your overall. Beat the league. Cash out. Every stat matters — even if the playoffs are out of reach.","cards":[{"label":"Teams","val":"20"},{"label":"Reg. Season Games","val":"19"},{"label":"Max Overall","val":"95"},{"label":"Playoff Teams","val":"8"},{"label":"Prize Pool *","val":"$500"}],"commName":"Jimmy Jam","commContact":"ddmlshow26@gmail.com"};
+let HERO = {"badge":"MLB The Show 26 · Diamond Dynasty · PreSeason","h1a":"DIAMOND","h1b":"DYNASTY","h1c":"MONEY LEAGUE","subtitle":"Free PreSeason — 8 of 20 spots filled. No entry fee. Win it and Season 1 is on the house. Play hard, earn your spot, and get ready for when real money hits the table.","cards":[{"label":"Members (12 Open)","val":"8/20"},{"label":"Max Overall","val":"95"},{"label":"Playoff Teams","val":"4"},{"label":"Season","val":"PreSeason"},{"label":"🏆 Prize","val":"Free S1 Entry"}],"commName":"Jimmy Jam","commContact":"ddmlshow26@gmail.com"};
 
 /* Custom pages added by commissioner */
 let CUSTOM_PAGES = [];
@@ -1226,6 +1711,13 @@ function renderHero() {
     </div>`).join('');
   if(fc) fc.textContent = h.commName;
   if(fct) fct.textContent = h.commContact;
+  // Dynamic spots label
+  var spotsEl = document.getElementById('hero-spots-label');
+  if(spotsEl) {
+    var filled = TEAMS.filter(function(t){ return t.abbr !== '---' && t.name !== 'EMPTY'; }).length;
+    var open = 20 - filled;
+    spotsEl.textContent = open > 0 ? open + ' spots open for Season 1 · Join free now' : 'All 20 spots filled · Season 1 is set';
+  }
 }
 
 function renderHeroEditor() {
@@ -1625,36 +2117,63 @@ function showBoxScoreTools(){
 
 function renderTeams() {
   const sub = document.getElementById('teams-sec-sub');
-  if(sub) sub.textContent = `Season ${CURRENT_SEASON} · Max OVR 95`;
-  document.getElementById('teams-grid').innerHTML = TEAMS.map(t => `
-    <div class="team-card" style="--tc:${t.accent}">
-      <span class="tc-ovr">S${CURRENT_SEASON}</span>
-      <div class="tc-abbr">${t.abbr}</div>
-      <div class="tc-name">${t.name}</div>
+  if(sub) sub.textContent = `Beta Season · Max OVR 95`;
+  const totalGames = TEAMS.length - 1; // round robin
+  document.getElementById('teams-grid').innerHTML = TEAMS.map(t => {
+    const isPending = t.abbr === '---' || t.name === 'EMPTY';
+    const displayAbbr = isPending ? '?' : t.abbr;
+    const displayName = isPending ? 'Setup Pending' : t.name;
+    const cardOpacity = isPending ? 'opacity:.5;' : '';
+    const pendingBadge = isPending ? '<span style="font-family:var(--fs);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.25);padding:2px 7px;border-radius:2px;margin-top:.35rem;display:inline-block">⚙ Awaiting Setup</span>' : '';
+    return `
+    <div class="team-card" style="--tc:${t.accent};${cardOpacity}">
+      <span class="tc-ovr">Beta</span>
+      <div class="tc-abbr">${displayAbbr}</div>
+      <div class="tc-name">${displayName}</div>
       <div class="tc-owner">${t.owner}</div>
-      <div class="tc-record">
+      ${pendingBadge}
+      ${!isPending ? `<div class="tc-record">
         <span class="tc-w">${t.w}W</span>
         <span class="tc-l">${t.l}L</span>
-        <span style="color:var(--dim);font-size:.72rem">${t.w+t.l}/19</span>
-      </div>
-    </div>`).join('');
+        <span style="color:var(--dim);font-size:.72rem">${t.w+t.l} GP</span>
+      </div>` : ''}
+    </div>`;
+  }).join('');
 }
 
 function renderStandings() {
-  const sorted = [...TEAMS].sort((a,b)=>b.w-a.w||a.l-b.l).map((t,i)=>({...t,rank:i+1}));
+  const withPct = TEAMS.map(t => ({
+    ...t,
+    gp: t.w + t.l,
+    pctVal: (t.w + t.l > 0) ? t.w / (t.w + t.l) : 0
+  }));
+  const sorted = [...withPct].sort((a,b) => {
+    if(b.pctVal !== a.pctVal) return b.pctVal - a.pctVal;
+    if(a.l !== b.l) return a.l - b.l;
+    return b.gp - a.gp;
+  }).map((t,i) => ({...t, rank: i+1}));
   const leader = sorted[0];
-  document.getElementById('standings-table').innerHTML = `
-    <thead><tr><th>#</th><th>Team</th><th>W</th><th>L</th><th>PCT</th><th>GB</th><th>OVR</th></tr></thead>
-    <tbody>${sorted.map((t,i)=>{
-      const pct = (t.w+t.l>0 ? t.w/(t.w+t.l) : 0).toFixed(3).replace(/^0/,'');
-      const gb = i===0 ? '—' : (((leader.w-t.w)+(t.l-leader.l))/2).toFixed(1);
-      return `<tr>
-        <td class="std-rank">${t.rank}</td>
-        <td class="std-team${i<8?' playoff':''}">${t.name}</td>
-        <td>${t.w}</td><td>${t.l}</td><td>${pct}</td><td>${gb}</td>
-        <td class="${i===7?'playoff-line':''}">OVR ${t.ovr}</td>
-      </tr>`;
-    }).join('')}</tbody>`;
+  const rows = sorted.map(function(t,i) {
+    const pctStr = t.gp > 0 ? t.pctVal.toFixed(3).replace(/^0/,'') : '—';
+    const gb = (i === 0 || leader.gp === 0) ? '—' : (((leader.w - t.w) + (t.l - leader.l)) / 2).toFixed(1);
+    const isPlayoff = i < 4;
+    const teamName = t.abbr !== '---' ? t.name : '<span style="color:var(--dim)">Pending</span>';
+    const playoffClass = isPlayoff ? ' playoff' : '';
+    const borderClass = i === 3 ? 'playoff-border' : '';
+    return '<tr class="' + borderClass + '">' +
+      '<td class="std-rank">' + t.rank + '</td>' +
+      '<td class="std-team' + playoffClass + '">' + teamName + '</td>' +
+      '<td style="font-size:.78rem;color:var(--dim2)">' + t.owner + '</td>' +
+      '<td>' + t.gp + '</td>' +
+      '<td>' + t.w + '</td>' +
+      '<td>' + t.l + '</td>' +
+      '<td>' + pctStr + '</td>' +
+      '<td>' + gb + '</td>' +
+      '</tr>';
+  }).join('');
+  document.getElementById('standings-table').innerHTML =
+    '<thead><tr><th>#</th><th>Team</th><th>Owner</th><th>GP</th><th>W</th><th>L</th><th>PCT</th><th>GB</th></tr></thead>' +
+    '<tbody>' + rows + '</tbody>';
 }
 
 function renderStats() {
@@ -1667,29 +2186,213 @@ function renderStats() {
     </div>`).join('');
 }
 
+/* ── HIGHLIGHTS FILTER STATE ── */
+var hlActiveFilter = 'all';
+
+function hlFilter(filter, btn) {
+  hlActiveFilter = filter;
+  document.querySelectorAll('.hl-filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  if(btn) btn.classList.add('active');
+  renderHighlights();
+}
+
+function buildHlFilterBar() {
+  var bar = document.getElementById('hl-filter-bar');
+  if(!bar) return;
+  // Get unique teams from highlights
+  var teams = [];
+  HIGHLIGHTS.forEach(function(h) {
+    if(h.team && !teams.includes(h.team)) teams.push(h.team);
+  });
+  var btns = '<button class="hl-filter-btn' + (hlActiveFilter==='all'?' active':'') + '" onclick="hlFilter(&#39;all&#39;,this)">⭐ Newest</button>';
+  teams.forEach(function(abbr) {
+    var team = TEAMS.find(function(t){ return t.abbr === abbr; });
+    var label = team ? team.name : abbr;
+    var active = hlActiveFilter === abbr ? ' active' : '';
+    btns += '<button class="hl-filter-btn' + active + '" data-abbr="' + abbr + '" onclick="hlFilter(this.dataset.abbr,this)">' + label + '</button>';
+  });
+  bar.innerHTML = btns;
+}
+
+function populateHlTeamDropdown() {
+  var sel = document.getElementById('hl-sub-team');
+  if(!sel) return;
+  var active = TEAMS.filter(function(t){ return t.abbr !== '---' && t.name !== 'EMPTY'; });
+  sel.innerHTML = '<option value="">— Select your team —</option>' +
+    active.map(function(t){ return '<option value="' + t.abbr + '">' + t.name + ' (' + t.abbr + ')</option>'; }).join('');
+  // Pre-select if team logged in
+  if(currentTeamAbbr) sel.value = currentTeamAbbr;
+}
+
 function renderHighlights() {
-  const ce = document.getElementById('hl-count');
-  if(ce) ce.textContent = `${HIGHLIGHTS.length} Clip${HIGHLIGHTS.length!==1?'s':''} · Season 1`;
-  document.getElementById('hl-grid').innerHTML = HIGHLIGHTS.map((h,i)=>{
-    const id = h.ytId || extractYtId(h.ytUrl||'');
-    const has = !!id;
-    const thumb = has ? `https://img.youtube.com/vi/${id}/mqdefault.jpg` : '';
-    return `<div class="hl-card" onclick="${has?`openVideo(${i})`:''}" style="${!has?'opacity:.6;cursor:default':''}">
-      <div class="hl-thumb">
-        ${h.isNew?'<div class="hl-new">NEW</div>':''}
-        ${has
-          ? `<img src="${thumb}" alt="${h.title}" style="width:100%;height:100%;object-fit:cover;opacity:.88" onerror="this.style.display='none'">`
-          : '<div class="hl-thumb-fallback">⚾</div>'}
-        ${has?'<div class="hl-play"><div class="hl-arrow"></div></div>':''}
-        ${!has?'<div style="position:absolute;bottom:8px;left:0;right:0;text-align:center;font-family:var(--fs);font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)">No video yet</div>':''}
-      </div>
-      <div class="hl-body">
-        <div class="hl-type">${h.type}</div>
-        <div class="hl-title">${h.title}</div>
-        <div class="hl-meta">${h.game}</div>
-      </div>
-    </div>`;
+  buildHlFilterBar();
+  populateHlTeamDropdown();
+  var approved = HIGHLIGHTS.filter(function(h){ return !h.pending; });
+  // Sort newest first
+  var sorted = approved.slice().sort(function(a,b){
+    return (b.submittedAt||0) - (a.submittedAt||0);
+  });
+  // Apply team filter
+  var filtered = hlActiveFilter === 'all' ? sorted : sorted.filter(function(h){ return h.team === hlActiveFilter; });
+
+  var ce = document.getElementById('hl-count');
+  if(ce) ce.textContent = approved.length + ' Clip' + (approved.length!==1?'s':'') + ' · PreSeason';
+
+  var empty = document.getElementById('hl-empty');
+  var grid = document.getElementById('hl-grid');
+  if(!filtered.length) {
+    grid.innerHTML = '';
+    if(empty) empty.style.display = '';
+    return;
+  }
+  if(empty) empty.style.display = 'none';
+
+  // Get global indices for openVideo
+  grid.innerHTML = filtered.map(function(h) {
+    var globalIdx = HIGHLIGHTS.indexOf(h);
+    var ytId = h.ytId || extractYtId(h.ytUrl||'');
+    var hasYt = !!ytId;
+    var hasFile = !!h.fileUrl;
+    var canPlay = hasYt || hasFile;
+    var thumb = hasYt ? 'https://img.youtube.com/vi/' + ytId + '/mqdefault.jpg' : '';
+    var team = TEAMS.find(function(t){ return t.abbr === h.team; });
+    var teamColor = team ? team.accent : 'var(--gold)';
+    var teamName = team ? team.name : (h.team||'');
+    return '<div class="hl-card' + (h.isNew?' hl-new-card':'') + '" onclick="' + (canPlay ? 'openVideo('+globalIdx+')' : '') + '" style="' + (!canPlay?'cursor:default':'') + '">' +
+      '<div class="hl-thumb">' +
+        (hasYt ? '<img src="' + thumb + '" alt="" style="width:100%;height:100%;object-fit:cover">' : '') +
+        (hasFile && !hasYt ? '<video src="' + h.fileUrl + '" muted playsinline style="width:100%;height:100%;object-fit:cover;opacity:.88" preload="metadata"></video>' : '') +
+        (!canPlay ? '<div class="hl-thumb-fallback">⚾</div>' : '') +
+        (canPlay ? '<div class="hl-play"><div class="hl-arrow"></div></div>' : '') +
+        (!hasYt && !hasFile ? '<div class="hl-thumb-fallback">⚾</div>' : '') +
+        (h.team ? '<div class="hl-team-badge" style="background:' + teamColor + '22;border:1px solid ' + teamColor + '66;color:' + teamColor + '">' + h.team + '</div>' : '') +
+      '</div>' +
+      '<div class="hl-body">' +
+        '<div class="hl-type-row"><div class="hl-type">' + (h.type||'Highlight') + '</div><div class="hl-date">' + (h.date||'') + '</div></div>' +
+        '<div class="hl-title">' + (h.title||'Untitled') + '</div>' +
+        '<div class="hl-meta">' + (h.game||'') + '</div>' +
+      '</div>' +
+    '</div>';
   }).join('');
+
+  // Commissioner gets inline remove button on every clip
+  if(currentRole === 'commissioner' && filtered.length) {
+    var cards = grid.querySelectorAll('.hl-card');
+    filtered.forEach(function(h, fi) {
+      var card = cards[fi];
+      if(!card) return;
+      var globalIdx = HIGHLIGHTS.indexOf(h);
+      var removeDiv = document.createElement('div');
+      removeDiv.style.cssText = 'padding:.35rem .75rem .6rem;display:flex;gap:.5rem';
+      removeDiv.innerHTML =
+        '<button onclick="event.stopPropagation();removeHighlight(' + globalIdx + ')" style="flex:1;background:rgba(224,48,64,.1);border:1px solid rgba(224,48,64,.35);color:var(--red);font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px;border-radius:3px;cursor:pointer">✕ Remove</button>';
+      card.appendChild(removeDiv);
+    });
+  }
+}
+
+function approveHighlight(idx) {
+  if(HIGHLIGHTS[idx]) { HIGHLIGHTS[idx].pending = false; HIGHLIGHTS[idx].isNew = true; }
+  saveSection('highlights'); renderHighlights(); persistAll();
+}
+function rejectHighlight(idx) {
+  if(!confirm('Remove this highlight submission?')) return;
+  HIGHLIGHTS.splice(idx, 1);
+  saveSection('highlights'); renderHighlights(); persistAll();
+}
+
+/* ── HIGHLIGHT SUBMISSION (member-facing) ── */
+var hlFileData = null;
+
+function hlFileChosen(input) {
+  var file = input.files[0];
+  if(!file) return;
+  var area = document.getElementById('hl-upload-area');
+  var lbl = document.getElementById('hl-upload-label');
+  hlFileData = file;
+  area.classList.add('has-file');
+  lbl.innerHTML = '<div style="font-size:1.4rem;margin-bottom:.3rem">✅</div>' +
+    '<div style="font-family:var(--fs);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green)">' + file.name + '</div>' +
+    '<div style="font-size:.65rem;color:var(--dim);margin-top:.2rem">' + (file.size/1024/1024).toFixed(1) + ' MB — tap to change</div>';
+  // clear YT input since they're using file
+  document.getElementById('hl-sub-yt').value = '';
+}
+
+function submitHighlight() {
+  var team = document.getElementById('hl-sub-team').value;
+  var type = document.getElementById('hl-sub-type').value;
+  var title = (document.getElementById('hl-sub-title').value||'').trim();
+  var game = (document.getElementById('hl-sub-game').value||'').trim();
+  var ytUrl = (document.getElementById('hl-sub-yt').value||'').trim();
+  var fb = document.getElementById('hl-sub-feedback');
+
+  if(!team) { fb.style.color='var(--red)'; fb.textContent='Select your team first.'; return; }
+  if(!title) { fb.style.color='var(--red)'; fb.textContent='Add a clip title.'; return; }
+  if(!ytUrl && !hlFileData) { fb.style.color='var(--red)'; fb.textContent='Add a YouTube link or upload a video file.'; return; }
+
+  var ytId = ytUrl ? extractYtId(ytUrl) : '';
+  if(ytUrl && !ytId) { fb.style.color='var(--red)'; fb.textContent='That YouTube URL doesn\'t look right. Try the full link.'; return; }
+
+  var btn = document.querySelector('.hl-submit-btn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Submitting…';
+
+  var newClip = {
+    type: type, title: title, game: game||'PreSeason',
+    team: team, ytId: ytId, ytUrl: ytUrl,
+    isNew: false, pending: false,
+    submittedBy: (TEAMS.find(function(t){return t.abbr===team;})||{}).owner || team,
+    submittedAt: Date.now(),
+    date: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'})
+  };
+
+  if(hlFileData && !ytId) {
+    // Read file as data URL for local storage
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      newClip.fileUrl = e.target.result;
+      hlFileData = null;
+      finalizeHlSubmit(newClip, fb, btn);
+    };
+    reader.readAsDataURL(hlFileData);
+  } else {
+    finalizeHlSubmit(newClip, fb, btn);
+  }
+}
+
+function finalizeHlSubmit(clip, fb, btn) {
+  // Auto-publish immediately — commissioner gets notified to review
+  clip.pending = false;
+  clip.isNew = true;
+  HIGHLIGHTS.unshift(clip);
+  // Notify commissioner
+  addCommNotification({
+    type: 'highlight',
+    icon: '🎬',
+    msg: (clip.submittedBy || clip.team) + ' submitted a highlight: "' + clip.title + '"',
+    action: "showSection('highlights')",
+    actionLabel: 'View',
+    removeIdx: 0,
+    id: 'hl-' + Date.now()
+  });
+  persistAll();
+  renderHighlights();
+  fb.style.color = 'var(--green)';
+  fb.textContent = currentRole === 'commissioner'
+    ? '✓ Clip published!' : '✓ Submitted! Commissioner will review shortly.';
+  // Reset form
+  document.getElementById('hl-sub-title').value = '';
+  document.getElementById('hl-sub-game').value = '';
+  document.getElementById('hl-sub-yt').value = '';
+  document.getElementById('hl-sub-file').value = '';
+  var area = document.getElementById('hl-upload-area');
+  if(area) area.classList.remove('has-file');
+  var lbl = document.getElementById('hl-upload-label');
+  if(lbl) lbl.innerHTML = '<div style="font-size:1.8rem;margin-bottom:.4rem">📱</div><div style="font-family:var(--fs);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim2)">Tap to upload from phone or desktop</div><div style="font-size:.68rem;color:var(--dim);margin-top:.25rem">MP4, MOV · Any size</div>';
+  hlFileData = null;
+  btn.disabled = false;
+  btn.textContent = '🎬 Submit Highlight for Review';
+  setTimeout(function(){ fb.textContent = ''; }, 5000);
 }
 
 function extractYtId(input) {
@@ -1709,18 +2412,46 @@ function extractYtId(input) {
 }
 
 function openVideo(i) {
-  const h = HIGHLIGHTS[i]; if(!h) return;
-  const id = h.ytId || extractYtId(h.ytUrl||'');
-  if(!id) return;
-  document.getElementById('modal-title').textContent = h.title;
-  document.getElementById('modal-type').textContent = h.type;
-  document.getElementById('modal-game').textContent = h.game;
-  document.getElementById('modal-iframe').src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+  var h = HIGHLIGHTS[i]; if(!h) return;
+  var ytId = h.ytId || extractYtId(h.ytUrl||'');
+  var hasFile = !!h.fileUrl;
+  if(!ytId && !hasFile) return;
+
+  document.getElementById('modal-title').textContent = h.title || 'Highlight';
+  document.getElementById('modal-type').textContent = h.type || 'Clip';
+  document.getElementById('modal-game').textContent = h.game || '';
+
+  var iframe = document.getElementById('modal-iframe');
+  var vidPlayer = document.getElementById('modal-video-player');
+
+  if(ytId) {
+    iframe.style.display = '';
+    if(vidPlayer) vidPlayer.style.display = 'none';
+    iframe.src = 'https://www.youtube.com/embed/' + ytId + '?autoplay=1&rel=0';
+  } else if(hasFile) {
+    iframe.style.display = 'none';
+    if(!vidPlayer) {
+      // Create video element if not exists
+      var vp = document.createElement('video');
+      vp.id = 'modal-video-player';
+      vp.controls = true;
+      vp.autoplay = true;
+      vp.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;background:#000';
+      iframe.parentNode.appendChild(vp);
+      vidPlayer = vp;
+    }
+    vidPlayer.style.display = '';
+    vidPlayer.src = h.fileUrl;
+    vidPlayer.play();
+  }
+
   document.getElementById('vid-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 function closeModalBtn() {
   document.getElementById('modal-iframe').src = '';
+  var vp = document.getElementById('modal-video-player');
+  if(vp) { vp.pause(); vp.src = ''; }
   document.getElementById('vid-modal').classList.remove('open');
   document.body.style.overflow = '';
 }
@@ -1800,14 +2531,18 @@ function isBlocked(panelId) {
 }
 
 function openLogin(panelId) {
+  // If already logged in as commissioner, handle panel toggle
   if(currentRole) {
     if(panelId) {
-      if(isBlocked(panelId)) {
-        showAccessDenied();
-        return;
-      }
+      if(isBlocked(panelId)) { showAccessDenied(); return; }
       togglePanel(panelId);
     }
+    return;
+  }
+  // If requesting team tab, switch to it
+  if(panelId === 'team-pw') {
+    document.getElementById('login-modal').classList.add('open');
+    switchLoginTab('team');
     return;
   }
   pendingPanel = panelId;
@@ -1825,14 +2560,15 @@ function showAccessDenied() {
 }
 
 function switchLoginTab(tab) {
-  document.getElementById('login-tab-comm').classList.toggle('login-tab-active', tab==='comm');
-  document.getElementById('login-tab-co').classList.toggle('login-tab-active', tab==='co');
-  document.getElementById('login-pw-wrap-comm').style.display = tab==='comm' ? '' : 'none';
-  document.getElementById('login-pw-wrap-co').style.display = tab==='co' ? '' : 'none';
+  ['team','comm','co'].forEach(t => {
+    const wrap = document.getElementById('login-pw-wrap-'+t);
+    const btn  = document.getElementById('login-tab-'+t);
+    if(wrap) wrap.style.display = t===tab ? '' : 'none';
+    if(btn)  btn.classList.toggle('login-tab-active', t===tab);
+  });
   const _le=document.getElementById('login-err'); if(_le) _le.textContent='';
-  // focus correct input
-  const inp = tab==='comm' ? 'comm-pw' : 'co-pw';
-  setTimeout(()=>{ const el=document.getElementById(inp); if(el) el.focus(); },50);
+  const inputMap = {team:'team-pw', comm:'comm-pw', co:'co-pw'};
+  setTimeout(()=>{ const el=document.getElementById(inputMap[tab]); if(el) el.focus(); },50);
 }
 
 function closeLogin() {
@@ -1841,6 +2577,109 @@ function closeLogin() {
   document.getElementById('co-pw').value='';
   const _le=document.getElementById('login-err'); if(_le) _le.textContent='';
   pendingPanel=null;
+}
+
+/* ── TEAM LOGIN ── */
+function teamLogin() {
+  const pw = (document.getElementById('team-pw')||{}).value || '';
+  const err = document.getElementById('login-err');
+  let matched = null;
+  Object.entries(TEAM_PASSWORDS).forEach(([abbr, data]) => {
+    if(pw === data.pass) matched = abbr;
+  });
+  if(!matched) {
+    if(err) err.textContent = 'Incorrect team password.';
+    return;
+  }
+  currentTeamAbbr = matched;
+  // Persist team session in sessionStorage
+  try { sessionStorage.setItem('ddml_team', matched); } catch(e){}
+  closeLogin();
+  onTeamLogin(matched);
+}
+
+function teamLogout() {
+  currentTeamAbbr = null;
+  try { sessionStorage.removeItem('ddml_team'); } catch(e){}
+  onTeamLogout();
+}
+
+function onTeamLogin(abbr, fromCommLogin) {
+  const team = TEAMS.find(t => t.abbr === abbr);
+  if(!team) return;
+  // Show team bar
+  const bar = document.getElementById('team-bar');
+  if(bar) {
+    bar.style.display = 'flex';
+    setTimeout(updateNavTop, 20);
+    const lbl = document.getElementById('team-bar-label');
+    if(lbl) {
+      const commTag = currentRole === 'commissioner' ? ' 👑' : '';
+      lbl.textContent = team.name + ' (' + abbr + ') — ' + team.owner + commTag;
+    }
+    const dot = document.getElementById('team-bar-dot');
+    if(dot) dot.style.background = team.accent || 'var(--gold)';
+  }
+  // Keep comm button visible for commissioner (they need it)
+  if(currentRole !== 'commissioner') {
+    const cb = document.getElementById('nav-comm-btn');
+    if(cb) cb.style.display = 'none';
+  }
+  // Hide submit login prompt
+  const prompt = document.getElementById('submit-login-prompt');
+  if(prompt) prompt.style.display = 'none';
+  // Pre-fill gamertag
+  const subEl = document.getElementById('sub-submitter');
+  if(subEl && !subEl.value) subEl.value = team.owner;
+  // Pre-select team in submit form dropdowns
+  preselectSubmitTeam(abbr);
+  // Don't navigate away if this was triggered by commissioner auto-login
+  // (commissioner stays on current page)
+}
+
+function onTeamLogout() {
+  const bar = document.getElementById('team-bar');
+  if(bar) bar.style.display = 'none';
+  const cb = document.getElementById('nav-comm-btn');
+  if(cb) cb.style.display = '';
+  // Clear submit form team selection
+  const sel = document.getElementById('bs-home-team') || document.getElementById('bs-team');
+  // just navigate home
+  showSection('hero');
+}
+
+function preselectSubmitTeam(abbr) {
+  setTimeout(() => {
+    // Pre-select this team as home team in submit form
+    const home = document.getElementById('sub-home');
+    if(home) {
+      home.value = abbr;
+      // rebuild away options if that function exists
+      if(typeof updateAwayTeams === 'function') updateAwayTeams();
+    }
+    if(typeof updateScoreLabels === 'function') updateScoreLabels();
+  }, 200);
+}
+
+/* Restore team session on page load */
+function restoreTeamSession() {
+  // First check for commissioner session (takes priority)
+  try {
+    const savedRole = localStorage.getItem('ddml_comm_role');
+    if(savedRole === 'commissioner' || savedRole === 'co-commissioner') {
+      // Silently re-activate commissioner without showing modal
+      activateRole(savedRole);
+      return; // activateRole handles team login for commissioner
+    }
+  } catch(e) {}
+  // Otherwise restore team session
+  try {
+    const saved = sessionStorage.getItem('ddml_team');
+    if(saved && TEAM_PASSWORDS[saved]) {
+      currentTeamAbbr = saved;
+      onTeamLogin(saved);
+    }
+  } catch(e){}
 }
 
 function commLogin() {
@@ -1868,6 +2707,8 @@ function coCommLogin() {
 function activateRole(role) {
   currentRole = role;
   const isComm = role === 'commissioner';
+  // Persist commissioner session across page loads
+  try { localStorage.setItem('ddml_comm_role', role); } catch(e) {}
   closeLogin();
 
   // Comm bar
@@ -1928,10 +2769,24 @@ function activateRole(role) {
     if(!isBlocked(pendingPanel)) togglePanel(pendingPanel);
     pendingPanel = null;
   }
+  // Update notification badge now that comm is logged in
+  updateNotifBadge();
+  updateNavTop();
+  renderNotifPanel();
+  // Commissioner automatically gets team access to their own team (NYM)
+  if(isComm && !currentTeamAbbr) {
+    currentTeamAbbr = 'NYM';
+    try { sessionStorage.setItem('ddml_team', 'NYM'); } catch(e) {}
+    onTeamLogin('NYM');
+  }
 }
 
 function commLogout() {
   currentRole = null;
+  currentTeamAbbr = null;
+  setTimeout(updateNavTop, 50);
+  try { localStorage.removeItem('ddml_comm_role'); } catch(e) {}
+  try { sessionStorage.removeItem('ddml_team'); } catch(e) {}
   document.getElementById('comm-bar').classList.remove('on');
   const nb = document.getElementById('nav-comm-btn');
   if(nb) nb.style.display='';
@@ -1947,6 +2802,12 @@ function commLogout() {
   if(mCommBtn) mCommBtn.style.display='';
   document.querySelectorAll('.comm-toggle').forEach(b=>b.style.display='');
   document.querySelectorAll('.ed-panel').forEach(p=>p.classList.remove('on'));
+  // Also clear team bar if was set by commissioner auto-login
+  const tbar = document.getElementById('team-bar');
+  if(tbar) tbar.style.display = 'none';
+  // Restore comm button visibility
+  const nb2 = document.getElementById('nav-comm-btn');
+  if(nb2) nb2.style.display = '';
 }
 
 // Keep legacy check for any code using commLoggedIn
@@ -2319,6 +3180,82 @@ function undoReview(id) {
 }
 
 /* ── EXPORT ── */
+/* ── TEAM PASSWORD MANAGER (commissioner only) ── */
+function showTeamPasswordManager() {
+  if(currentRole !== 'commissioner') return;
+  // Build overlay with no nested quote issues
+  const overlay = document.createElement('div');
+  overlay.id = 'pw-manager-overlay';
+  overlay.style.cssText = 'position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;padding:1rem';
+  overlay.addEventListener('click', function(e){ if(e.target===overlay) overlay.remove(); });
+
+  const box = document.createElement('div');
+  box.style.cssText = 'background:var(--bg2);border:1px solid var(--border);border-top:3px solid var(--gold);border-radius:6px;padding:1.5rem;width:100%;max-width:500px;max-height:90vh;overflow-y:auto';
+
+  // Header
+  const hdr = document.createElement('div');
+  hdr.style.cssText = 'display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem';
+  const title = document.createElement('div');
+  title.style.cssText = 'font-weight:800;font-size:1.2rem;letter-spacing:.05em;color:var(--gold)';
+  title.textContent = '🔑 Team Passwords';
+  const closeBtn = document.createElement('button');
+  closeBtn.style.cssText = 'background:none;border:none;color:var(--dim);font-size:1.2rem;cursor:pointer;line-height:1';
+  closeBtn.textContent = '✕';
+  closeBtn.onclick = function(){ overlay.remove(); };
+  hdr.appendChild(title); hdr.appendChild(closeBtn);
+
+  const note = document.createElement('div');
+  note.style.cssText = 'font-size:.74rem;color:var(--dim);margin-bottom:1rem;line-height:1.5';
+  note.textContent = 'Share each password privately via DM or Discord. To change passwords, update TEAM_PASSWORDS in the source code before redeploying.';
+
+  // Table
+  const tbl = document.createElement('table');
+  tbl.style.cssText = 'width:100%;border-collapse:collapse';
+  tbl.innerHTML = '<thead><tr style="border-bottom:1px solid rgba(240,192,64,.2)"><th style="padding:.4rem .75rem;text-align:left;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)">Team</th><th style="padding:.4rem .75rem;text-align:left;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)">Owner</th><th style="padding:.4rem .75rem;text-align:left;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)">Password</th><th></th></tr></thead>';
+  const tbody = document.createElement('tbody');
+
+  Object.entries(TEAM_PASSWORDS).forEach(function([abbr, data]) {
+    const team = TEAMS.find(function(t){ return t.abbr === abbr; });
+    const tr = document.createElement('tr');
+    tr.style.borderBottom = '1px solid rgba(255,255,255,.06)';
+
+    const tdAbbr = document.createElement('td');
+    tdAbbr.style.cssText = 'padding:.5rem .75rem;font-weight:700;font-size:.9rem;color:' + (team ? team.accent : 'var(--gold)');
+    tdAbbr.textContent = abbr;
+
+    const tdOwner = document.createElement('td');
+    tdOwner.style.cssText = 'padding:.5rem .75rem;font-size:.82rem;color:var(--dim2)';
+    tdOwner.textContent = data.owner;
+
+    const tdPass = document.createElement('td');
+    tdPass.style.cssText = 'padding:.5rem .75rem;font-family:monospace;font-size:.82rem;color:var(--white);letter-spacing:.06em';
+    tdPass.textContent = data.pass;
+
+    const tdCopy = document.createElement('td');
+    tdCopy.style.padding = '.5rem .75rem';
+    const copyBtn = document.createElement('button');
+    copyBtn.textContent = 'Copy';
+    copyBtn.style.cssText = 'background:none;border:1px solid rgba(240,192,64,.3);color:var(--gold);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:2px;cursor:pointer';
+    copyBtn.dataset.pass = data.pass;
+    copyBtn.addEventListener('click', function(){
+      navigator.clipboard.writeText(this.dataset.pass).then(function(){
+        copyBtn.textContent = '✓ Copied';
+        setTimeout(function(){ copyBtn.textContent = 'Copy'; }, 1500);
+      }).catch(function(){ copyBtn.textContent = 'Failed'; });
+    });
+    tdCopy.appendChild(copyBtn);
+
+    tr.appendChild(tdAbbr); tr.appendChild(tdOwner); tr.appendChild(tdPass); tr.appendChild(tdCopy);
+    tbody.appendChild(tr);
+  });
+
+  tbl.appendChild(tbody);
+  box.appendChild(hdr); box.appendChild(note); box.appendChild(tbl);
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+}
+
+
 function exportData() {
   persistAll();
   const raw = localStorage.getItem(STORAGE_KEY);
@@ -3142,6 +4079,22 @@ function submitEOGR() {
 
   SUBMISSIONS.unshift(sub);
   persistAll();
+
+  // Auto-approve immediately — updates standings, stats, news right away
+  approveSubmission(sub.id);
+
+  // Notify commissioner
+  const notifMsg = sub.homeName + ' ' + sub.scoreHome + ' – ' + sub.scoreAway + ' ' + sub.awayName + ' (' + sub.week + ') · Submitted by ' + sub.submitter;
+  addCommNotification({
+    type: 'game',
+    icon: '⚾',
+    msg: notifMsg,
+    action: "showSection('queue')",
+    actionLabel: 'Review',
+    subId: sub.id,
+    id: 'game-' + sub.id
+  });
+
   updateQueueBadge();
   resetEOGRForm();
 
@@ -3491,7 +4444,19 @@ try { localStorage.removeItem('ddleague_v1'); localStorage.removeItem('ddleague_
 loadPersisted();               // restore all saved edits
 renderAll();                   // render with saved data
 populateBsTeamDropdown();      // populate submit form
+  populateHlTeamDropdown();      // populate highlight submit form
 populateTeamDropdowns();       // populate EOGR home/away + week dropdown
+restoreTeamSession();          // restore team login from sessionStorage
+  loadCommNotifications();       // restore commissioner notifications
+
+  // Sync bottom nav on first load
+  (function() {
+    var hash = window.location.hash ? window.location.hash.replace('#','') : '';
+    var validSections = ['hero','standings','submit','stats','teams','highlights','news','rewards','rules','queue'];
+    if(hash && validSections.includes(hash)) {
+      showSection(hash);
+    }
+  })();
 // Rebuild any custom pages that were saved
 CUSTOM_PAGES.forEach(p => buildCustomPageDOM(p));
 // Queue nav only shown after commissioner login
@@ -3500,22 +4465,22 @@ CUSTOM_PAGES.forEach(p => buildCustomPageDOM(p));
    EMBEDDED PROMO PLAYER
 ══════════════════════════════════════════ */
 (function initPromo(){
-  const SCENE_LABELS = ['Intro','Prize Pool','Standings','Features','Submissions','Awards','Future Seasons','Join Now'];
+  const SCENE_LABELS = ['Intro','Free Competition','Standings','Features','Submissions','Awards','Season 1 Soon','Join Now'];
   const SCENE_DURATION = 7000;
   let promoScene = 0;
   let promoPaused = false;
   let promoTimer = null;
   let promoWin = null;
 
-  const PROMO_HTML = `<!DOCTYPE html><html><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/><style>*{box-sizing:border-box;margin:0;padding:0}:root{--bg:#06101e;--bg2:#0c1e38;--bg3:#112244;--gold:#f0c040;--red:#e03040;--green:#28d070;--white:#f0ece0;--dim:#8a8878;--dim2:#aaa898}html,body{width:100%;height:100%;overflow:hidden;background:var(--bg)}body{font-family:'Barlow',sans-serif;color:var(--white)}.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;opacity:0;pointer-events:none;transition:opacity .7s}.scene.active{opacity:1;pointer-events:auto}.scene::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 49px,rgba(240,192,64,.03) 50px),repeating-linear-gradient(90deg,transparent,transparent 49px,rgba(240,192,64,.03) 50px);pointer-events:none}.eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}.title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,8vw,5.5rem);font-weight:900;letter-spacing:.02em;line-height:.9;color:var(--white)}.gold{color:var(--gold)}.green{color:var(--green)}.red{color:var(--red)}.sub{font-size:clamp(.78rem,1.8vw,.95rem);color:var(--dim2);line-height:1.6;max-width:520px;margin:.9rem auto 0}.divider{width:50px;height:3px;background:var(--gold);margin:.6rem auto 0;border-radius:2px}.stat-row{display:flex;flex-wrap:wrap;justify-content:center;gap:.65rem;margin-top:1.5rem}.stat-card{background:var(--bg2);border:1px solid rgba(240,192,64,.25);border-top:2px solid var(--gold);border-radius:3px;padding:.6rem 1.1rem;text-align:center;min-width:90px}.scv{font-family:'Barlow Condensed',sans-serif;font-size:1.9rem;font-weight:900;color:var(--gold);line-height:1}.scl{font-family:'Barlow Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-top:.1rem}.pot{font-family:'Barlow Condensed',sans-serif;font-size:clamp(4rem,14vw,7.5rem);font-weight:900;color:var(--gold);line-height:1}.payout-grid{display:flex;flex-direction:column;gap:.55rem;width:100%;max-width:460px;margin-top:1.5rem}.pr{display:flex;align-items:center;gap:.75rem}.pl{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--white);min-width:155px;text-align:right}.pb-wrap{flex:1;background:rgba(255,255,255,.07);border-radius:2px;height:24px;overflow:hidden}.pb{height:100%;border-radius:2px;display:flex;align-items:center;padding-left:8px;font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:800;transition:width 1.4s cubic-bezier(.16,1,.3,1)}.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem;margin-top:1.2rem}.chip{background:var(--bg2);border:1px solid rgba(240,192,64,.28);border-radius:3px;padding:.3rem .7rem;font-size:.72rem;color:var(--dim2)}.chip strong{color:var(--gold)}.sm{width:100%;max-width:480px;background:var(--bg2);border:1px solid rgba(255,255,255,.08);border-radius:5px;overflow:hidden;margin-top:1.25rem}.sm-hdr{background:var(--bg3);padding:.45rem .85rem;font-family:'Barlow Condensed',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:flex;justify-content:space-between}.sm-row{display:flex;align-items:center;gap:.6rem;padding:.45rem .85rem;border-bottom:1px solid rgba(255,255,255,.04);font-size:.8rem}.sm-row.cut{border-bottom:2px dashed rgba(240,192,64,.35)}.rank{color:var(--dim);font-size:.68rem;min-width:16px}.nm{flex:1;font-weight:600;color:var(--white)}.nm.po{color:var(--gold)}.rec{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:700}.pct{color:var(--dim2);min-width:36px;text-align:right;font-size:.74rem}.ldot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:p 1.5s infinite}.llbl{font-family:'Barlow Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}@keyframes p{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.65rem;width:100%;max-width:600px;margin-top:1.25rem}.fc{background:var(--bg2);border:1px solid rgba(255,255,255,.07);border-left:2px solid var(--gold);border-radius:3px;padding:.8rem 1rem;text-align:left}.fi{font-size:1.3rem;margin-bottom:.3rem}.ft{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--white);margin-bottom:.2rem}.fd{font-size:.72rem;color:var(--dim2);line-height:1.5}.steps{display:flex;flex-direction:column;gap:0;width:100%;max-width:500px;margin-top:1.25rem}.step{display:flex;gap:1rem;align-items:flex-start;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.05);text-align:left}.step:last-child{border-bottom:none}.sn{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:900;color:var(--gold);line-height:1;min-width:28px}.st{font-weight:600;font-size:.85rem;color:var(--white);margin-bottom:.15rem}.sd{font-size:.74rem;color:var(--dim2);line-height:1.5}.sbadge{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(40,208,112,.12);border:1px solid rgba(40,208,112,.3);color:var(--green);padding:1px 6px;border-radius:2px;margin-top:.25rem}.cta-bg{background:radial-gradient(ellipse 70% 60% at 50% 50%,#1a3a70 0%,var(--bg) 70%)}.join-btn{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--gold);color:#06101e;padding:.75rem 2rem;border-radius:3px;margin-top:1.5rem;animation:glow 2.5s 1s infinite}@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(240,192,64,.5)}60%{box-shadow:0 0 0 14px rgba(240,192,64,0)}}</style></head><body>
-<div class="scene active" id="s0"><div class="eyebrow">MLB The Show 26 · Season 1</div><div class="title">DIAMOND<br/><span class="gold">DYNASTY</span><br/>MONEY LEAGUE</div><div class="divider"></div><div class="sub">20 teams. One season. Real money on the line.</div><div class="stat-row"><div class="stat-card"><div class="scv">20</div><div class="scl">Teams</div></div><div class="stat-card"><div class="scv">95</div><div class="scl">Max OVR</div></div><div class="stat-card"><div class="scv">19</div><div class="scl">Games</div></div><div class="stat-card"><div class="scv">8</div><div class="scl">Playoff Teams</div></div></div></div>
-<div class="scene" id="s1"><div class="eyebrow">The Prize Pool</div><div class="pot">$400</div><div class="sub">20 managers × $20 entry — every dollar in the pot — split voted by the league</div><div class="payout-grid"><div class="pr"><div class="pl">🏆 WS Champion</div><div class="pb-wrap"><div class="pb" id="pb1" style="width:0%;background:var(--gold);color:#06101e">$260</div></div></div><div class="pr"><div class="pl">🥈 Runner-Up</div><div class="pb-wrap"><div class="pb" id="pb2" style="width:0%;background:var(--dim2);color:#06101e">$100</div></div></div><div class="pr"><div class="pl">🎖 Season Awards</div><div class="pb-wrap"><div class="pb" id="pb3" style="width:0%;background:var(--green);color:#06101e">$40</div></div></div></div><div class="chips"><div class="chip">🏆 <strong>MVP</strong></div><div class="chip">⚾ <strong>No-Hitter</strong></div><div class="chip">🚶 <strong>Walk-Off King</strong></div><div class="chip">🔥 <strong>Comeback</strong></div><div class="chip">💨 <strong>Speed Demon</strong></div><div class="chip">🌟 <strong>Pitcher of Year</strong></div></div></div>
-<div class="scene" id="s2"><div class="eyebrow">Real-Time Standings</div><div class="title" style="font-size:clamp(2rem,7vw,4rem)">UPDATED<br/><span class="gold">AFTER EVERY</span><br/>GAME</div><div class="sm"><div class="sm-hdr"><span>#</span><span style="flex:1">Team</span><span>W-L</span><span>PCT</span></div><div class="sm-row"><span class="rank">1</span><span class="nm po">Stoned Crabs</span><div class="ldot"></div><span class="llbl">Live</span><span class="rec" style="color:var(--green)">14-4</span><span class="pct">.778</span></div><div class="sm-row"><span class="rank">2</span><span class="nm po">Gold Standard</span><span class="rec" style="color:var(--green)">13-5</span><span class="pct">.722</span></div><div class="sm-row"><span class="rank">3</span><span class="nm po">Dynasty Kings</span><span class="rec" style="color:var(--green)">12-6</span><span class="pct">.667</span></div><div class="sm-row cut"><span class="rank">8</span><span class="nm po">Ice Cold Lineup</span><span class="rec" style="color:var(--gold)">9-9</span><span class="pct">.500</span></div><div class="sm-row"><span class="rank">9</span><span class="nm" style="color:var(--dim2)">Joker Squad</span><span class="rec" style="color:var(--red)">7-11</span><span class="pct">.389</span></div></div><div class="sub" style="font-size:.75rem;margin-top:.6rem">Top 8 advance · Dashed line = playoff cutoff</div></div>
+  const PROMO_HTML = `<!DOCTYPE html><html><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/><style>*{box-sizing:border-box;margin:0;padding:0}:root{--bg:#06101e;--bg2:#0c1e38;--bg3:#112244;--gold:#f0c040;--red:#e03040;--green:#28d070;--white:#f0ece0;--dim:#8a8878;--dim2:#aaa898}html,body{width:100%;height:100%;overflow:hidden;background:var(--bg)}body{font-family:'Barlow',Arial,sans-serif;color:var(--white)}.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;opacity:0;pointer-events:none;transition:opacity .7s}.scene.active{opacity:1;pointer-events:auto}.scene::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 49px,rgba(240,192,64,.03) 50px),repeating-linear-gradient(90deg,transparent,transparent 49px,rgba(240,192,64,.03) 50px);pointer-events:none}.eyebrow{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}.title{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:clamp(2.5rem,8vw,5.5rem);font-weight:900;letter-spacing:.02em;line-height:.9;color:var(--white)}.gold{color:var(--gold)}.green{color:var(--green)}.red{color:var(--red)}.sub{font-size:clamp(.78rem,1.8vw,.95rem);color:var(--dim2);line-height:1.6;max-width:520px;margin:.9rem auto 0}.divider{width:50px;height:3px;background:var(--gold);margin:.6rem auto 0;border-radius:2px}.stat-row{display:flex;flex-wrap:wrap;justify-content:center;gap:.65rem;margin-top:1.5rem}.stat-card{background:var(--bg2);border:1px solid rgba(240,192,64,.25);border-top:2px solid var(--gold);border-radius:3px;padding:.6rem 1.1rem;text-align:center;min-width:90px}.scv{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:1.9rem;font-weight:900;color:var(--gold);line-height:1}.scl{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-top:.1rem}.pot{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:clamp(4rem,14vw,7.5rem);font-weight:900;color:var(--gold);line-height:1}.payout-grid{display:flex;flex-direction:column;gap:.55rem;width:100%;max-width:460px;margin-top:1.5rem}.pr{display:flex;align-items:center;gap:.75rem}.pl{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--white);min-width:155px;text-align:right}.pb-wrap{flex:1;background:rgba(255,255,255,.07);border-radius:2px;height:24px;overflow:hidden}.pb{height:100%;border-radius:2px;display:flex;align-items:center;padding-left:8px;font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:.9rem;font-weight:800;transition:width 1.4s cubic-bezier(.16,1,.3,1)}.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem;margin-top:1.2rem}.chip{background:var(--bg2);border:1px solid rgba(240,192,64,.28);border-radius:3px;padding:.3rem .7rem;font-size:.72rem;color:var(--dim2)}.chip strong{color:var(--gold)}.sm{width:100%;max-width:480px;background:var(--bg2);border:1px solid rgba(255,255,255,.08);border-radius:5px;overflow:hidden;margin-top:1.25rem}.sm-hdr{background:var(--bg3);padding:.45rem .85rem;font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:flex;justify-content:space-between}.sm-row{display:flex;align-items:center;gap:.6rem;padding:.45rem .85rem;border-bottom:1px solid rgba(255,255,255,.04);font-size:.8rem}.sm-row.cut{border-bottom:2px dashed rgba(240,192,64,.35)}.rank{color:var(--dim);font-size:.68rem;min-width:16px}.nm{flex:1;font-weight:600;color:var(--white)}.nm.po{color:var(--gold)}.rec{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:.85rem;font-weight:700}.pct{color:var(--dim2);min-width:36px;text-align:right;font-size:.74rem}.ldot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:p 1.5s infinite}.llbl{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}@keyframes p{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.65rem;width:100%;max-width:600px;margin-top:1.25rem}.fc{background:var(--bg2);border:1px solid rgba(255,255,255,.07);border-left:2px solid var(--gold);border-radius:3px;padding:.8rem 1rem;text-align:left}.fi{font-size:1.3rem;margin-bottom:.3rem}.ft{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:.95rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--white);margin-bottom:.2rem}.fd{font-size:.72rem;color:var(--dim2);line-height:1.5}.steps{display:flex;flex-direction:column;gap:0;width:100%;max-width:500px;margin-top:1.25rem}.step{display:flex;gap:1rem;align-items:flex-start;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.05);text-align:left}.step:last-child{border-bottom:none}.sn{font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:1.5rem;font-weight:900;color:var(--gold);line-height:1;min-width:28px}.st{font-weight:600;font-size:.85rem;color:var(--white);margin-bottom:.15rem}.sd{font-size:.74rem;color:var(--dim2);line-height:1.5}.sbadge{display:inline-block;font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(40,208,112,.12);border:1px solid rgba(40,208,112,.3);color:var(--green);padding:1px 6px;border-radius:2px;margin-top:.25rem}.cta-bg{background:radial-gradient(ellipse 70% 60% at 50% 50%,#1a3a70 0%,var(--bg) 70%)}.join-btn{display:inline-block;font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:1rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--gold);color:#06101e;padding:.75rem 2rem;border-radius:3px;margin-top:1.5rem;animation:glow 2.5s 1s infinite}@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(240,192,64,.5)}60%{box-shadow:0 0 0 14px rgba(240,192,64,0)}}</style></head><body>
+<div class="scene active" id="s0"><div class="eyebrow">MLB The Show 26 · PreSeason / Beta</div><div class="title">DIAMOND<br/><span class="gold">DYNASTY</span><br/>MONEY LEAGUE</div><div class="divider"></div><div class="sub">8 of 20 spots filled. Free entry. Season 1 is coming — this is the warmup. Recruiting now.</div><div class="stat-row"><div class="stat-card"><div class="scv">8/20</div><div class="scl">Spots Filled</div></div><div class="stat-card"><div class="scv">95</div><div class="scl">Max OVR</div></div><div class="stat-card"><div class="scv">FREE</div><div class="scl">Entry</div></div><div class="stat-card"><div class="scv">4</div><div class="scl">Playoff Teams</div></div></div></div>
+<div class="scene" id="s1"><div class="eyebrow">PreSeason Prize · Win Your Spot</div><div class="pot" style="font-size:clamp(2rem,8vw,4.5rem);color:var(--gold);line-height:1.1">FREE<br/><span style="font-size:clamp(1.2rem,4vw,2.2rem);color:var(--green)">SEASON 1 ENTRY</span></div><div class="sub">Win the PreSeason and your Season 1 buy-in is on the house. Real money league. Zero cost to enter. Prove it now — cash in later.</div><div class="payout-grid"><div class="pr"><div class="pl">🏆 PreSeason Champ</div><div class="pb-wrap"><div class="pb" id="pb1" style="width:100%;background:var(--gold);color:#06101e">Free Season 1 Entry</div></div></div><div class="pr"><div class="pl">🥈 Runner-Up</div><div class="pb-wrap"><div class="pb" id="pb2" style="width:60%;background:var(--dim2);color:#06101e">Bragging Rights</div></div></div><div class="pr"><div class="pl">🎖 Season Awards</div><div class="pb-wrap"><div class="pb" id="pb3" style="width:40%;background:var(--green);color:#06101e">Hall of Fame</div></div></div></div><div class="chips"><div class="chip">🎟️ <strong>$20 Value</strong></div><div class="chip">📅 <strong>Season 1 in Weeks</strong></div><div class="chip">⚾ <strong>Free to Compete</strong></div><div class="chip">🏆 <strong>Win = Paid Entry</strong></div><div class="chip">🔥 <strong>Stakes Are Real</strong></div><div class="chip">🚀 <strong>Earn Your Spot</strong></div></div></div>
+<div class="scene" id="s2"><div class="eyebrow">Live Standings · PreSeason</div><div class="title" style="font-size:clamp(2rem,7vw,4rem)">UPDATED<br/><span class="gold">AFTER EVERY</span><br/>GAME</div><div class="sm" id="promo-standings-tbl"><div class="sm-hdr"><span>#</span><span style="flex:1;padding-left:.4rem">Team</span><span>W-L</span><span style="min-width:42px;text-align:right">PCT</span></div><div class="sm-row" style="color:var(--dim);font-size:.75rem;padding:.6rem .85rem">Loading standings…</div></div><div class="sub" style="font-size:.75rem;margin-top:.6rem">Top 4 advance to playoffs · PreSeason</div></div>
 <div class="scene" id="s3"><div class="eyebrow">Full League Experience</div><div class="title" style="font-size:clamp(2rem,6vw,3.5rem)">EVERYTHING<br/>YOU <span class="gold">NEED</span></div><div class="feat-grid"><div class="fc"><div class="fi">📊</div><div class="ft">Live Stats</div><div class="fd">AVG, HR, RBI, ERA, SB, K leaders updated after every game.</div></div><div class="fc"><div class="fi">🏆</div><div class="ft">Standings</div><div class="fd">Full 20-team table. Playoff line. GB auto-calculated.</div></div><div class="fc"><div class="fi">🎬</div><div class="ft">Highlights</div><div class="fd">Upload your best plays. Watch them on the league site.</div></div><div class="fc"><div class="fi">📰</div><div class="ft">League News</div><div class="fd">Commissioner posts updates, records, and results all season.</div></div></div></div>
 <div class="scene" id="s4"><div class="eyebrow">The Submission System</div><div class="title" style="font-size:clamp(2rem,6vw,3.5rem)">STATS VERIFIED.<br/><span class="green">AUTO-UPDATES.</span></div><div class="steps"><div class="step"><div class="sn">01</div><div><div class="st">Play your game</div><div class="sd">Complete your weekly matchup in the game window.</div></div></div><div class="step"><div class="sn">02</div><div><div class="st">Screenshot the final stats screen</div><div class="sd">Photo of the post-game stats screen in MLB The Show 26.</div></div></div><div class="step"><div class="sn">03</div><div><div class="st">Submit on the league site</div><div class="sd">Upload photo, enter score, pick teams. Takes 30 seconds.</div><div class="sbadge">Open to all members</div></div></div><div class="step"><div class="sn">04</div><div><div class="st">Commissioner approves</div><div class="sd">Screenshot verified. W/L, standings, and news update instantly.</div><div class="sbadge">Commissioner verified</div></div></div></div></div>
-<div class="scene" id="s5b"><div class="eyebrow">Every Stat. Every Game. Every Dollar.</div><div class="title" style="font-size:clamp(2rem,7vw,4rem)">SEASON AWARDS<br/><span class="gold">EVERYONE</span><br/>CAN WIN</div><div class="sub">You don't need to make the playoffs to cash out. Batting title, ERA leader, Walk-Off King, First No-Hitter — real money for individual excellence, every single season.</div><div class="stat-row" style="margin-top:1.5rem"><div class="stat-card"><div class="scv">🏆</div><div class="scl">MVP</div></div><div class="stat-card"><div class="scv">⚾</div><div class="scl">No-Hitter</div></div><div class="stat-card"><div class="scv">🚶</div><div class="scl">Walk-Off King</div></div><div class="stat-card"><div class="scv">🌟</div><div class="scl">Pitcher of Year</div></div></div><div style="margin-top:1.25rem;font-family:'Barlow Condensed',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(40,208,112,.8)">Award % split voted by the full league before every season</div></div>
-<div class="scene" id="s5"><div class="eyebrow">This Is Just The Beginning</div><div class="title">SEASON 1<br/>OF <span class="gold">MANY</span></div><div class="divider"></div><div class="sub">Every season the league grows. Stats build history. Champions are remembered. Bigger pots, new awards, legacy in the making.</div><div class="stat-row"><div class="stat-card"><div class="scv">S1</div><div class="scl">Starting Now</div></div><div class="stat-card"><div class="scv">∞</div><div class="scl">Future Seasons</div></div><div class="stat-card"><div class="scv">20</div><div class="scl">Open Spots</div></div></div></div>
-<div class="scene cta-bg" id="s6"><div class="eyebrow">Season 1 · Now Recruiting</div><div class="title">ARE YOU<br/><span class="gold">IN?</span></div><div class="sub">$20 entry · 20 teams · 95 OVR cap · Winner takes $260<br/>Build your squad. Beat the league. Cash out. Season awards keep the money flowing — no matter your record.</div><div class="join-btn">Join Season 1 — $20 Entry</div><div style="margin-top:2rem;opacity:.4;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif">Diamond Dynasty Money League · MLB The Show 26</div></div>
+<div class="scene" id="s5b"><div class="eyebrow">Every Stat. Every Game. Every Dollar.</div><div class="title" style="font-size:clamp(2rem,7vw,4rem)">SEASON AWARDS<br/><span class="gold">EVERYONE</span><br/>CAN WIN</div><div class="sub">You don't need to make the playoffs to cash out. Batting title, ERA leader, Walk-Off King, First No-Hitter — real money for individual excellence, every single season.</div><div class="stat-row" style="margin-top:1.5rem"><div class="stat-card"><div class="scv">🏆</div><div class="scl">MVP</div></div><div class="stat-card"><div class="scv">⚾</div><div class="scl">No-Hitter</div></div><div class="stat-card"><div class="scv">🚶</div><div class="scl">Walk-Off King</div></div><div class="stat-card"><div class="scv">🌟</div><div class="scl">Pitcher of Year</div></div></div><div style="margin-top:1.25rem;font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(40,208,112,.8)">Award % split voted by the full league before every season</div></div>
+<div class="scene" id="s5"><div class="eyebrow">This Is Just The Beginning</div><div class="title">SEASON 1<br/>DROPS <span class="gold">SOON</span></div><div class="divider"></div><div class="sub">PreSeason is the warmup. Season 1 is the real thing — paid entry, full prize pool, history in the making. Get your reps in now.</div><div class="stat-row"><div class="stat-card"><div class="scv">PRE</div><div class="scl">Current</div></div><div class="stat-card"><div class="scv">S1</div><div class="scl">Coming Soon</div></div><div class="stat-card"><div class="scv">∞</div><div class="scl">Future Seasons</div></div></div></div>
+<div class="scene cta-bg" id="s6"><div class="eyebrow">PreSeason Active · Season 1 Coming Soon</div><div class="title">ARE YOU<br/><span class="gold">READY?</span></div><div class="sub">Free PreSeason is live now. Season 1 drops in a few weeks — paid entry, real prize pool, full league.<br/>Get your reps in. The clock is ticking.</div><div class="join-btn">Join the Discord — Stay Ready</div><div style="margin-top:2rem;opacity:.4;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif">Diamond Dynasty Money League · MLB The Show 26</div></div>
 \x3cscript>
 const scenes=document.querySelectorAll('.scene');
 let cur=0;
@@ -3539,7 +4504,7 @@ goTo(0);
     d.innerHTML = '';
     for(let i=0;i<total;i++){
       const btn = document.createElement('button');
-      btn.style.cssText='width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;transition:background .3s,transform .3s;padding:0;background:'+(i===0?'#f0c040':'rgba(255,255,255,.2)');
+      btn.style.cssText='width:20px;height:20px;border-radius:50%;border:none;cursor:pointer;transition:background .3s,transform .3s;padding:0;background:'+(i===0?'#f0c040':'rgba(255,255,255,.2)')+';display:flex;align-items:center;justify-content:center;position:relative;'; var inner=document.createElement('span'); inner.style.cssText='width:8px;height:8px;border-radius:50%;background:inherit;display:block;pointer-events:none'; btn.appendChild(inner);
       btn.setAttribute('aria-label','Scene '+(i+1));
       btn.onclick = ()=>{ promoGoTo(i); };
       d.appendChild(btn);
@@ -3552,7 +4517,7 @@ goTo(0);
       b.style.background = i===cur ? '#f0c040' : 'rgba(255,255,255,.2)';
       b.style.transform = i===cur ? 'scale(1.3)' : 'scale(1)';
     });
-    const labels = ['Intro','Prize Pool','Standings','Features','Submissions','Future Seasons','Join Now'];
+    const labels = ['Intro','Free Competition','Standings','Features','Submissions','Season 1 Soon','Join Now'];
     const lbl = document.getElementById('promo-scene-label');
     if(lbl) lbl.textContent = labels[cur] || ('Scene '+(cur+1));
     const prog = document.getElementById('promo-prog');
@@ -3564,7 +4529,47 @@ goTo(0);
     buildDots(total);
     updateDots(cur);
     resetTimer();
+    // Scene 2 = Standings — inject real live data
+    if(cur === 2) injectPromoStandings();
   };
+
+  function injectPromoStandings() {
+    var tbl = document.getElementById('promo-standings-tbl');
+    if(!tbl || typeof TEAMS === 'undefined') return;
+    var active = TEAMS.filter(function(t){ return t.abbr !== '---' && t.name !== 'EMPTY'; });
+    var withPct = active.map(function(t){
+      var gp = t.w + t.l;
+      return { name: t.name, abbr: t.abbr, w: t.w, l: t.l, gp: gp,
+               pct: gp > 0 ? t.w / gp : 0, accent: t.accent };
+    }).sort(function(a,b){
+      if(b.pct !== a.pct) return b.pct - a.pct;
+      return a.l - b.l;
+    });
+    var cutoff = Math.min(4, withPct.length);
+    var rows = '<div class="sm-hdr"><span>#</span><span style="flex:1;padding-left:.4rem">Team</span><span>W-L</span><span style="min-width:42px;text-align:right">PCT</span></div>';
+    withPct.slice(0, 6).forEach(function(t, i) {
+      var pctStr = t.gp > 0 ? t.pct.toFixed(3).replace(/^0/,'') : '—';
+      var recColor = t.gp === 0 ? 'var(--dim)' : (t.pct >= .500 ? 'var(--green)' : 'var(--red)');
+      var isCutRow = i === cutoff - 1;
+      rows += '<div class="sm-row' + (isCutRow ? ' cut' : '') + '">' +
+        '<span class="rank">' + (i+1) + '</span>' +
+        '<span class="nm po" style="color:' + (t.accent||'var(--gold)') + '">' + t.name + '</span>' +
+        (i === 0 ? '<div class="ldot"></div><span class="llbl">Live</span>' : '') +
+        '<span class="rec" style="color:' + recColor + '">' + t.w + '-' + t.l + '</span>' +
+        '<span class="pct">' + pctStr + '</span>' +
+        '</div>';
+    });
+    // Add open spots teaser if < 20 teams
+    var total = TEAMS.length;
+    var open = 20 - total;
+    if(open > 0) {
+      rows += '<div class="sm-row" style="opacity:.45;font-style:italic">' +
+        '<span class="rank">+</span>' +
+        '<span class="nm" style="color:var(--gold);flex:1">' + open + ' spots open for Season 1</span>' +
+        '</div>';
+    }
+    tbl.innerHTML = rows;
+  }
 
   function promoGoTo(i) {
     if(promoWin && promoWin.goToScene) promoWin.goToScene(i);
@@ -3615,41 +4620,561 @@ goTo(0);
   setTimeout(initFrame, 300);
 })();
 
+/* ══════════════════════════════════════════
+   TEAM REQUEST / CHANGE TEAM SYSTEM
+══════════════════════════════════════════ */
+const ALL_MLB_TEAMS = [{"abbr": "ARI", "name": "Arizona Diamondbacks", "color": "#A71930"}, {"abbr": "ATL", "name": "Atlanta Braves", "color": "#CE1141"}, {"abbr": "BAL", "name": "Baltimore Orioles", "color": "#DF4601"}, {"abbr": "BOS", "name": "Boston Red Sox", "color": "#BD3039"}, {"abbr": "CHC", "name": "Chicago Cubs", "color": "#0E3386"}, {"abbr": "CWS", "name": "Chicago White Sox", "color": "#27251F"}, {"abbr": "CIN", "name": "Cincinnati Reds", "color": "#C6011F"}, {"abbr": "CLE", "name": "Cleveland Guardians", "color": "#00385D"}, {"abbr": "COL", "name": "Colorado Rockies", "color": "#33006F"}, {"abbr": "DET", "name": "Detroit Tigers", "color": "#0C2340"}, {"abbr": "HOU", "name": "Houston Astros", "color": "#EB6E1F"}, {"abbr": "KC", "name": "Kansas City Royals", "color": "#004687"}, {"abbr": "LAA", "name": "LA Angels", "color": "#BA0021"}, {"abbr": "LAD", "name": "LA Dodgers", "color": "#005A9C"}, {"abbr": "MIA", "name": "Miami Marlins", "color": "#00A3E0"}, {"abbr": "MIL", "name": "Milwaukee Brewers", "color": "#FFC52F"}, {"abbr": "MIN", "name": "Minnesota Twins", "color": "#002B5C"}, {"abbr": "NYM", "name": "New York Mets", "color": "#002D72"}, {"abbr": "NYY", "name": "New York Yankees", "color": "#003087"}, {"abbr": "OAK", "name": "Oakland Athletics", "color": "#003831"}, {"abbr": "PHI", "name": "Philadelphia Phillies", "color": "#E81828"}, {"abbr": "PIT", "name": "Pittsburgh Pirates", "color": "#27251F"}, {"abbr": "SD", "name": "San Diego Padres", "color": "#2F241D"}, {"abbr": "SF", "name": "San Francisco Giants", "color": "#FD5A1E"}, {"abbr": "SEA", "name": "Seattle Mariners", "color": "#0C2C56"}, {"abbr": "STL", "name": "St. Louis Cardinals", "color": "#C41E3A"}, {"abbr": "TB", "name": "Tampa Bay Rays", "color": "#092C5C"}, {"abbr": "TEX", "name": "Texas Rangers", "color": "#003278"}, {"abbr": "TOR", "name": "Toronto Blue Jays", "color": "#134A8E"}, {"abbr": "WSH", "name": "Washington Nationals", "color": "#AB0003"}];
+let teamRequestIsChange = false;
+let teamRequestSelected = null;
+
+function openTeamRequestModal(isChange) {
+  teamRequestIsChange = isChange;
+  teamRequestSelected = null;
+  const modal = document.getElementById('team-request-modal');
+  modal.style.display = 'flex';
+  document.getElementById('trm-title').textContent = isChange ? '🔄 Change My Team' : '⚾ Request a Team';
+  document.getElementById('trm-sub').textContent = isChange
+    ? 'Pick any available MLB squad. Commissioner will update your assignment and issue a new password.'
+    : 'Pick your MLB squad for PreSeason. Free to join — Commissioner approves and sends your password via Discord.';
+  document.getElementById('trm-feedback').textContent = '';
+  document.getElementById('trm-selected').style.display = 'none';
+  // Pre-fill gamertag if team logged in
+  if(currentTeamAbbr) {
+    const team = TEAMS.find(function(t){ return t.abbr === currentTeamAbbr; });
+    if(team) document.getElementById('trm-gamertag').value = team.owner;
+  }
+  buildTeamGrid();
+}
+
+function closeTeamRequestModal() {
+  document.getElementById('team-request-modal').style.display = 'none';
+}
+
+function buildTeamGrid() {
+  const takenAbbrs = TEAMS
+    .filter(function(t){ return t.abbr !== '---' && t.name !== 'EMPTY'; })
+    .map(function(t){ return t.abbr; });
+  const grid = document.getElementById('trm-grid');
+  grid.innerHTML = '';
+  ALL_MLB_TEAMS.forEach(function(team) {
+    const taken = takenAbbrs.includes(team.abbr);
+    const btn = document.createElement('button');
+    btn.style.cssText = 'background:' + (taken ? 'rgba(255,255,255,.03)' : 'var(--bg3)') + ';border:1px solid ' +
+      (taken ? 'rgba(255,255,255,.06)' : 'rgba(255,255,255,.12)') + ';color:' +
+      (taken ? 'var(--dim)' : 'var(--white)') + ';font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;padding:.4rem .3rem;border-radius:3px;cursor:' +
+      (taken ? 'not-allowed' : 'pointer') + ';transition:background .15s,border-color .15s;position:relative;';
+    btn.textContent = team.abbr;
+    btn.title = team.name + (taken ? ' (Taken)' : ' — Available');
+    btn.disabled = taken;
+    if(taken) {
+      const dot = document.createElement('span');
+      dot.style.cssText = 'position:absolute;top:2px;right:2px;width:5px;height:5px;background:var(--red);border-radius:50%';
+      btn.appendChild(dot);
+    }
+    if(!taken) {
+      btn.addEventListener('mouseenter', function(){ if(!btn.disabled) btn.style.background = team.color + '33'; btn.style.borderColor = team.color + '88'; });
+      btn.addEventListener('mouseleave', function(){ if(teamRequestSelected !== team.abbr) { btn.style.background = 'var(--bg3)'; btn.style.borderColor = 'rgba(255,255,255,.12)'; } });
+      btn.addEventListener('click', function(){
+        // deselect previous
+        grid.querySelectorAll('button').forEach(function(b){
+          if(!b.disabled) { b.style.background = 'var(--bg3)'; b.style.borderColor = 'rgba(255,255,255,.12)'; b.style.color = 'var(--white)'; }
+        });
+        teamRequestSelected = team.abbr;
+        btn.style.background = team.color + '44';
+        btn.style.borderColor = team.color;
+        btn.style.color = '#fff';
+        document.getElementById('trm-selected').style.display = '';
+        document.getElementById('trm-selected-name').textContent = team.name + ' (' + team.abbr + ')';
+        document.getElementById('trm-feedback').textContent = '';
+      });
+    }
+    grid.appendChild(btn);
+  });
+}
+
+function submitTeamRequest() {
+  const gamertag = (document.getElementById('trm-gamertag').value || '').trim();
+  const fb = document.getElementById('trm-feedback');
+  if(!gamertag) { fb.style.color = 'var(--red)'; fb.textContent = 'Enter your gamertag first.'; return; }
+  if(!teamRequestSelected) { fb.style.color = 'var(--red)'; fb.textContent = 'Select a team first.'; return; }
+  const teamName = (ALL_MLB_TEAMS.find(function(t){ return t.abbr === teamRequestSelected; }) || {}).name || teamRequestSelected;
+  const type = teamRequestIsChange ? 'CHANGE REQUEST' : 'JOIN REQUEST';
+  // Copy to clipboard for easy Discord paste
+  const msg = '[DDML ' + type + '] Gamertag: ' + gamertag + ' | Team: ' + teamName + ' (' + teamRequestSelected + ') | PreSeason';
+  navigator.clipboard.writeText(msg).then(function() {
+    fb.style.color = 'var(--green)';
+    fb.textContent = '✓ Copied to clipboard! Paste this in Discord to send your request.';
+    document.getElementById('trm-submit-btn').textContent = '✓ Copied — Paste in Discord!';
+    document.getElementById('trm-submit-btn').style.background = 'var(--green)';
+    document.getElementById('trm-submit-btn').style.color = '#06101e';
+    setTimeout(function() {
+      document.getElementById('trm-submit-btn').textContent = '📤 Send Request to Commissioner';
+      document.getElementById('trm-submit-btn').style.background = '';
+      document.getElementById('trm-submit-btn').style.color = '';
+    }, 4000);
+  }).catch(function() {
+    // Clipboard failed — show the message text instead
+    fb.style.color = 'var(--gold)';
+    fb.textContent = 'Copy this to Discord: ' + msg;
+  });
+}
+
+
+/* ── MOBILE BOTTOM NAV ── */
+var mbnMap = { hero:'mbn-home', standings:'mbn-standings', submit:'mbn-submit', stats:'mbn-stats', highlights:'mbn-highlights' };
+function mobileBottomNav(section) {
+  showSection(section);
+  // Update active state
+  Object.values(mbnMap).forEach(function(id) {
+    var el = document.getElementById(id);
+    if(el) el.classList.remove('mbn-active');
+  });
+  var active = mbnMap[section];
+  if(active) {
+    var el = document.getElementById(active);
+    if(el) el.classList.add('mbn-active');
+  }
+}
+
+// Sync bottom nav when showSection is called from other sources
+var _origShowSection = showSection;
+showSection = function(id) {
+  _origShowSection(id);
+  Object.values(mbnMap).forEach(function(bid) {
+    var el = document.getElementById(bid);
+    if(el) el.classList.remove('mbn-active');
+  });
+  var mapped = mbnMap[id];
+  if(mapped) {
+    var el = document.getElementById(mapped);
+    if(el) el.classList.add('mbn-active');
+  }
+};
+
+
+/* ══════════════════════════════════════════
+   COMMISSIONER NOTIFICATION SYSTEM
+══════════════════════════════════════════ */
+var COMM_NOTIFICATIONS = [];
+var toastCurrentAction = null;
+var toastTimer = null;
+
+function updateNavTop() {
+  var base = 82; // beta bar (26) + topbar (56)
+  var commOn = document.getElementById('comm-bar')?.classList.contains('on');
+  var teamOn = document.getElementById('team-bar')?.style.display !== 'none'
+    && document.getElementById('team-bar')?.style.display !== '';
+  var extra = 0;
+  if(commOn) extra += 40;
+  if(teamOn) extra += 38;
+  document.documentElement.style.setProperty('--nav-top', (base + extra) + 'px');
+}
+
+function loadCommNotifications() {
+  try {
+    var raw = localStorage.getItem('ddml_comm_notifs');
+    if(raw) COMM_NOTIFICATIONS = JSON.parse(raw);
+  } catch(e) { COMM_NOTIFICATIONS = []; }
+}
+
+function saveCommNotifications() {
+  try { localStorage.setItem('ddml_comm_notifs', JSON.stringify(COMM_NOTIFICATIONS.slice(0,50))); } catch(e) {}
+}
+
+function addCommNotification(notif) {
+  notif.timestamp = Date.now();
+  notif.read = false;
+  COMM_NOTIFICATIONS.unshift(notif);
+  saveCommNotifications();
+  updateNotifBadge();
+  // Show toast if commissioner is logged in
+  if(currentRole === 'commissioner') showToast(notif);
+}
+
+function updateNotifBadge() {
+  var unread = COMM_NOTIFICATIONS.filter(function(n){ return !n.read; }).length;
+  var badge = document.getElementById('comm-notif-count');
+  if(!badge) return;
+  badge.textContent = unread > 9 ? '9+' : unread;
+  badge.style.display = unread > 0 ? 'flex' : 'none';
+}
+
+function toggleNotifPanel() {
+  var panel = document.getElementById('comm-notif-panel');
+  if(!panel) return;
+  var isOpen = panel.classList.contains('open');
+  // Close on outside click
+  if(!isOpen) {
+    panel.classList.add('open');
+    COMM_NOTIFICATIONS.forEach(function(n){ n.read = true; });
+    saveCommNotifications();
+    updateNotifBadge();
+    renderNotifPanel();
+    setTimeout(function() {
+      document.addEventListener('click', closeNotifOnOutside, {once: true});
+    }, 50);
+  } else {
+    panel.classList.remove('open');
+  }
+}
+
+function closeNotifOnOutside(e) {
+  var panel = document.getElementById('comm-notif-panel');
+  var btn = document.getElementById('comm-notif-btn');
+  if(panel && !panel.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+    panel.classList.remove('open');
+  }
+}
+
+function renderNotifPanel() {
+  var list = document.getElementById('notif-list');
+  if(!list) return;
+  if(!COMM_NOTIFICATIONS.length) {
+    list.innerHTML = '<div style="padding:1.5rem;text-align:center;color:var(--dim);font-size:.78rem">No notifications yet</div>';
+    return;
+  }
+  list.innerHTML = COMM_NOTIFICATIONS.map(function(n, idx) {
+    var ago = timeAgo(n.timestamp);
+    var actionBtns = '';
+    if(n.action) {
+      actionBtns += '<button class="notif-action-btn" onclick="notifAction(' + idx + ')">' + (n.actionLabel||'View') + '</button>';
+    }
+    if(n.type === 'game' && n.subId) {
+      actionBtns += '<button class="notif-remove-btn" onclick="notifUndoGame(' + idx + ')">↺ Reset Game</button>';
+    }
+    if(n.type === 'highlight') {
+      actionBtns += '<button class="notif-remove-btn" onclick="notifRemoveHighlight(' + idx + ')">✕ Remove Clip</button>';
+    }
+    actionBtns += '<button class="notif-remove-btn" onclick="dismissNotif(' + idx + ')" style="border-color:rgba(255,255,255,.1);color:var(--dim)">✕</button>';
+    return '<div class="notif-item">' +
+      '<div class="notif-icon">' + (n.icon||'🔔') + '</div>' +
+      '<div class="notif-body">' +
+        '<div class="notif-msg">' + n.msg + '</div>' +
+        '<div class="notif-time">' + ago + '</div>' +
+        '<div class="notif-actions">' + actionBtns + '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function notifAction(idx) {
+  var n = COMM_NOTIFICATIONS[idx];
+  if(n && n.action) {
+    try { eval(n.action); } catch(e) {}
+  }
+  var panel = document.getElementById('comm-notif-panel');
+  if(panel) panel.classList.remove('open');
+}
+
+function notifUndoGame(idx) {
+  var n = COMM_NOTIFICATIONS[idx];
+  if(!n || !n.subId) return;
+  if(!confirm('Reset this game result? Standings and stats will be reverted.')) return;
+  undoReview(n.subId);
+  dismissNotif(idx);
+  var panel = document.getElementById('comm-notif-panel');
+  if(panel) panel.classList.remove('open');
+}
+
+function notifRemoveHighlight(idx) {
+  var n = COMM_NOTIFICATIONS[idx];
+  if(!confirm('Remove this highlight clip from the site?')) return;
+  // Find and remove the highlight
+  if(typeof n.removeIdx === 'number') {
+    HIGHLIGHTS.splice(n.removeIdx, 1);
+  } else {
+    // Try to find by title
+    var hlIdx = HIGHLIGHTS.findIndex(function(h){ return h.title === n.hlTitle; });
+    if(hlIdx > -1) HIGHLIGHTS.splice(hlIdx, 1);
+  }
+  persistAll();
+  renderHighlights();
+  dismissNotif(idx);
+  var panel = document.getElementById('comm-notif-panel');
+  if(panel) panel.classList.remove('open');
+}
+
+function dismissNotif(idx) {
+  COMM_NOTIFICATIONS.splice(idx, 1);
+  saveCommNotifications();
+  updateNotifBadge();
+  renderNotifPanel();
+}
+
+function clearAllNotifications() {
+  COMM_NOTIFICATIONS = [];
+  saveCommNotifications();
+  updateNotifBadge();
+  renderNotifPanel();
+}
+
+function showToast(notif) {
+  var toast = document.getElementById('comm-toast');
+  var titleEl = document.getElementById('toast-title');
+  var msgEl = document.getElementById('toast-msg');
+  if(!toast || !titleEl || !msgEl) return;
+  var titles = { game: '⚾ Game Result Submitted', highlight: '🎬 New Highlight Posted' };
+  titleEl.textContent = titles[notif.type] || '🔔 New Notification';
+  msgEl.textContent = notif.msg;
+  toastCurrentAction = notif.action || null;
+  toast.classList.add('show');
+  if(toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 7000);
+}
+
+function toastAction() {
+  if(toastCurrentAction) {
+    try { eval(toastCurrentAction); } catch(e) {}
+  }
+  var toast = document.getElementById('comm-toast');
+  if(toast) toast.classList.remove('show');
+}
+
+function timeAgo(ts) {
+  if(!ts) return '';
+  var diff = Date.now() - ts;
+  var mins = Math.floor(diff/60000);
+  if(mins < 1) return 'just now';
+  if(mins < 60) return mins + 'm ago';
+  var hrs = Math.floor(mins/60);
+  if(hrs < 24) return hrs + 'h ago';
+  return Math.floor(hrs/24) + 'd ago';
+}
+
+/* Remove highlight helper for inline card buttons */
+function removeHighlight(idx) {
+  if(!confirm('Remove this highlight from the site?')) return;
+  if(HIGHLIGHTS[idx]) {
+    HIGHLIGHTS.splice(idx, 1);
+    persistAll();
+    renderHighlights();
+  }
+}
+
+
+// Close on backdrop click — deferred until DOM ready
+(function() {
+  function attachModalBackdrop() {
+    var m = document.getElementById('team-request-modal');
+    if(m) m.addEventListener('click', function(e){ if(e.target === m) closeTeamRequestModal(); });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', attachModalBackdrop);
+  else attachModalBackdrop();
+})();
+
 </script>
 
 <!-- STRIDESIDE FOOTER STRIP -->
 <style>
-#ss-strip{background:#003DA5;border-top:1px solid rgba(232,80,10,.3);padding:14px 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:relative;z-index:1000}
-.ss-strip-left{display:flex;align-items:center;gap:12px}
-.ss-strip-icon{width:28px;height:28px;background:#E8500A;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;color:#fff;letter-spacing:-.03em;flex-shrink:0}
-.ss-strip-wm{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;letter-spacing:-.01em;text-transform:uppercase;color:#fff}
-.ss-strip-wm span{font-weight:300;color:#E8500A}
-.ss-strip-tag{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35)}
-.ss-strip-center{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center}
-.ss-strip-center span{color:#4D9EE8}
-.ss-strip-right{display:flex;align-items:center;gap:10px}
-.ss-back-btn{display:inline-flex;align-items:center;gap:6px;background:#E8500A;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s;text-decoration:none}
-.ss-back-btn:hover{background:#ff6422}
-.ss-strip-motto{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);text-align:right;margin-top:2px}
+#ss-strip{background:transparent;border-top:1px solid rgba(255,255,255,.05);padding:10px 1.5rem;display:flex;align-items:center;justify-content:center;position:relative;z-index:1000}
+#ss-strip a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;opacity:.38;transition:opacity .2s}
+#ss-strip a:hover{opacity:.72}
+.ss-icon{width:18px;height:18px;background:#E8500A;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#fff;letter-spacing:-.02em;flex-shrink:0}
+.ss-wordmark{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.ss-wordmark em{font-style:normal;color:#E8500A}
+.ss-powered{font-family:'Barlow',sans-serif;font-size:9px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4)}
 </style>
 <div id="ss-strip">
-  <div class="ss-strip-left">
-    <div class="ss-strip-icon">SS</div>
-    <div>
-      <div class="ss-strip-wm">STRIDE<span>SIDE</span></div>
-      <div class="ss-strip-tag">Digital Products &amp; Services Studio</div>
-    </div>
+  <a href="https://strideside.co" target="_blank" rel="noopener" aria-label="Powered by StrideSide">
+    <span class="ss-powered">Powered by</span>
+    <span class="ss-icon">SS</span>
+    <span class="ss-wordmark">STRIDE<em>SIDE</em></span>
+  </a>
+</div>
+
+
+<!-- COMMISSIONER NOTIFICATION PANEL -->
+<div id="comm-notif-panel">
+  <div class="notif-header">
+    <span class="notif-header-title">🔔 Notifications</span>
+    <button class="notif-clear" onclick="clearAllNotifications()">Clear All</button>
   </div>
-  <div class="ss-strip-center">
-    A <span>StrideSide</span> Original &nbsp;·&nbsp; Forward motion. Right beside you. Always. 🔵🟠
-  </div>
-  <div class="ss-strip-right">
-    <div>
-      <a href="index.html" class="ss-back-btn">← Back to StrideSide</a>
-      <div class="ss-strip-motto">Once a Strider, Always a Strider.</div>
-    </div>
+  <div id="notif-list">
+    <div style="padding:1.5rem;text-align:center;color:var(--dim);font-size:.78rem">No new notifications</div>
   </div>
 </div>
 
+<!-- COMMISSIONER TOAST -->
+<div id="comm-toast">
+  <div class="toast-title" id="toast-title">New Submission</div>
+  <div class="toast-msg" id="toast-msg"></div>
+  <button class="toast-action" id="toast-action" onclick="toastAction()">View</button>
+</div>
+
+<!-- REQUEST / CHANGE TEAM MODAL -->
+<div id="team-request-modal" style="display:none;position:fixed;inset:0;z-index:2500;background:rgba(0,0,0,.92);align-items:center;justify-content:center;padding:1rem">
+  <div style="background:var(--bg2);border:1px solid var(--border);border-top:3px solid #4D9EE8;border-radius:6px;width:100%;max-width:520px;max-height:92vh;overflow-y:auto">
+    <!-- Header -->
+    <div style="padding:1.25rem 1.5rem .75rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border2)">
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:.04em;color:#4D9EE8" id="trm-title">⚾ Request a Team</div>
+        <div style="font-size:.72rem;color:var(--dim);margin-top:.2rem" id="trm-sub">Pick your MLB squad for PreSeason. Commissioner approves — you'll get your password via Discord.</div>
+      </div>
+      <button onclick="closeTeamRequestModal()" style="background:none;border:none;color:var(--dim);font-size:1.3rem;cursor:pointer;line-height:1;padding:.25rem">✕</button>
+    </div>
+
+    <!-- Your gamertag -->
+    <div style="padding:1rem 1.5rem .5rem">
+      <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.4rem">Your Gamertag / Username</div>
+      <input type="text" id="trm-gamertag" placeholder="e.g. JimmyJam" style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--white);font-family:'Barlow',sans-serif;font-size:.9rem;padding:.55rem .85rem;border-radius:3px;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='#4D9EE8'" onblur="this.style.borderColor=''"/>
+    </div>
+
+    <!-- MLB Team picker -->
+    <div style="padding:.5rem 1.5rem 1rem">
+      <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.6rem">Choose Your MLB Team <span style="color:var(--gold);font-weight:600">(taken teams are greyed out)</span></div>
+      <div id="trm-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:.35rem"></div>
+    </div>
+
+    <!-- Selected team display -->
+    <div id="trm-selected" style="display:none;margin:0 1.5rem .75rem;background:rgba(77,158,232,.08);border:1px solid rgba(77,158,232,.25);border-radius:4px;padding:.6rem 1rem;font-size:.82rem;color:#4D9EE8">
+      ✓ Selected: <strong id="trm-selected-name"></strong>
+    </div>
+
+    <!-- Discord note -->
+    <div style="margin:0 1.5rem .75rem;background:rgba(88,101,242,.08);border:1px solid rgba(88,101,242,.2);border-radius:4px;padding:.6rem 1rem;font-size:.74rem;color:rgba(88,101,242,.9);line-height:1.5">
+      📢 After submitting, <strong>DM JimmyJam on Discord</strong> or drop it in the league channel. You'll receive your team password once approved.
+    </div>
+
+    <!-- Action buttons -->
+    <div style="padding:.5rem 1.5rem 1.25rem;display:flex;gap:.75rem">
+      <button onclick="closeTeamRequestModal()" style="flex:1;background:none;border:1px solid var(--border2);color:var(--dim2);font-family:'Barlow Semi Condensed',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.7rem;border-radius:3px;cursor:pointer">Cancel</button>
+      <button id="trm-submit-btn" onclick="submitTeamRequest()" style="flex:2;background:linear-gradient(135deg,#003DA5,#1a5abf);border:none;color:#fff;font-family:'Barlow Semi Condensed',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.7rem;border-radius:3px;cursor:pointer;transition:opacity .2s">📤 Send Request to Commissioner</button>
+    </div>
+    <div id="trm-feedback" style="text-align:center;padding:.25rem 1.5rem .75rem;font-size:.76rem;min-height:1.2em;color:var(--green)"></div>
+  </div>
+</div>
+
+<!-- MOBILE BOTTOM NAV BAR -->
+<nav id="mobile-bottom-nav" aria-label="Mobile navigation">
+  <ul>
+    <li>
+      <button id="mbn-home" onclick="mobileBottomNav('hero')" class="mbn-active">
+        <span class="mbn-icon">🏠</span>
+        <span class="mbn-label">Home</span>
+      </button>
+    </li>
+    <li>
+      <button id="mbn-standings" onclick="mobileBottomNav('standings')">
+        <span class="mbn-icon">📊</span>
+        <span class="mbn-label">Standings</span>
+      </button>
+    </li>
+    <li>
+      <button id="mbn-submit" onclick="mobileBottomNav('submit')">
+        <span class="mbn-icon" style="background:var(--gold);color:#06101e;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-top:-10px;box-shadow:0 2px 12px rgba(240,192,64,.5)">📤</span>
+        <span class="mbn-label" style="color:var(--gold)">Submit</span>
+      </button>
+    </li>
+    <li>
+      <button id="mbn-stats" onclick="mobileBottomNav('stats')">
+        <span class="mbn-icon">⚾</span>
+        <span class="mbn-label">Stats</span>
+      </button>
+    </li>
+    <li>
+      <button id="mbn-highlights" onclick="mobileBottomNav('highlights')">
+        <span class="mbn-icon">🎬</span>
+        <span class="mbn-label">Clips</span>
+      </button>
+    </li>
+  </ul>
+</nav>
+
+<!-- COMMISSIONER NOTIFICATION PANEL -->
+<div id="comm-notif-panel">
+  <div class="notif-header">
+    <span class="notif-header-title">🔔 Notifications</span>
+    <button class="notif-clear" onclick="clearAllNotifications()">Clear All</button>
+  </div>
+  <div id="notif-list">
+    <div style="padding:1.5rem;text-align:center;color:var(--dim);font-size:.78rem">No new notifications</div>
+  </div>
+</div>
+
+<!-- COMMISSIONER TOAST -->
+<div id="comm-toast">
+  <div class="toast-title" id="toast-title">New Submission</div>
+  <div class="toast-msg" id="toast-msg"></div>
+  <button class="toast-action" id="toast-action" onclick="toastAction()">View</button>
+</div>
+
+<!-- REQUEST / CHANGE TEAM MODAL -->
+<div id="team-request-modal" style="display:none;position:fixed;inset:0;z-index:2500;background:rgba(0,0,0,.92);align-items:center;justify-content:center;padding:1rem">
+  <div style="background:var(--bg2);border:1px solid var(--border);border-top:3px solid #4D9EE8;border-radius:6px;width:100%;max-width:520px;max-height:92vh;overflow-y:auto">
+    <!-- Header -->
+    <div style="padding:1.25rem 1.5rem .75rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border2)">
+      <div>
+        <div style="font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:.04em;color:#4D9EE8" id="trm-title">⚾ Request a Team</div>
+        <div style="font-size:.72rem;color:var(--dim);margin-top:.2rem" id="trm-sub">Pick your MLB squad for PreSeason. Commissioner approves — you'll get your password via Discord.</div>
+      </div>
+      <button onclick="closeTeamRequestModal()" style="background:none;border:none;color:var(--dim);font-size:1.3rem;cursor:pointer;line-height:1;padding:.25rem">✕</button>
+    </div>
+
+    <!-- Your gamertag -->
+    <div style="padding:1rem 1.5rem .5rem">
+      <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.4rem">Your Gamertag / Username</div>
+      <input type="text" id="trm-gamertag" placeholder="e.g. JimmyJam" style="width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--white);font-family:'Barlow',Arial,sans-serif;font-size:.9rem;padding:.55rem .85rem;border-radius:3px;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='#4D9EE8'" onblur="this.style.borderColor=''"/>
+    </div>
+
+    <!-- MLB Team picker -->
+    <div style="padding:.5rem 1.5rem 1rem">
+      <div style="font-family:'Barlow Semi Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:.6rem">Choose Your MLB Team <span style="color:var(--gold);font-weight:600">(taken teams are greyed out)</span></div>
+      <div id="trm-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:.35rem"></div>
+    </div>
+
+    <!-- Selected team display -->
+    <div id="trm-selected" style="display:none;margin:0 1.5rem .75rem;background:rgba(77,158,232,.08);border:1px solid rgba(77,158,232,.25);border-radius:4px;padding:.6rem 1rem;font-size:.82rem;color:#4D9EE8">
+      ✓ Selected: <strong id="trm-selected-name"></strong>
+    </div>
+
+    <!-- Discord note -->
+    <div style="margin:0 1.5rem .75rem;background:rgba(88,101,242,.08);border:1px solid rgba(88,101,242,.2);border-radius:4px;padding:.6rem 1rem;font-size:.74rem;color:rgba(88,101,242,.9);line-height:1.5">
+      📢 After submitting, <strong>DM JimmyJam on Discord</strong> or drop it in the league channel. You'll receive your team password once approved.
+    </div>
+
+    <!-- Action buttons -->
+    <div style="padding:.5rem 1.5rem 1.25rem;display:flex;gap:.75rem">
+      <button onclick="closeTeamRequestModal()" style="flex:1;background:none;border:1px solid var(--border2);color:var(--dim2);font-family:'Barlow Semi Condensed',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.7rem;border-radius:3px;cursor:pointer">Cancel</button>
+      <button id="trm-submit-btn" onclick="submitTeamRequest()" style="flex:2;background:linear-gradient(135deg,#003DA5,#1a5abf);border:none;color:#fff;font-family:'Barlow Semi Condensed',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.7rem;border-radius:3px;cursor:pointer;transition:opacity .2s">📤 Send Request to Commissioner</button>
+    </div>
+    <div id="trm-feedback" style="text-align:center;padding:.25rem 1.5rem .75rem;font-size:.76rem;min-height:1.2em;color:var(--green)"></div>
+  </div>
+</div>
+
+<!-- MOBILE BOTTOM NAV BAR -->
+<nav id="mobile-bottom-nav" aria-label="Mobile navigation">
+  <ul>
+    <li>
+      <button id="mbn-home" onclick="mobileBottomNav('hero')" class="mbn-active">
+        <span class="mbn-icon">🏠</span>
+        <span class="mbn-label">Home</span>
+      </button>
+    </li>
+    <li>
+      <button id="mbn-standings" onclick="mobileBottomNav('standings')">
+        <span class="mbn-icon">📊</span>
+        <span class="mbn-label">Standings</span>
+      </button>
+    </li>
+    <li>
+      <button id="mbn-submit" onclick="mobileBottomNav('submit')">
+        <span class="mbn-icon" style="background:var(--gold);color:#06101e;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-top:-10px;box-shadow:0 2px 12px rgba(240,192,64,.5)">📤</span>
+        <span class="mbn-label" style="color:var(--gold)">Submit</span>
+      </button>
+    </li>
+    <li>
+      <button id="mbn-stats" onclick="mobileBottomNav('stats')">
+        <span class="mbn-icon">⚾</span>
+        <span class="mbn-label">Stats</span>
+      </button>
+    </li>
+    <li>
+      <button id="mbn-highlights" onclick="mobileBottomNav('highlights')">
+        <span class="mbn-icon">🎬</span>
+        <span class="mbn-label">Clips</span>
+      </button>
+    </li>
+  </ul>
+</nav>
 </body>
 </html>
