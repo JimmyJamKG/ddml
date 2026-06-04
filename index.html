@@ -24,9 +24,9 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:var(--fb);font-size:15px;line-height:1.6;overflow-x:hidden;padding-top:26px}
 
 /* ── COMM BAR ── */
-#comm-bar{display:none;background:rgba(192,40,30,0.13);border-bottom:2px solid var(--red);padding:0.45rem 1.5rem;align-items:center;gap:0.75rem;font-family:var(--fs);font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);position:sticky;top:82px;z-index:190}
-#comm-bar.on{display:flex}
-.cb-dot{width:7px;height:7px;background:var(--red);border-radius:50%;animation:blink 1.4s infinite;flex-shrink:0}
+/* comm-bar is now hidden — functionality moved to topbar */
+#comm-bar{display:none !important}
+.cb-dot{display:none}
 @keyframes discordPulse{0%,100%{box-shadow:0 4px 20px rgba(88,101,242,.45)}60%{box-shadow:0 4px 28px rgba(88,101,242,.8)}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .cb-label{margin-right:auto}
@@ -35,7 +35,29 @@ body{background:var(--bg);color:var(--white);font-family:var(--fb);font-size:15p
 .cb-btn.gold{color:var(--gold);border-color:var(--gold)}.cb-btn.gold:hover{background:var(--gold);color:var(--bg)}
 
 /* ── TOPBAR ── */
-#topbar{position:sticky;top:26px;z-index:200;height:56px;background:rgba(8,17,31,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1.5rem;gap:0}
+#topbar{position:sticky;top:26px;z-index:200;height:56px;background:rgba(8,17,31,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1rem 0 1.5rem;gap:0}
+/* Comm indicator pill in topbar */
+#topbar-comm-pill{display:none;align-items:center;gap:6px;background:rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.3);border-radius:3px;padding:3px 10px;margin-right:.5rem;white-space:nowrap}
+#topbar-comm-pill.on{display:flex}
+.tcp-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:blink 1.4s infinite;flex-shrink:0}
+.tcp-label{font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+/* Team pill in topbar */
+#topbar-team-pill{display:none;align-items:center;gap:6px;background:rgba(0,61,165,.15);border:1px solid rgba(77,158,232,.3);border-radius:3px;padding:3px 10px;margin-right:.35rem;white-space:nowrap;cursor:pointer;transition:background .15s}
+#topbar-team-pill:hover{background:rgba(0,61,165,.25)}
+#topbar-team-pill.on{display:flex}
+.ttp-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.ttp-label{font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#4D9EE8}
+/* Tools dropdown */
+#topbar-tools-btn{display:none;position:relative;background:none;border:1px solid rgba(255,255,255,.12);color:var(--dim2);font-family:var(--fs);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:3px;cursor:pointer;transition:background .15s,color .15s;white-space:nowrap;height:30px;align-items:center;gap:5px}
+#topbar-tools-btn.on{display:flex}
+#topbar-tools-btn:hover{background:rgba(255,255,255,.06);color:var(--white)}
+#topbar-tools-menu{display:none;position:absolute;top:calc(100% + 6px);right:0;background:var(--bg2);border:1px solid var(--border);border-radius:5px;box-shadow:0 8px 30px rgba(0,0,0,.5);z-index:500;min-width:180px;overflow:hidden}
+#topbar-tools-menu.open{display:block}
+.ttm-item{display:flex;align-items:center;gap:.6rem;width:100%;padding:.6rem 1rem;background:none;border:none;border-bottom:1px solid var(--border2);color:var(--dim2);font-family:var(--fs);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .15s,color .15s;text-align:left;white-space:nowrap}
+.ttm-item:last-child{border-bottom:none}
+.ttm-item:hover{background:rgba(255,255,255,.05);color:var(--white)}
+.ttm-item.red:hover{background:rgba(224,48,64,.1);color:var(--red)}
+.ttm-sep{height:1px;background:var(--border);margin:2px 0}
 .topbar-logo{font-family:var(--fd);font-size:1.5rem;font-weight:800;letter-spacing:0.06em;color:var(--gold);text-decoration:none;margin-right:auto;line-height:1}
 .topbar-logo span{color:var(--white)}
 #topbar a.nav-link{font-family:var(--fs);font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim2);text-decoration:none;padding:0 0.85rem;height:56px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
@@ -119,6 +141,10 @@ select.si:focus{border-color:var(--gold)}
   /* ── ROOT OVERFLOW FIX ── */
   html,body{overflow-x:hidden;width:100%;max-width:100vw}
   *{max-width:100%;box-sizing:border-box}
+  /* Hide topbar right-side pills on mobile — they're in the hamburger menu */
+  #topbar-comm-pill,#topbar-team-pill,#topbar-tools-btn,#nav-comm-btn-topbar{display:none!important}
+  /* Bell stays visible for commissioner on mobile */
+  #comm-notif-btn{display:flex!important}
 
   /* ── BETA BAR ── */
   #beta-bar .bb-inner{gap:6px}
@@ -870,27 +896,15 @@ footer strong{color:var(--gold);font-weight:600}
 </div>
 
 <!-- TEAM BAR -->
-<div id="team-bar" style="display:none;background:rgba(0,61,165,0.18);border-bottom:1px solid rgba(77,158,232,0.25);padding:0.4rem 1.5rem;align-items:center;gap:0.65rem;font-family:'Barlow Semi Condensed',sans-serif;font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(77,158,232,0.9);position:sticky;top:82px;z-index:189">
-  <span id="team-bar-dot" style="width:7px;height:7px;border-radius:50%;background:#4D9EE8;flex-shrink:0"></span>
-  <span style="margin-right:auto">⚾ <span id="team-bar-label">My Team</span></span>
-  <button onclick="showSection('submit')" style="background:none;border:1px solid rgba(77,158,232,0.4);color:rgba(77,158,232,0.9);font-family:'Barlow Semi Condensed',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:2px;cursor:pointer;transition:background .15s" onmouseover="this.style.background='rgba(77,158,232,0.15)'" onmouseout="this.style.background='none'">📤 Submit Game</button>
-  <button onclick="openTeamRequestModal(true)" style="background:none;border:1px solid rgba(240,192,64,0.3);color:rgba(240,192,64,0.7);font-family:'Barlow Semi Condensed',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:2px;cursor:pointer;transition:background .15s" onmouseover="this.style.background='rgba(240,192,64,0.1)'" onmouseout="this.style.background='none'">🔄 Change Team</button>
-  <button onclick="teamLogout()" style="background:none;border:1px solid rgba(77,158,232,0.3);color:rgba(77,158,232,0.6);font-family:'Barlow Semi Condensed',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:2px;cursor:pointer;transition:background .15s" onmouseover="this.style.background='rgba(77,158,232,0.1)'" onmouseout="this.style.background='none'">Sign Out</button>
-</div>
+<!-- team-bar: functionality moved to topbar -->
+<div id="team-bar" style="display:none"></div>
 
 <!-- COMM BAR -->
-<div id="comm-bar">
+<!-- comm-bar elements preserved for JS compatibility — UI moved to topbar -->
+<div id="comm-bar" style="display:none!important">
   <span class="cb-dot"></span>
   <span class="cb-label" id="comm-bar-role">Commissioner Mode</span>
-  <span id="comm-bar-role-badge" style="font-family:'Barlow Semi Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:2px 9px;border-radius:2px;border:1px solid;margin-left:.25rem">👑 COMMISSIONER</span>
-  <button id="comm-notif-btn" onclick="toggleNotifPanel()" title="Notifications">
-    🔔
-    <span id="comm-notif-count">0</span>
-  </button>
-  <button class="cb-btn gold" onclick="exportData()">⬇ Export Data</button>
-  <button class="cb-btn" style="color:var(--dim2);border-color:var(--dim)" onclick="showTeamPasswordManager()" title="View/copy team passwords">🔑 Passwords</button>
-  <button class="cb-btn" style="color:var(--dim2);border-color:var(--dim)" onclick="resetAllData()" title="Wipe all saved data and reset to defaults">↺ Reset</button>
-  <button class="cb-btn red" onclick="commLogout()">Log Out</button>
+  <span id="comm-bar-role-badge">👑 COMMISSIONER</span>
 </div>
 
 <!-- TOP NAV -->
@@ -914,16 +928,59 @@ footer strong{color:var(--gold);font-weight:600}
   <a class="nav-link" href="#" onclick="showSection('news');return false" id="nav-news">News</a>
   <a class="nav-link" href="#" onclick="showSection('rewards');return false" id="nav-rewards">Rewards</a>
   <a class="nav-link" href="#" onclick="showSection('rules');return false" id="nav-rules">Rules</a>
-  <a class="nav-link" href="#" onclick="showSection('submit');return false" id="nav-submit" style="color:var(--gold)">📤 Submit Stats</a>
+  <a class="nav-link" href="#" onclick="showSection('submit');return false" id="nav-submit" style="color:var(--gold)">📤 Submit</a>
   <a class="nav-link" href="#" onclick="showSection('queue');return false" id="nav-queue" style="display:none">📋 Queue <span id="queue-badge" style="display:none;background:var(--red);color:#fff;font-size:.58rem;padding:1px 5px;border-radius:10px;margin-left:3px">0</span></a>
+
+  <!-- Right side — auth/status -->
+  <div style="margin-left:auto;display:flex;align-items:center;gap:.4rem;flex-shrink:0">
+    <!-- Commissioner pill -->
+    <div id="topbar-comm-pill">
+      <span class="tcp-dot"></span>
+      <span class="tcp-label" id="topbar-comm-label">👑 COMM</span>
+    </div>
+    <!-- Team pill -->
+    <div id="topbar-team-pill" onclick="showSection('submit')" title="Go to Submit">
+      <span class="ttp-dot" id="topbar-team-dot"></span>
+      <span class="ttp-label" id="topbar-team-label">My Team</span>
+    </div>
+    <!-- Notification bell -->
+    <button id="comm-notif-btn" onclick="toggleNotifPanel()" title="Notifications" style="display:none">
+      🔔
+      <span id="comm-notif-count">0</span>
+    </button>
+    <!-- Commissioner tools dropdown -->
+    <button id="topbar-tools-btn" onclick="toggleToolsMenu()" title="Commissioner Tools">
+      ⚙ Tools ▾
+    </button>
+    <!-- Login button — hidden when logged in -->
+    <button id="nav-comm-btn-topbar" onclick="openLogin(null)" style="background:rgba(224,48,64,.12);border:1px solid rgba(224,48,64,.4);color:var(--red);font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:3px;cursor:pointer;white-space:nowrap;transition:background .15s" onmouseover="this.style.background='rgba(224,48,64,.22)'" onmouseout="this.style.background='rgba(224,48,64,.12)'">🔐 Login</button>
+  </div>
+
   <!-- Hamburger (mobile only) -->
   <button id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
+<!-- Commissioner tools dropdown menu -->
+<div id="topbar-tools-menu">
+  <button class="ttm-item" onclick="exportData();closeToolsMenu()">⬇ Export Data</button>
+  <button class="ttm-item" onclick="showTeamPasswordManager();closeToolsMenu()">🔑 Team Passwords</button>
+  <button class="ttm-item" onclick="showSection('queue');closeToolsMenu()">📋 Submission Queue</button>
+  <button class="ttm-item" onclick="openTeamRequestModal(true);closeToolsMenu()">🔄 Change My Team</button>
+  <div class="ttm-sep"></div>
+  <button class="ttm-item" onclick="resetAllData();closeToolsMenu()" style="color:rgba(224,48,64,.7)">↺ Reset All Data</button>
+  <button class="ttm-item red" onclick="commLogout();closeToolsMenu()">🚪 Log Out</button>
+</div>
+
 <!-- MOBILE NAV DRAWER -->
 <div id="mobile-nav">
+  <!-- Status strip at top of mobile nav -->
+  <div id="mobile-nav-status" style="display:none;padding:.6rem 0 .8rem;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:.25rem">
+    <div id="mobile-nav-comm-status" style="display:none;font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem">👑 Commissioner Mode — Full Access</div>
+    <div id="mobile-nav-team-status" style="display:none;font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#4D9EE8;margin-bottom:.3rem">⚾ <span id="mobile-nav-team-name">My Team</span></div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap" id="mobile-nav-actions"></div>
+  </div>
   <a href="#" onclick="mobileNav('teams')">Teams</a>
   <a href="#" onclick="mobileNav('standings')">Standings</a>
   <a href="#" onclick="mobileNav('stats')">Stats</a>
@@ -937,8 +994,8 @@ footer strong{color:var(--gold);font-weight:600}
 <button id="mobile-nav-comm-btn" onclick="closeMobileNav();openLogin(null)">🔐 Commissioner Login</button>
 </div>
 
-<!-- FIXED COMMISSIONER BUTTON — always visible bottom right corner on every page -->
-<button id="nav-comm-btn" onclick="openLogin(null)" style="position:fixed;bottom:24px;right:24px;z-index:500;background:#1a0a0c;border:2px solid #e03040;color:#e03040;font-family:'Barlow Semi Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:10px 18px;border-radius:4px;cursor:pointer;box-shadow:0 4px 20px rgba(224,48,64,.4);">🔐 Commissioner</button>
+<!-- Old fixed comm button — kept for JS compat but hidden; login is now in topbar -->
+<button id="nav-comm-btn" onclick="openLogin(null)" style="display:none"></button>
 
 <!-- HERO -->
 <div id="hero-section">
@@ -2620,10 +2677,21 @@ function onTeamLogin(abbr, fromCommLogin) {
     const dot = document.getElementById('team-bar-dot');
     if(dot) dot.style.background = team.accent || 'var(--gold)';
   }
+  // Show team pill in topbar
+  const teamPill = document.getElementById('topbar-team-pill');
+  const teamDot = document.getElementById('topbar-team-dot');
+  const teamLbl = document.getElementById('topbar-team-label');
+  if(teamPill) {
+    teamPill.classList.add('on');
+    if(teamDot) teamDot.style.background = team.accent || '#4D9EE8';
+    if(teamLbl) teamLbl.textContent = abbr;
+  }
   // Keep comm button visible for commissioner (they need it)
   if(currentRole !== 'commissioner') {
     const cb = document.getElementById('nav-comm-btn');
     if(cb) cb.style.display = 'none';
+    const loginBtn = document.getElementById('nav-comm-btn-topbar');
+    if(loginBtn) loginBtn.style.display = 'none';
   }
   // Hide submit login prompt
   const prompt = document.getElementById('submit-login-prompt');
@@ -2711,21 +2779,47 @@ function activateRole(role) {
   try { localStorage.setItem('ddml_comm_role', role); } catch(e) {}
   closeLogin();
 
-  // Comm bar
-  const bar = document.getElementById('comm-bar');
-  bar.classList.add('on');
-  const _cr = document.getElementById('comm-bar-role');
-  const _cb = document.getElementById('comm-bar-role-badge');
-  if(_cr) _cr.textContent = isComm ? 'Commissioner Mode — Full Access' : 'Co-Commissioner Mode — Limited Access';
-  if(_cb) _cb.textContent = isComm ? '👑 COMMISSIONER' : '⚡ CO-COMMISSIONER';
-  document.getElementById('comm-bar-role-badge').style.background = isComm ? 'rgba(240,192,64,.15)' : 'rgba(80,140,240,.15)';
-  document.getElementById('comm-bar-role-badge').style.borderColor = isComm ? 'rgba(240,192,64,.4)' : 'rgba(80,140,240,.4)';
-  document.getElementById('comm-bar-role-badge').style.color = isComm ? 'var(--gold)' : '#70aaff';
-
-  // Hide floating login btn
+  // Show commissioner pill in topbar
+  const commPill = document.getElementById('topbar-comm-pill');
+  if(commPill) commPill.classList.add('on');
+  const commLabel = document.getElementById('topbar-comm-label');
+  if(commLabel) commLabel.textContent = isComm ? '👑 COMM' : '⚡ CO-COMM';
+  // Show tools button
+  const toolsBtn = document.getElementById('topbar-tools-btn');
+  if(toolsBtn) toolsBtn.classList.add('on');
+  // Show notif bell
+  const notifBtn = document.getElementById('comm-notif-btn');
+  if(notifBtn) notifBtn.style.display = 'flex';
+  // Hide the login button
+  const loginBtn = document.getElementById('nav-comm-btn-topbar');
+  if(loginBtn) loginBtn.style.display = 'none';
+  // Hide old floating login btn
   const nb = document.getElementById('nav-comm-btn');
   if(nb) nb.style.display='none';
 
+  // Update mobile nav status strip
+  var mns = document.getElementById('mobile-nav-status');
+  var mncs = document.getElementById('mobile-nav-comm-status');
+  var mna = document.getElementById('mobile-nav-actions');
+  if(mns) mns.style.display = '';
+  if(mncs) { mncs.style.display = ''; mncs.textContent = isComm ? '👑 Commissioner — Full Access' : '⚡ Co-Commissioner'; }
+  if(mna) {
+    var mnaHtml = document.createElement('div');
+    mnaHtml.style.cssText = 'display:flex;gap:.5rem;flex-wrap:wrap';
+    [
+      {txt:'📋 Queue', fn:function(){ showSection('queue'); closeMobileNav(); }},
+      {txt:'🔑 Passwords', fn:function(){ showTeamPasswordManager(); closeMobileNav(); }},
+      {txt:'🚪 Log Out', fn:function(){ commLogout(); closeMobileNav(); }, red:true}
+    ].forEach(function(item) {
+      var b = document.createElement('button');
+      b.textContent = item.txt;
+      b.style.cssText = 'background:' + (item.red ? 'rgba(224,48,64,.1);border:1px solid rgba(224,48,64,.3);color:var(--red)' : 'rgba(240,192,64,.1);border:1px solid rgba(240,192,64,.3);color:var(--gold)') + ';font-family:var(--fs);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:2px;cursor:pointer';
+      b.addEventListener('click', item.fn);
+      mnaHtml.appendChild(b);
+    });
+    mna.innerHTML = '';
+    mna.appendChild(mnaHtml);
+  }
   // Queue nav — both roles can see queue
   const qnav = document.getElementById('nav-queue');
   if(qnav) qnav.style.display='';
@@ -2734,6 +2828,9 @@ function activateRole(role) {
   // Hide mobile login button once logged in
   const mCommBtn = document.getElementById('mobile-nav-comm-btn');
   if(mCommBtn) mCommBtn.style.display='none';
+  // Keep old comm-bar hidden but add 'on' for legacy JS checks
+  const bar = document.getElementById('comm-bar');
+  if(bar) bar.classList.add('on');
 
   // Show/hide restricted controls
   document.querySelectorAll('.comm-toggle').forEach(btn=>{
@@ -2788,8 +2885,18 @@ function commLogout() {
   try { localStorage.removeItem('ddml_comm_role'); } catch(e) {}
   try { sessionStorage.removeItem('ddml_team'); } catch(e) {}
   document.getElementById('comm-bar').classList.remove('on');
+  // Hide topbar pills
+  const commPill = document.getElementById('topbar-comm-pill');
+  if(commPill) commPill.classList.remove('on');
+  const toolsBtn = document.getElementById('topbar-tools-btn');
+  if(toolsBtn) toolsBtn.classList.remove('on');
+  const notifBtn = document.getElementById('comm-notif-btn');
+  if(notifBtn) notifBtn.style.display = 'none';
+  const loginBtn = document.getElementById('nav-comm-btn-topbar');
+  if(loginBtn) loginBtn.style.display = '';
   const nb = document.getElementById('nav-comm-btn');
   if(nb) nb.style.display='';
+  closeToolsMenu();
   const heb = document.getElementById('hero-edit-btn-wrap');
   if(heb) heb.style.display='none';
   const apb = document.getElementById('add-page-bar');
@@ -2802,12 +2909,11 @@ function commLogout() {
   if(mCommBtn) mCommBtn.style.display='';
   document.querySelectorAll('.comm-toggle').forEach(b=>b.style.display='');
   document.querySelectorAll('.ed-panel').forEach(p=>p.classList.remove('on'));
-  // Also clear team bar if was set by commissioner auto-login
-  const tbar = document.getElementById('team-bar');
-  if(tbar) tbar.style.display = 'none';
-  // Restore comm button visibility
-  const nb2 = document.getElementById('nav-comm-btn');
-  if(nb2) nb2.style.display = '';
+  // Clear mobile nav status
+  var mns = document.getElementById('mobile-nav-status');
+  if(mns) mns.style.display = 'none';
+  var mncs = document.getElementById('mobile-nav-comm-status');
+  if(mncs) mncs.style.display = 'none';
 }
 
 // Keep legacy check for any code using commLoggedIn
@@ -4758,6 +4864,41 @@ showSection = function(id) {
 var COMM_NOTIFICATIONS = [];
 var toastCurrentAction = null;
 var toastTimer = null;
+
+function toggleToolsMenu() {
+  var menu = document.getElementById('topbar-tools-menu');
+  if(!menu) return;
+  var isOpen = menu.classList.contains('open');
+  if(isOpen) {
+    menu.classList.remove('open');
+  } else {
+    // Position under the tools button
+    var btn = document.getElementById('topbar-tools-btn');
+    if(btn) {
+      var r = btn.getBoundingClientRect();
+      menu.style.top = (r.bottom + 4) + 'px';
+      menu.style.right = (window.innerWidth - r.right) + 'px';
+      menu.style.position = 'fixed';
+    }
+    menu.classList.add('open');
+    setTimeout(function() {
+      document.addEventListener('click', closeToolsOnOutside, {once: true});
+    }, 50);
+  }
+}
+
+function closeToolsMenu() {
+  var menu = document.getElementById('topbar-tools-menu');
+  if(menu) menu.classList.remove('open');
+}
+
+function closeToolsOnOutside(e) {
+  var menu = document.getElementById('topbar-tools-menu');
+  var btn = document.getElementById('topbar-tools-btn');
+  if(menu && !menu.contains(e.target) && btn && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+}
 
 function updateNavTop() {
   var base = 82; // beta bar (26) + topbar (56)
